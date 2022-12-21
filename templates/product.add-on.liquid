@@ -1,0 +1,218 @@
+
+
+<main id="product" class="background-white" itemscope itemtype="http://schema.org/Product">
+  <div class="flex-container background-white aifs">
+    <div class="half double-accent-padding" id="featured-image-wrapper">
+      <img src="{{ product.featured_image.src | img_url: 'master' }}" class="fw featured_image preview-image" id="main-featured-image" alt="{{variant.name}}">
+    </div>
+    <div class="half double-accent-padding">
+      <h2 class="nm ttu"> {{ product.title }}</h2>
+      <p class="subscript">{{ product.description }}</p>
+      {% include 'reviews' %}
+      <p class="">{{product.price | money }} <span class="strikethrough text-purple">{{product.compare_at_price | money }}</span>
+      {% form 'product', product, data-productid: product.id, class: "checkout" %}
+        <div class="flex-container-no jcc" style="display: none;">
+          <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+          <link itemprop="availability" href="http://schema.org/InStock">
+          <div class="fw" style="">
+            <select name="id" data-productid="{{ product.id }}" id="productSelect-{{ product.id }}" class="product-single__variants" style="display: none;">
+              {% for variant in product.variants %}
+              <option {% if forloop.index == 0 %}selected="selected"{% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div> 
+          {% if product.available %}
+          	<button type="submit" name="add" id="add-to-cart-{{ product.id }}" class="add-to-cart clickable"><h4 class="text-natural ttu nm">Add to Cart</h4></button>
+          	<div class="other-payment-wrapper">{{ form | payment_button }}</div>
+            <style>
+              .quick-pay-options img { margin: 2.5px; max-width: 50%; width: 100px; }
+            </style>
+          	<p class="subscript"  id="purchase-help">Your purchase will help donate Pacas socks to a child staying at a local children's hospital. <a href="/pages/our-story" class="tu clickable"><b>Learn more.</b></a></p>
+            {% else %}
+              <p class="">I'll Be Back Soon!</p>
+            {% endif %}
+          <img src="{{'rebrand-guarantee-badge-dark-purple.svg' | asset_url}}" id="product-badge" class="do"/>
+      {% endform %}
+    </div>
+  </div>
+
+
+
+
+    <section class="background-white">
+    
+    {% include 'review-container' %}
+
+    <section class="background-white accent-padding-so flex-container aifs" style="margin-bottom: -2vw;">
+      <div class="one-third accent-padding" id="mobile-benefits-wrapper">
+        <div class="accent-padding  mobile-benefits">
+          <h3 class="ttu accent-crown nm">Hypoallergenic</h3>
+          <p>doesn't contain lanolin, which is a natural oil that causes allergies</p>
+        </div>
+        <div class="accent-padding  mobile-benefits">
+          <h3 class="ttu accent-crown nm">Thermoregulating</h3>
+          <p>alpaca fiber has a hollow core, which insulates heat in the winter and helps keep it cool in the summer</p>
+        </div>
+      <div class="accent-padding mo  mobile-benefits">
+          <h3 class="ttu accent-crown nm">Moisture Wicking</h3>
+          <p>doesn't absorb ba-a-a-ad moisture, unlike wool</p>
+      </div>
+      <div class="accent-padding mo  mobile-benefits">
+          <h3 class="ttu accent-crown nm">Warmer Than Wool</h3>
+          <p>5x warmer than wool. Take that, sheeple!</p>
+      </div>
+      </div>
+      <div class="mo tac" style="margin-top: -20px; margin-bottom: 50px;">
+        <div class="selection-circle background-dark-teal"></div>
+        <div class="selection-circle"></div>
+        <div class="selection-circle"></div>
+        <div class="selection-circle"></div>
+      </div>
+      <div class="one-third tac asfe">
+        <img src="{{'rebrand-paca.png' | asset_url}}" id="alpaca-break">
+      </div>
+      <div class="one-third accent-padding do">
+        <div class="accent-padding do">
+          <h3 class="ttu accent-crown nm">Moisture Wicking</h3>
+          <p>doesn't absorb ba-a-a-ad moisture, unlike wool</p>
+        </div>
+        <div class="accent-padding do">
+          <h3 class="ttu accent-crown nm">Warmer Than Wool</h3>
+          <p>5x warmer than wool. Take that, sheeple!</p>
+        </div>
+      </div>
+    </section>
+    <script>
+      if ($(window).width() < 800) {
+        setInterval(function(){ 
+          if ($('.mobile-benefits:last-of-type').is(":visible")) {
+            $('.mobile-benefits:visible').hide()
+            $('.mobile-benefits:first-of-type').show();
+            $('.selection-circle.background-dark-teal').removeClass('background-dark-teal')
+            $('.selection-circle:first-of-type').addClass('background-dark-teal')
+          }
+          else {
+            $('.mobile-benefits:visible').hide().next().show();
+            $('.selection-circle.background-dark-teal').removeClass('background-dark-teal').next().addClass("background-dark-teal")
+          }
+        }, 3000);
+      }
+   </script>
+    <style>
+/*       stop product description from expanding past product title and add to cart button */
+      @media only screen and (min-width: 800px){
+        .subscript { width: 80% }
+      }
+    </style>
+    <svg xmlns="http://www.w3.org/2000/svg" class="topper"viewBox="0 0 1440 320"><path fill="#a0dbe3" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>  
+    <section class="background-light-teal">
+       	<div class="fw flex-container index-product-preview-wrapper double-accent-padding" id="socks-quick">
+        	<div class="one-third index-product-preview">
+        	</div>
+        	<div class="one-third index-product-preview">
+        	</div>
+        	<div class="one-third index-product-preview">
+        	</div>
+          	<div class="one-third index-product-preview">
+        	</div>
+      	</div>
+    </section>
+    
+    {% include 'shop-cta' %}
+
+  </section>
+</main>
+<style>
+#product-specs-wrapper span { font-weight: lighter;   }
+
+#product-specs-wrapper p span { font-weight: lighter;   }
+  #product-specs-wrapper{ max-width: 800px; margin: 0 auto; }
+  h2 { line-height: 1; }
+  .shopify-payment-button__more-options {display:  none;}
+  .product-specs-active {
+    color:  #21409A;
+    text-decoration:  underline;
+  }
+</style>
+  <script>
+
+    var selectCallback_{{ product.id }} = function(variant, selector) {
+
+      // BEGIN SWATCHES
+      if (variant) {
+        var form = jQuery('#' + selector.domIdPrefix).closest('form');
+        for (var i=0,length=variant.options.length; i<length; i++) {
+          var radioButton = form.find('.swatch[data-option-index="' + i + '"] :radio[value="' + variant.options[i] +'"]');
+          if (radioButton.size()) {
+            radioButton.get(0).checked = true;
+          }
+        }
+      }
+      // END SWATCHES
+      timber.productPage({
+        money_format: "{{ shop.money_format }}",
+        variant: variant,
+        selector: selector,
+        product_id: '{{ product.id }}',
+        translations: {
+        add_to_cart : "{{ settings.add_to_cart_text }}",
+        sold_out : "Sold Out",
+        unavailable : "Unavailable"
+      }
+                         });
+    };
+    jQuery(function($) {
+      new Shopify.OptionSelectors('productSelect-{{ product.id }}', {
+                                  product: {{ product | json }},
+                                  onVariantSelected: selectCallback_{{ product.id }},
+                                  enableHistoryState: true
+                                  });
+    });
+  </script>
+
+  <script text="text/javascript">
+    var _learnq = _learnq || [];
+
+    var item = {
+      Name: {{ product.title|json }},
+      ProductID: {{ product.id|json }},
+      Categories: {{ product.collections|map:'title'|json }},
+      ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+      URL: "{{ shop.secure_url }}{{ product.url }}",
+      Brand: {{ product.vendor|json }},
+      Price: {{ product.price|money|json }},
+      CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+    };
+
+    _learnq.push(['track', 'Viewed Product', item]);
+    _learnq.push(['trackViewedItem', {
+      Title: item.Name,
+      ItemId: item.ProductID,
+      Categories: item.Categories,
+      ImageUrl: item.ImageURL,
+      Url: item.URL,
+      Metadata: {
+        Brand: item.Brand,
+        Price: item.Price,
+        CompareAtPrice: item.CompareAtPrice
+      }
+    }]);
+  </script>
+  <script type="text/javascript">
+    var _learnq = _learnq || [];
+    document.getElementById("add-to-cart-{{ product.id }}").addEventListener('click',function (){
+                            _learnq.push(['track', 'Added to Cart', item]);
+    });
+  </script>
+
+
+       <style>
+            @media only screen and (max-width:  799px) {
+   
+              /* stay on page */
+              footer { margin-top: -10vw; }
+            }
+
+
+          </style>

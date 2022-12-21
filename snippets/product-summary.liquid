@@ -1,0 +1,17 @@
+        <p id="product-summary">
+        {% if product.title contains "Women's Crew" %}
+        	Soft as cashmere, warmer than wool. The perfect sock for your sneaks, boots, and lounging around the house!
+        {% elsif product.title contains "Performance" %}
+              All the softness you're used to, with the lightweight athletic feel. Super soft, low profile performance cushioned bottom with a breathable vented top.
+        {% elsif product.title contains "Men's Crew" %}
+        	The ultimate comfort for long days on your feet. Meet the sports car of fibers: Wicking, Thermoregulating, Breathable and Soft.
+        {% elsif product.title contains "Kid" or product.title contains "Youth" or product.title contains "Toddler" %}
+        	Keep the kiddos feet cozy and warm all day - they deserve to experience the Alpaca fiber too!
+        {% elsif product.title contains "Women's Low Cut" %}
+        	Super soft, breathable, wicking and thermoregulating. The perfect socks for a long day on your feet.
+        {% elsif product.title contains "Men's Low Cut" %}
+        	The ultimate comfort for long days on your feet. Meet the sports car of fibers: Wicking, Thermoregulating, Breathable and Soft.
+		{% elsif product.title contains "Compression" %}
+             12-15 mmHg Compression Level
+        {% endif %}
+        </p>

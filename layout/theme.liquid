@@ -1,0 +1,185 @@
+{%- comment %}<locksmith:0337>{% endcomment -%}
+{%- include 'locksmith' -%}
+{%- comment %}</locksmith:0337>{% endcomment -%}
+
+<!doctype html>
+<html lang="en">
+  <head> 
+    {{ locksmith_initializations }}
+    <meta charset="utf-8">
+    <meta name="robots" content="index, follow, archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="">
+    <title>{% if template == 'index' %}Pacas™ {% elsif template == '404' %}Pacas™ | Page Not Found {% else %}Pacas™ | {{ page_title }}{% endif %}</title>
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="icon" type="image/png" href="{{ 'favicon.png' | asset_url }}">
+
+
+    {{ 'style.css' | asset_url | stylesheet_tag }}
+	
+    <script src="{{ 'jquery.min.js' | asset_url }}" ></script>
+    <script src="{{ 'custom.jquery.js' | asset_url }}" defer></script>
+
+    <script src="{{  'main.js' | asset_url }}" defer></script>
+    <script src="{{  'option_selection.js' | shopify_asset_url }}" defer></script>
+    <script src="{{ 'ajax-cart.js'  | asset_url }}" defer></script>
+    <script src="{{ 'modernizr.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'handlebars.min.js' | asset_url }}"></script>
+    <script src="{{ 'jquery.easing.1.3.min.js' | asset_url }}" defer></script>
+    <script src="{{'iframeResizer.min.js' | asset_url}}" ></script> 
+
+    <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=RFAHFZ"></script>
+    <script src="{{'jquery.mobile.custom.min.js' | asset_url}}" defer></script> 
+
+    <script src="{{'lazysizes.min.js' | asset_url}}" async=""></script>
+    {% include 'ajax-cart-template' %}
+    <script src="https://www.googleoptimize.com/optimize.js?id=OPT-58WD5XX"></script> 
+    <!--    google merchant  -->
+    <meta name="google-site-verification" content="IE0ngL9KsbD0-c1Ccrk1NqJD9xWl_JnsukMlGEe6ub4" />
+    <script async>
+      jQuery(function($) {
+        ajaxCart.init({
+          formSelector: 'form[action="/cart/add"]',
+          cartContainer: '#CartContainer',
+          addToCartSelector: '[type="submit"]',
+          cartCountSelector: '.cart span',
+          cartCostSelector: '#CartCost',
+          moneyFormat: {{ shop.money_format | json }}
+        });
+        });
+
+        jQuery(document.body).on('afterCartLoad.ajaxCart', function(evt, cart) {
+          timber.RightDrawer.open();
+        });
+    </script>
+
+
+    <meta name="facebook-domain-verification" content="63nft4wjd3k8gfyx910nbvdmsfc294" />    <div id="CartContainer" >
+    </div>
+    <!-- Start of pacas Zendesk Widget script -->
+    {% unless template contains 'index' %}
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=7d3024e7-7da8-447d-b877-b420117c0ea2" defer> </script>
+    <!-- End of pacas Zendesk Widget script -->
+    {% endunless %}
+
+    <!--   Postie   -->
+    <script>
+      (function(z,i,p,c,o,d,e){z[c]||(z[c]=function(){(z[c].q=z[c].q||[]).
+      push(arguments)},z[c].q=z[c].q||[],d=i.createElement(p),d.async=1,d.
+                                      src=o,e=i.getElementsByTagName(p)[0],e.parentNode.insertBefore(d,e))
+                              })(window,document,"script","letterpress","//scripts.postie.com/vzzzpzzn/lp.1.js");
+
+      window.letterpress('trackPageView');
+    </script>
+
+    <!-- audacy -->
+    <img src="https://trkn.us/pixel/c?ppt=17164&g=sitewide&gid=40157&ord={{order.name}}" alt="pixel" height="0" width="0" border="0" style="display: inherit" /> 
+
+
+    <!--    microsoft  -->
+    <script>(function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){var o={ti:"134611180"};o.q=w[u],w[u]=new UET(o),w[u].push("pageLoad")},n=d.createElement(t),n.src=r,n.async=1,n.onload=n.onreadystatechange=function(){var s=this.readyState;s&&s!=="loaded"&&s!=="complete"||(f(),n.onload=n.onreadystatechange=null)},i=d.getElementsByTagName(t)[0],i.parentNode.insertBefore(n,i)})(window,document,"script","//bat.bing.com/bat.js","uetq");</script>
+    <script>
+      window.addEventListener("klaviyoForms", function(e) { 
+        if (e.detail.type == 'submit') fbq('track', 'Lead');
+      });
+    </script>
+    {% if template contains 'customers' %}
+    {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+    {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+    {% endif %}
+    <script type="text/javascript">
+      var global_money_format = '{{ shop.money_format }}';
+    </script>
+
+    <script type="text/javascript">
+      !function(){var geq=window.geq=window.geq||[];if(geq.initialize) return;if (geq.invoked){if (window.console && console.error) {console.error("GE snippet included twice.");}return;}geq.invoked = true;geq.methods = ["page", "suppress", "trackOrder", "identify", "addToCart"];geq.factory = function(method){return function(){var args = Array.prototype.slice.call(arguments);args.unshift(method);geq.push(args);return geq;};};for (var i = 0; i < geq.methods.length; i++) {var key = geq.methods[i];geq[key] = geq.factory(key);}geq.load = function(key){var script = document.createElement("script");script.type = "text/javascript";script.async = true;if (location.href.includes("vge=true")) {script.src = "https://s3-us-west-2.amazonaws.com/jsstore/a/" + key + "/ge.js?v=" + Math.random();} else {script.src = "https://s3-us-west-2.amazonaws.com/jsstore/a/" + key + "/ge.js";}var first = document.getElementsByTagName("script")[0];first.parentNode.insertBefore(script, first);};geq.SNIPPET_VERSION = "1.5.1";
+                  geq.load("Y2QH91Z");}();
+    </script>
+    <script>geq.page()</script>
+
+
+<!-- inspectlet -->
+<!-- Begin Inspectlet Asynchronous Code -->
+<script type="text/javascript">
+(function() {
+window.__insp = window.__insp || [];
+__insp.push(['wid', 1775852512]);
+var ldinsp = function(){
+if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=1775852512&r=' + Math.floor(new Date().getTime()/3600000); var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+setTimeout(ldinsp, 0);
+})();
+</script>
+<!-- End Inspectlet Asynchronous Code -->
+    {% include "loyaltylion" %}
+  
+
+{% if content_for_header contains 'fastbundle.co' %}
+    {% render 'fast_bundle_service' %}
+{% endif %}
+
+</head>
+  <body>
+
+    {{ content_for_header }}
+    {% section 'announcement' %}
+
+    {% section 'header' %}
+
+    <section class="upper-pad"> 
+
+      {{ content_for_layout }}{{ locksmith_content_for_layout_addenda }}
+    </section>
+
+    {% section 'footer' %}
+
+    <script>jQuery(function(){jQuery(".swatch :radio").change(function(){var t=jQuery(this).closest(".swatch").attr("data-option-index"),e=jQuery(this).val();jQuery(this).closest("form").find(".single-option-selector").eq(t).val(e).trigger("change")})});</script>
+
+    {% unless template contains 'flow' %}
+    <script src="{{'klaviyo.js' | asset_url}}" defer></script>
+    {% endunless %}
+
+
+
+
+
+
+
+
+    {% include 'remove-sold-out' %}
+    {% include 'linked-options' %}
+    {% render 'afterpay' %}
+
+    {% include 'smile-initializer' %}
+
+    <!-- CRITEO START -->
+    {% include 'criteo-tracking' %}
+    <!-- CRITEO END -->
+    {% unless template contains 'flow' %}
+
+    <script>
+      window.addEventListener("klaviyoForms", function(e) { 
+        //   if (e.detail.type == 'open' || e.detail.type == 'embedOpen') {
+        //     ga('send', 'event', 'Klaviyo form', 'form_open', e.detail.formId);
+        //   }
+        //   if (e.detail.type == 'submit') {
+        //     ga('send', 'event', 'Klaviyo form', 'form_submit', e.detail.formId);
+        //   }
+        if (e.detail.type == 'stepSubmit') {
+          ga('send', 'event', 'Klaviyo form', 'form_step_submit', e.detail.metaData.$step_name);
+        }
+        //   if (e.detail.type == 'redirectedToUrl') {
+        //     ga('send', 'event', 'Klaviyo form', 'form_url_redirect', e.detail.formId);
+        //   }
+        //   if (e.detail.type == 'close') {
+        //     ga('send', 'event', 'Klaviyo form', 'form_close', e.detail.formId);
+        //   }
+      });
+    </script>
+    {% endunless %}
+
+
+  </body>
+</html>
+
+
+

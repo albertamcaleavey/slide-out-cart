@@ -1,0 +1,140 @@
+
+<main id="register" class="customer">	  
+  {% if customer %}
+    <script type="text/javascript">
+      window.location = '/account/'; 
+   </script>
+  {% else %}
+	<section class="flex-container aifs page-header background-teal">
+      <div class="half double-accent-padding background-teal" id="contact-form-half">
+        <h2 class="nm ttu text-dark-teal">Create Account</h2>
+        <p>Already have an account? <a href="/account/login" style="text-decoration: underline;">Login instead.</a></p>
+
+      		{% form 'create_customer' %}
+        		{{ form.errors | default_errors }}
+        <div class="flex-container" id="first-and-last">
+                <p id="first"><input type="text" value="{{ form.first_name }}" name="customer[first_name]" id="first_name" size="30" placeholder="First Name" class="fw"></p>
+                <p><input type="text" value="{{ form.last_name }}" name="customer[last_name]" id="last_name" {% if form.errors contains 'last_name' %} class="error fw"{% else %} class="fw"{% endif %} size="30" placeholder="Last Name"></p>
+        </div>     
+          <p><input type="email" value="{{ form.email }}" name="customer[email]" id="email"{% if form.errors contains 'email' %} class="error fw" {% else %} class="fw"{% endif %} size="30" placeholder="Email"></p>
+                <p><input type="password" value="" name="customer[password]" id="password"{% if form.errors contains 'password' %} class="error fw" {% else %} class="fw"{% endif %} size="30" placeholder="Password"></p>
+        		<div class="flex-container-no jsb clickable" id="contact-submit-wrapper">
+            		<input type="submit" value="Create" class="clickable text-natural animated-button-red animated-button ttu">
+          		</div>
+        	{% endform %}
+      </div>
+        <div class="half do" id="login-form-half-photo">
+        </div>
+     </section>
+  	  <svg xmlns="http://www.w3.org/2000/svg" class="updated-topper"viewBox="0 100 1440 220"><path fill="#f7f5f2" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>  
+      <section class="background-natural flex-container jcsa accent-padding contact-more-cta">
+        <div class="accent-padding">
+          <a href="/account/login">
+           <h3 class="text-dark-teal ttu nm">Login To<br> Account</h3>
+           <img src="{{'rebrand-arrow.png' | asset_url}}" class="cta-arrow" alt="arrow" />
+         </a>
+       </div>
+       <div class="accent-padding">
+        <a href="/account/login?recover=true" >
+           <h3 class="text-dark-teal ttu nm">Forgot<br> Password?</h3>
+           <img src="{{'rebrand-arrow.png' | asset_url}}" class="cta-arrow" alt="arrow"/>
+        </a>
+       </div>
+       <div class="accent-padding">
+        <a href="/pages/contact-us">
+           <h3 class="text-dark-teal ttu nm">Need Help?<br> Contact Us</h3>
+           <img src="{{'rebrand-arrow.png' | asset_url}}" class="cta-arrow" alt="arrow" />
+		</a>
+       </div>
+      </section>
+       <div class="half mo" id="login-form-half-photo" style="margin-top: 0vw;">
+        </div>
+  {% endif %}
+    </main>
+
+
+<style>
+  .customer ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color:  #f7f5f2;
+  opacity: 1; /* Firefox */
+ }
+
+.customer :-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color:  #f7f5f2;
+}
+
+
+.customer ::-ms-input-placeholder { /* Microsoft Edge */
+  color:  #f7f5f2;
+}
+.customer input[type="text"], .customer input[type="email"], .customer input[type="password"] { 
+  color:  #f7f5f2;
+}
+  @media only screen and (max-width: 799px) {
+  .customer .double-accent-padding {
+      padding: 10vw;
+  }
+  .contact-more-cta { padding: 6.5vw 5vw 5vw 5vw;}
+    h2 {
+        font-size: 8vw;
+    }
+  .cta-arrow { max-height: 15px; margin-top: 5px; } 
+
+   #login-form-half-photo {
+  background-image: url("{{'account-paca-mobile.png' | asset_url}}");
+  background-size:  cover;
+  background-repeat:  no-repeat;
+  background-position:  bottom left;
+    margin-top: -20vw; 
+    height: 100vw;
+}
+    .customer .updated-topper { margin-top: -15vw; margin-bottom: 0; }
+  .customer .bottom-curves {margin-top: -13vw; }
+  #contact-form-half { text-align: left; margin-bottom: -10px; } 
+  }
+  @media only screen and (min-width: 800px) {
+  .customer .double-accent-padding {
+      padding: 6vw;
+  }
+        #first-and-last p { margin: 0; }
+    #first-and-last #first {margin-right: 10px; }
+
+     .customer   h2 {
+        font-size: 5vw;
+    }
+   .customer h3 { 
+      font-size: 3.5vw; 
+      margin-bottom: 30px !important; 
+    } 
+   #login-form-half-photo{
+  background-image: url("{{'account-paca-desktop.png' | asset_url}}");
+  background-size:  cover;
+  background-repeat:  no-repeat;
+  background-position:  bottom left;
+}
+  }
+  h2, h3 {line-height: 1; }
+   
+  @media only screen and (min-width: 800px)  {
+.customer .page-header {
+    height: 58vw;
+    margin-bottom: -5vw;
+}
+      .absolute-submit {
+     
+    position: absolute;
+    margin-top: -62vw;
+    left: 6vw;
+     }
+  } 
+
+  #rc_login { display: none !important; }
+  input[type="submit"].animated-button {
+    background-color: transparent;
+    padding: 50px;
+    margin-top: 0 !important;
+}
+  .errors ul { list-style: none; padding-left: 0; }
+  .errors ul li { color: #f04e4c; font-weight: bold;} 
+</style>
+    

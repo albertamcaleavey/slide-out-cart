@@ -1,0 +1,517 @@
+    <main id="page">	     
+        <section class="index-padding">
+          <div class="background-teal accent-padding">
+            <h2 class="tac ttu nm" id="bundle-title"></h2>
+            <div class="the-womens-starter-sock-box" style="display: none;">
+              <p class="nmb tac">Includes 3 Women's Crew Socks, 2 Women's Light-Weight Crew Socks, 4 Women's Low Cut Socks, and 3 Women's No Show Socks.</p>
+              <p class="nmb tac">$145.00<span class="strikethrough"style="margin-left: 5px;">$172.00</span></h4>
+            </div>
+             <div class="the-mens-starter-sock-box" style="display: none;">
+              <p class="nmb tac">Includes 3 Men's Crew Socks, 2 Men's Light-Weight Crew Socks, and 4 Women's Low Cut Socks.</p>
+              <p class="nmb tac">$115.00<span class="strikethrough"style="margin-left: 5px;">$134.00</span></h4>
+            </div>
+              <div class="kiddies" style="display: none;">
+              <p class="nmb tac">Includes 4 Kids' Crew Socks and 1 Alpaca Toy</p>
+              <p class="nmb tac">$70.00<span class="strikethrough"style="margin-left: 5px;">$83.00</span></h4>
+            </div>
+            <div class="the-sock-box-deluxe" style="display: none;">
+              <p class="nmb tac">Includes 6 Women's Crew Socks, 2 Women's Light-Weight Crew Socks, 3 Women's Low Cut Socks, 3 Women's Performance Socks, 6 Women's No Show Socks, and 3 Women's Compression Socks.</p>
+              <p class="nmb tac">$245.00<span class="strikethrough"style="margin-left: 5px;">$310.00</span></h4>
+            </div> 
+            <div class="on-the-go" style="display: none;">
+              <p class="nmb tac">Includes one boucle scarf and one hat.</p>
+                <p class="nm tac">$105.00<span class="strikethrough" style="margin-left: 5px;">$115.00</span></h4>
+            </div>
+            <div class="on-the-go-deluxe" style="display: none;">
+              <p class="nmb tac">Includes one Scarf, one Hat, and a 3 Pack of Women's Crew Socks.</p>
+                <p class="nm tac">$120.00<span class="strikethrough" style="margin-left: 5px;">$139.00</span></h4>
+            </div>   
+            <div class="cozy-at-home" style="display: none;">
+              <p class="nmb tac">Includes a Throw Blanket and a 6 Pack of Women's Crew Socks.</p>
+                <p class="nm tac">$215.00<span class="strikethrough" style="margin-left: 5px;">$238.00</span></h4>
+            </div>   
+            <div class="work-from-home" style="display: none;">
+              <p class="nmb tac">Includes a Wrap, 3 Pack of Women's Crew Socks, and Women's Crewneck Sweater.</p>
+                <p class="nm tac">$230.00<span class="strikethrough" style="margin-left: 5px;">$269.00</span></h4>
+            </div>   
+          <div class="winter-deluxe" style="display: none;">
+              <p class="nmb tac">Includes one Scarf, one Hat, a 3 Pack of Women's Crew Socks, and one Throw Blanket.</p>
+                <p class="nm tac">$260.00<span class="strikethrough" style="margin-left: 5px;">$324.00</span></h4>
+            </div>   
+             <div class="ready-for-anything" style="display: none;">
+              <p class="nmb tac">Includes one Women's Cardigan,one Hat, one Scarf, and a 3 Pack of Women's Crew Socks.</p>
+                <p class="nm tac">$220.00<span class="strikethrough" style="margin-left: 5px;">$274.00</span></h4>
+            </div>  
+            <div class="family-bundle" style="display: none;">
+              <p class="nmb tac">Includes 3 Women's Crew Socks, 3 Men's Crew Socks, and 4 Kids' Crew Socks.</p>
+                <p class="nm tac">$125.00<span class="strikethrough" style="margin-left: 5px;">$132.00</span></h4>
+            </div>         
+            <div class="alpaca-for-2" style="display: none;">
+              <p class="nmb tac">Includes 3 Women's Crew Socks, and 3 Men's Crew Socks.</p>
+                <p class="nm tac">$90.00<span class="strikethrough" style="margin-left: 5px;">$98.00</span></h4>
+            </div> 
+            <div class="alpaca-for-2-deluxe" style="display: none;">
+              <p class="nmb tac">Includes 3 Men's Crew Socks, 3 Women's Crew Socks, 2 Women's Low Cut Socks, 2 Men's Low Cut Socks</p>
+                <p class="nm tac">$130.00<span class="strikethrough" style="margin-left: 5px;">$154.00</span></h4>
+            </div>   
+            <div class="jet-set-travel-pack" style="display: none;">
+              <p class="nmb tac">Includes a Wrap and a 3 Pack of Women's Compression Socks</p>
+                <p class="nm tac">$125.00<span class="strikethrough" style="margin-left: 5px;">$140.00</span></h4>
+            </div>   
+          </div>
+          <div id="overall-bundle-error" style="display: none;"><p class="tac subscript text-dark-red">Please review the errors below.</p></div>
+<!-- 3 womens crew -->
+          {% for product in collections.all.products %}
+            {% if product.id == 4837733957732 %}
+              <div class="bundle-product-wrapper alpaca-for-2-deluxe alpaca-for-2 the-womens-starter-sock-box on-the-go-deluxe work-from-home winter-deluxe ready-for-anything family-bundle" id="bundle-3-crew" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+ 
+                    <!-- 4 mens low cut -->
+          {% for product in collections.all.products %}
+            {% if product.id == 4823047405668 %}
+              <div class="bundle-product-wrapper the-mens-starter-sock-box " id="bundle-4-m-lc" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+                            <!-- 2 mens lw -->
+          {% for product in collections.all.products %}
+            {% if product.id == 6602921246820 %}
+              <div class="bundle-product-wrapper the-mens-starter-sock-box " id="bundle-2-m-lcrew" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+<!--           2 womens light weight crew -->
+          {% for product in collections.all.products %}
+            {% if product.id == 6609169776740 %}
+              <div class="bundle-product-wrapper the-womens-starter-sock-box the-sock-box-deluxe" id="bundle-2-light-weight-crew" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+<!--           3 womens low cut -->
+          {% for product in collections.all.products %}
+            {% if product.id == 4823040131172 %}
+              <div class="bundle-product-wrapper the-sock-box-deluxe" id="bundle-3-low-cut" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+
+               <!-- 4 womens low cut -->
+          {% for product in collections.all.products %}
+            {% if product.id == 4823040491620 %}
+              <div class="bundle-product-wrapper the-womens-starter-sock-box" id="bundle-3-low-cut" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+<!--           3 no show -->
+          {% for product in collections.all.products %}
+            {% if product.id == 6585673187428 %}
+              <div class="bundle-product-wrapper the-womens-starter-sock-box" id="bundle-3-no-show" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+<!--           6 womens crew -->
+          {% for product in collections.all.products %}
+            {% if product.id == 4837725012068 %}
+              <div class="bundle-product-wrapper the-sock-box-deluxe cozy-at-home" id="bundle-6-crew" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+<!--          3 womens performance -->
+          {% for product in collections.all.products %}
+            {% if product.id == 6558139154532 %}
+              <div class="bundle-product-wrapper the-sock-box-deluxe" id="bundle-3-performance" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+          
+<!--             6 no show -->
+{% paginate collections.all.products by 1000 %}
+
+          {% for product in collections.all.products %}
+     
+            {% if product.id == 6585674432612 %}
+              <div class="bundle-product-wrapper the-sock-box-deluxe" id="bundle-6-no-show" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+  {%  endpaginate %}
+
+  <!--             3 compression -->
+{% paginate collections.all.products by 1000 %}
+
+          {% for product in collections.all.products %}
+            {% if product.id == 6930797101156 %}
+              <div class="bundle-product-wrapper the-sock-box-deluxe" id="bundle-2-compression" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+    {%  endpaginate %}
+
+<!--           scarf -->
+
+  {% paginate collections.all.products by 1000 %}
+
+          {% for product in collections.all.products %}
+            {% if product.id == 6999594565732 %}
+              <div class="bundle-product-wrapper on-the-go-deluxe  ready-for-anything" id="bundle-scarf" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+      {%  endpaginate %}
+<!--    color block scarf    -->
+
+  {% paginate collections.all.products by 1000 %}
+
+          {% for product in collections.all.products %}
+            {% if product.id == 6972995829860 %}
+              <div class="bundle-product-wrapper winter-deluxe" id="bundle-scarf" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+      {%  endpaginate %}
+<!--           boucle scarves -->
+  {% paginate collections.all.products by 1000 %}
+
+          {% for product in collections.all.products %}
+            {% if product.id == 6972995305572 %}
+              <div class="bundle-product-wrapper on-the-go" id="bundle-boucle-scarf" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+      {%  endpaginate %}
+
+<!--           hat -->
+
+  {% paginate collections.all.products by 1000 %}
+
+          {% for product in collections.all.products %}
+            {% if product.id == 6632489123940 %}
+              <div class="bundle-product-wrapper on-the-go on-the-go-deluxe winter-deluxe ready-for-anything" id="bundle-hat" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+      {%  endpaginate %}
+
+<!--           throw -->
+
+  {% paginate collections.all.products by 1000 %}
+
+          {% for product in collections.all.products %}
+            {% if product.id == 6888748580964 %}
+              <div class="bundle-product-wrapper cozy-at-home winter-deluxe" id="bundle-throw" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+      {%  endpaginate %}
+
+<!--             wrap -->
+{% paginate collections.all.products by 1000 %}
+
+          {% for product in collections.all.products %}
+            {% if product.id == 6873182437476 %}
+              <div class="bundle-product-wrapper work-from-home jet-set-travel-pack" id="bundle-wrap" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+    {%  endpaginate %}
+
+<!--          sweater -->
+
+  {% paginate collections.all.products by 1000 %}
+
+          {% for product in collections.all.products %}
+            {% if product.id == 6964378370148 %}
+              <div class="bundle-product-wrapper work-from-home" id="bundle-sweater" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+      {%  endpaginate %}
+<!--          cardigan -->
+
+  {% paginate collections.all.products by 1000 %}
+
+          {% for product in collections.all.products %}
+            {% if product.id == 6974299177060 %}
+              <div class="bundle-product-wrapper ready-for-anything" id="bundle-sweater" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+      {%  endpaginate %}
+<!--           3 mens crew -->
+
+  {% for product in collections.all.products %}
+            {% if product.id == 4837737365604 %}
+              <div class="bundle-product-wrapper alpaca-for-2-deluxe the-mens-starter-sock-box alpaca-for-2 family-bundle" id="bundle-3-mens-crew" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+<!--             4 womens crew -->
+          {% for product in collections.all.products %}
+            {% if product.id == 4837728518244 %}
+              <div class="bundle-product-wrapper" id="bundle-4-crew" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+<!--             2 mens crew -->
+          {% for product in collections.all.products %}
+            {% if product.id == 4837739855972 %}
+              <div class="bundle-product-wrapper" id="bundle-2-mens-crew" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+<!--             2 womens crew -->
+          {% for product in collections.all.products %}
+            {% if product.id == 4837738250340 %}
+              <div class="bundle-product-wrapper" id="bundle-2-crew" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+<!--             2 womens low cut -->
+          {% for product in collections.all.products %}
+            {% if product.id == 4823040098404 %}
+              <div class="bundle-product-wrapper alpaca-for-2-deluxe" id="bundle-2-low-cut" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+<!--             2 mens low cut -->
+          {% for product in collections.all.products %}
+            {% if product.id == 4823046946916 %}
+              <div class="bundle-product-wrapper alpaca-for-2-deluxe" id="bundle-2-mens-low-cut" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+<!--             3 pack womens compression -->
+          {% for product in collections.all.products %}
+            {% if product.id == 6930797101156 %}
+              <div class="bundle-product-wrapper jet-set-travel-pack" id="bundle-3-compression" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+<!--           4 kids crew -->
+          {% paginate collections.all.products by 1000 %}
+          {% for product in collections.all.products %}
+            {% if product.id ==  6599584481380%}
+              <div class="bundle-product-wrapper family-bundle kiddies" id="bundle-3-kids-crew" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+              {%  endpaginate %}
+                            <!--           alpaca toy -->
+          {% paginate collections.all.products by 1000 %}
+          {% for product in collections.all.products %}
+            {% if product.id ==  6989526859876%}
+              <div class="bundle-product-wrapper kiddies" id="bundle-3-kids-crew" style="display: none;">
+                {% include 'product-form-bundle' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+              {%  endpaginate %}
+             <p class="subscript add-bundle-alert nmb">*After finishing bundle selections, click "Add Bundle to Cart" button below to finalize.</p>
+          <div class="background-white jcc" id="add-to-bundle-wrapper" style="display: flex">
+            <button class="add-to-cart add-bundle clickable" style="width: 100%; margin-top: 10px; height: 56px;"><h4 class="text-natural ttu nm">Add Bundle to Cart</h4></button>
+          </div>
+          
+	    </section>
+      
+    </main>
+    <style>
+      .save-to-bundle {
+        background-color: #21409A;
+        border-radius: 10px;
+        text-transform: uppercase;
+        border: none;
+        font-weight: 500;
+        width: 100%;
+        margin-top: 12pt;
+        height: 56px;
+      }
+    </style>
+
+    <script>
+      // function to analyze url params
+      var getUrlParameter = function getUrlParameter(sParam) {
+      var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+      for (i = 0; i < sURLVariables.length; i++) {
+          sParameterName = sURLVariables[i].split('=');
+          if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+          }
+      }
+      return false;
+      };
+
+      // stores values of url params as variable
+      var boxClass = $.trim( getUrlParameter('box'))
+      var box = getUrlParameter('box').replace(/-/g, ' ');
+      var updateBox = getUrlParameter('update-box')
+      // adds in the bundle title
+      $('#bundle-title').text(box)
+      
+      // show bundles with a class name of the bundle's title
+      $('.' + boxClass).show()
+
+        $('.bundle-size-selection').click(function() {
+          var $this = $(this)
+          $(this).closest('.bundle-size-wrapper').siblings('.bundle-size-wrapper-error').hide()
+          var fullSize = $(this).attr('data-full-size')
+          var colorSize = $(this).attr('data-color-buttons')
+          $(this).parent().siblings().children('.size-selected').text(fullSize)
+          $(this).addClass('background-dark-purple text-white').siblings().removeClass('background-dark-purple text-white')
+          $(this).parent('.bundle-size-wrapper').attr("data-selected", true)
+          var shownColor = $(this).parent().siblings('.bundle-color-wrapper').find('.active')
+          $(this).parent().siblings('.' + colorSize).show().siblings('.bundle-color-wrapper').hide();
+          
+          
+          if (shownColor.length) {
+            
+            var activeColorName = $(shownColor).attr("data-option")
+            console.log(activeColorName)
+            if (shownColor.is(":visible"))  {
+
+              var sisterColor = shownColor
+        
+            }
+            else {
+              var sisterColor = $(shownColor).parent().siblings('.bundle-color-wrapper').find(`[data-option=${activeColorName}]`)
+              $(shownColor).removeClass('active')
+            }
+    
+            
+            if (sisterColor.length) {
+              $(sisterColor).addClass('active')
+              $(sisterColor).siblings().removeClass('active')
+              $(shownColor).parent().siblings('.bundle-color-wrapper:visible').attr("data-selected", true)
+            } 
+            else {
+              $(shownColor).parent().siblings('.bundle-color-wrapper:visible').attr("data-selected", false)
+             }
+          }
+          
+        })
+
+     $('.color-preview-circle').click(function() {
+       $(this).closest('.product-image-preview').show()
+        let selectedSku = $(this).attr("data-sku"); 
+        $(this).addClass('active').siblings().removeClass('active')
+        $(this).parent().attr("data-selected", "true")
+        $(this).closest('.bundle-color-wrapper').siblings('.bundle-color-wrapper-error').hide()
+        let selectedImage = $(this).attr("data-image-src"); 
+        $(this).parent().closest('.flex-container.background-white.aifs').find('.featured_image').attr("src", selectedImage);
+      });
+      
+function addAllItems(variantIdArray) {
+  var newVariantIdArray = variantIdArray
+
+  var product_data = newVariantIdArray.map(variantId => {
+    return {quantity: 1, id: variantId}
+  })
+
+  var data = {
+    items: product_data
+  }
+        
+  fetch('/cart/add.js', {
+    body: JSON.stringify(data),
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-With':'xmlhttprequest'
+    },
+    method: 'POST'
+  }).then((response) => {
+    return response.json();
+  }).then((json) => {
+    console.log('products', json)
+    deleteCookie('Bundled-KB-Test')
+    createCookie('Bundled-KB-Test',boxClass, 7)
+    window.location.href = '/discount/' + boxClass + '?redirect=/cart'; 
+
+  }).catch((err) => {
+    console.error(err)
+  });
+}
+
+      $('.save-to-bundle').click(function() {
+        $('#overall-bundle-error').hide();
+        if ($(this).parent().siblings('.bundle-size-wrapper:visible').attr("data-selected") == "false") {
+            $(this).parent().siblings('.bundle-size-wrapper-error').show(); 
+          }
+        if ($(this).parent().siblings('.bundle-color-wrapper:visible').attr("data-selected") == "false") {
+            $(this).parent().siblings('.bundle-color-wrapper-error').show(); 
+        }
+      if ($(this).parent().siblings('.bundle-color-wrapper:visible').attr("data-selected") == "true" && $(this).parent().siblings('.bundle-size-wrapper:visible').attr("data-selected") == "true")  {
+        $(this).children('h4').text('added')
+        }
+      })
+
+      $('.add-bundle').click(function() {
+         var selectionArray = []
+        $('#overall-bundle-error').hide();
+        $('.bundle-product-wrapper:visible').each(function() {
+          if ($(this).find('.bundle-size-wrapper:visible').attr("data-selected") == "false") {
+            $(this).find('.bundle-size-wrapper-error').show(); 
+          }
+          if ($(this).find('.bundle-color-wrapper:visible').attr("data-selected") == "false") {
+            $(this).find('.bundle-color-wrapper-error').show(); 
+          }
+           if ($(this).find('.bundle-color-wrapper:visible').attr("data-selected") == "true" && $(this).find('.bundle-size-wrapper:visible').attr("data-selected") == "true")  {
+            selectionArray.push($(this).find('.color-preview-circle.active').attr("data-variant") ) 
+          }   
+        })
+        let bundleSize = $('.bundle-product-wrapper:visible').size()
+        let selectionSize = selectionArray.length
+        if (bundleSize == selectionSize) {
+           addAllItems(selectionArray)
+        }
+        else {
+          $('#overall-bundle-error').show();
+          $('.bundle-color-wrapper-error p').addClass('text-dark-red')
+          $('.bundle-size-wrapper-error p').addClass('text-dark-red')
+
+          $(window).scrollTop(0);
+        }
+
+      })
+
+    </script>  
+    <script>
+      $('.save-to-bundle:visible').last().parent('.background-white').addClass('last-save-to-bundle')
+
+      $('.add-bundle').insertAfter('.last-save-to-bundle')
+                  $('.add-bundle-alert').insertAfter('.last-save-to-bundle')
+    $('.scroll-alert:visible').last().hide()
+    </script>
+    

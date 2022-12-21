@@ -1,0 +1,18 @@
+   <section class="background-natural">
+     <section class="double-accent-padding background-natural tac" id="product-review-wrapper">
+        <h1 class="detail-accent ttu tac nm">Unbelievably Soft.</h1>
+        <p class="tac">(but don't just take our word for it...)</p>
+	    {% include 'reviews' %}
+		<iframe src="https://pacas-reviews.herokuapp.com/welcome/show" id="iFrame1" style="border: none; width: 100%;"></iframe>
+     </section>
+	 <script>
+       $("#iFrame1").on("load", function () {
+         $('#iFrame1').iFrameResize( [{
+           checkOrigin:false,
+           log:true,
+           minHeight:15000,
+           heightCalculationMethod:'lowestElement'
+         }] );
+       });
+	</script>
+   </section>

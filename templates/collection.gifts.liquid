@@ -1,0 +1,660 @@
+<main id="{{collection.title | handleize}}"> 
+  <section class="collection-header double-accent-padding {% if collection.title contains 'New Arrivals' %}background-teal {% else %}background-dark-red{% endif %}" id="{{collection.title | handleize}}-wrapper">
+    <div>
+      <h2 class="nmt tac ttu text-white acc-collection-title">{{ collection.title | remove: 'Summer'}}</h2>        
+    </div>
+  </section>
+
+  <svg xmlns="http://www.w3.org/2000/svg" class="updated-topper do"viewBox="0 100 1440 220"><path fill="white" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>  
+  <svg xmlns="http://www.w3.org/2000/svg" class="topper mo"viewBox="0 0 1440 320"><path fill="white" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>  
+
+  <section class="main-container">
+     <div class="background-white flex-container aifs" >
+      <div class="flex-container-no mo jes" style="padding: 5px;">
+        <div class="background-natural one-third" style="padding: 10px; margin: 5px; border-radius: 10px;">
+          <a href="/collections/all-socks">
+          <p class="nm tac">Socks</p>
+          </a>
+        </div>
+        <div class="background-natural one-third" style="padding: 10px; margin: 5px; border-radius: 10px;">
+          <a href="/collections/throw-blankets"/>
+          <p class="nm tac">Throws</p>
+          </a>
+        </div>
+        <div class="background-natural one-third" style="padding: 10px; margin: 5px; border-radius: 10px;">
+          <a href="/collections/scarves">
+          <p class="nm tac">Scarves</p>
+          </a>
+        </div>
+        <div class="background-natural one-third" style="padding: 10px; margin: 5px; border-radius: 10px;">
+          <a href="/collections/shawls">
+          <p class="nm tac">Shawls</p>
+          </a>
+        </div>
+      </div>
+    <div class="do double-accent-padding">
+    <p class="tar mo">X</p>
+    <h3 class="ttu detail-accent">Products</h3>
+    <a href="/collections/all-socks"/><p class="nm">Socks</p></a>
+    <a href="/collections/womens-sweaters"/><p class="nm">Sweaters</p></a>
+    <a href="/collections/throw-blankets"><p class="nm">Throw Blankets</p></a>
+    <a href="/collections/womens-scarves"><p class="nm">Scarves</p></a>
+    <a href="/collections/shawls"><p class="nm">Shawls</p></a>
+    <a href="/products/pacas-super-soft-hats?variant=39536118595684"><p class="nmt">Hats</p></a>
+    </div>
+     <p class="filter-msg" style="display: none; width: 100%; text-align: center; padding: 20vh 0 20vh 0">No products matching your selection were found.</p>
+
+     <section class="row double-padding-tbo" id="collection-layout-a">   
+      {% assign products = collection.products  %}
+      {% for product in products %}
+ 		{% if product.available %}
+            <section class=" col {% for tag in product.tags %}{{tag | handleize}} {%endfor%} {%  for variant in product.variants %} {{variant.metafields.arena.color}} {{variant.metafields.arena.color_2}} {{variant.metafields.arena.color_3}} {%  endfor %}" id="{{product.title | truncatewords: 1,''}}-1">
+              <section class="card">
+                <a href="{{product.url}}" onclick="ga('send', 'event', 'Collections Page', '{{collection.title | handleize}}', '{{product.title | handleize}}-{{variantCount}}');">
+                  <div class="product-collection-wrapper">
+                    <div class="accent-padding">
+                      <div class="slvr-col-img-wrapper">
+                        {% unless product.title contains 'Hat' %}
+                          {% for variant in product.variants | limit: 1 %}
+                            {% if variant.metafields.arena.additional_photo%}
+                              <div class="card-left" {% if product.title contains "Women's Crew Pacas Socks" %}style="display: none"{% endif %}><img class="arrow" src="{{ 'left-arrow.png' | asset_img_url: }}" /></div>
+                            {% endif %}
+                          {% endfor %}
+                        {% endunless %}
+                        {% if product.title contains "Women's Crew Pacas Socks" or product.title contains 'Kids' or product.title contains 'Toddler' %}
+                          <img data-src="{{ product.featured_image | product_img_url: 'master' }}" alt="{{product.title}}" class="lazyload {% if product.title contains 'Hats' %}hat-img {% elsif product.title contains 'Slouchy' %} extend-img {% elsif product.title contains 'Socks' %}{% unless collection.title contains 'Gifts for Kids' %}extend-img{% endunless %}{% endif %}"/>
+                          {% else %}
+                        {% for variant in product.variants | limit: 1 %}
+                            <img data-src="{{ variant.image | product_img_url: 'master' }}" alt="{{product.title}}" class="lazyload {% if product.title contains 'Hats' %}hat-img {% elsif product.title contains 'Toy' and collection.title contains 'New Arrivals' %} toy-img {% elsif product.title contains "Women's Crew Pacas" or product.title contains "Men's Crew Pacas" or product.title contains 'Slouchy' %}extend-img{% endif %}"/>
+                          {% endfor %}
+                        {% endif %}
+                        {% unless product.title contains 'Hat' %}
+                          {% for variant in product.variants | limit: 1 %}
+                            {% if variant.metafields.arena.additional_photo%}
+                              <div class="card-right" {% if product.title contains "Women's Crew Pacas Socks" %}style="display: none"{% endif %}><img class="arrow" src="{{ 'right-arrow.png' | asset_img_url: }}" /></div> 
+                            {% endif %}
+                        {% endfor %}
+                        {% endunless %}
+                      </div>
+                      {% for variant in product.variants | limit: 1 %}
+                        
+                      	  <div class="col-preview-bubble-wrapper tac" id="{{variant.id}}lifestyle-wrapper" style="{% unless variant.metafields.arena.additional_photo or variant.metafields.arena.additional_photo2 %}visibility: hidden{% endunless %}{% if collection.title contains 'New Arrivals' and product.title contains "Women's Crew" %} visibility: hidden {% endif %}"  >
+                          	<div class="col-preview-bubble clickable active" data-image-src="{{ variant.image | product_img_url: 'master' }}" ></div>
+                           	{% if variant.metafields.arena.additional_photo %}
+                            <div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo}}" ></div>
+                      		{% endif %}
+                            {% if variant.metafields.arena.additional_photo2 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo2}}" ></div>
+							{% endif %}
+                        	{% if variant.metafields.arena.additional_photo3 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo3}}" ></div>
+							{% endif %}
+                        	{% if variant.metafields.arena.additional_photo4 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo4}}" ></div>
+							{% endif %}
+                            {% if variant.metafields.arena.additional_photo5 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo5}}" ></div>
+							{% endif %}
+                            {% if variant.metafields.arena.additional_photo6 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo6}}" ></div>
+							{% endif %}
+                            {% if variant.metafields.arena.additional_photo7 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo7}}" ></div>
+							{% endif %}
+                      	  </div>
+                   
+                      {% endfor %}
+          
+                      {% for variant in product.variants | offset: 1 %}
+                        
+                      	  <div class="col-preview-bubble-wrapper tac notFeatured"  id="{{variant.id}}lifestyle-wrapper" {% unless variant.metafields.arena.additional_photo or variant.metafields.arena.additional_photo2 %}style="visibility: hidden"{% endunless %}>
+                              <div class="col-preview-bubble clickable active" data-image-src="{{ variant.image | product_img_url: 'master' }}" ></div>
+                          
+                            <div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo}}" ></div>
+                            {% if variant.metafields.arena.additional_photo2 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo2}}" ></div>
+							{% endif %}
+                            {% if variant.metafields.arena.additional_photo3 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo3}}" ></div>
+							{% endif %}
+                        	{% if variant.metafields.arena.additional_photo4 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo4}}" "></div>
+							{% endif %}
+                             {% if variant.metafields.arena.additional_photo5 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo5}}" ></div>
+							{% endif %}
+                            {% if variant.metafields.arena.additional_photo6 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo6}}" ></div>
+							{% endif %}
+                           	{% if variant.metafields.arena.additional_photo7 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo7}}" ></div>
+							{% endif %}
+                      	  </div>
+                      	
+                      {% endfor %}
+          
+                      <h3 class="nm">{{product.title | remove: 'Light-Weight / Summer Wrap - ' }}</h3>
+                    </a>
+                    {% unless product.title contains 'Toy' or product.title contains 'Gift Card' %}
+                    <div class="acfe">
+                      {% if product.title contains 'Socks' %}
+                        {% assign limit_color = product.variants.size | divided_by: 2 %}
+                      {% elsif product.title contains 'Sweater' %}
+                        {% assign numOfVariants = product.variants | size %}
+                        {% assign numOfColorOptions = product.options_by_name['size'].values | size %}
+                        {% assign limit_color =  numOfVariants | divided_by: numOfColorOptions %}
+                      {% else %}
+                        {% assign limit_color = product.variants.size %}
+                      {% endif %}
+<!--                       only show holiday color buttons for women's crew socks -->
+                      {% if product.title contains "Women's Crew Pacas Socks" and collection.title contains 'New Arrivals' %}
+                        {% for variant in product.variants | limit: limit_color %}
+                        {% if variant.metafields.arena.tags contains 'holiday' %}
+                        {% if variant.available %}
+                          {% assign variantId = {{variant.id}} %}
+                          <div data-image-src="{{ variant.image.src | product_img_url: 'master'  }}" class="clickable {{option | handleize}} color-preview-circle" style="background-image: url({{ variantId | append: '.png' | asset_url }});background-size: cover;" data-id="{{variantId}}"></div>
+                        {% endif %}
+                        {% endif %}
+                      {% endfor %}
+                        
+                      {% else %}
+                        
+                      {% for variant in product.variants | limit: limit_color %}
+                        {% if variant.available %}
+                          {% assign variantId = {{variant.id}} %}
+                          <div data-image-src="{{ variant.image.src | product_img_url: 'master'  }}" class="clickable {{option | handleize}} color-preview-circle" style="background-image: url({{ variantId | append: '.png' | asset_url }});background-size: cover;" data-id="{{variantId}}"></div>
+                        {% endif %}
+                      {% endfor %}
+                      {% endif %}
+                      
+                      </div>
+                    {% endunless %}
+                    <p class="nm text-dark-purple subscript">{{ product.price | money }} <span class="strikethrough text-dark-purple">{{product.compare_at_price | money}}</span></p>
+                </div>
+              </div>
+            </section>
+          </section>
+      {% endif %}
+    {% endfor%}
+
+
+<script>
+  $(".card-left").click(function() {
+    event.preventDefault(); 
+    $('.col-preview-bubble-wrapper').each(function() {
+      $(this).removeClass('visible')
+    })
+    $('.col-preview-bubble-wrapper').each(function() {
+      if ($(this).css('display') == 'block' ) {
+        $(this).addClass('visible')
+      }
+    })
+    var currentSelection = $(this).parent(".slvr-col-img-wrapper").siblings('.visible').children('.active')
+    var nextSelection = $(currentSelection).prev()
+    var newImage = $(nextSelection).data("image-src")
+    if (nextSelection.length) {
+      $(this).parent('.slvr-col-img-wrapper').children('img').attr("src", newImage);
+    } else {
+      nextSelection = $(this).parent('.slvr-col-img-wrapper').siblings('.visible').children('div').last()
+      let lastImg = $(this).parent('.slvr-col-img-wrapper').siblings('.visible').children('div').last().data("image-src")
+      $(this).parent('.slvr-col-img-wrapper').children('img').attr("src", lastImg)
+    }
+    $(currentSelection).removeClass('active')
+    $(nextSelection).addClass('active')
+  }); 
+  
+  $(".card-right").click(function() {
+    event.preventDefault();
+    $('.col-preview-bubble-wrapper').each(function() {
+      $(this).removeClass('visible')
+    })
+    // add a class of visible to the current product variant's bubble container- in order to be able to click through that specific variant's images
+    $('.col-preview-bubble-wrapper').each(function() {
+      if ($(this).css('display') == 'block' ) {
+        $(this).addClass('visible')
+      }
+    })
+    var currentSelection = $(this).parent('.slvr-col-img-wrapper').siblings('.visible').children('.active')
+    var nextSelection = $(currentSelection).next()
+    var newImage = $(nextSelection).data("image-src")
+    if (nextSelection.length) {
+      $(this).parent('.slvr-col-img-wrapper').children('img').attr("src", newImage);
+    } else {
+      nextSelection = $(this).parent('.slvr-col-img-wrapper').siblings('.visible').children('div').first()
+      let firstImg = $(this).parent('.slvr-col-img-wrapper').siblings('.visible').children('div').first().data("image-src")
+      $(this).parent('.slvr-col-img-wrapper').children('img').attr("src", firstImg)
+    }
+    $(currentSelection).removeClass('active')
+    $(nextSelection).addClass('active')
+  }); 
+</script>
+
+
+     
+<style>
+  .selected-prev { border: 1px inset #666562; border-radius: 100%; }
+  .ready-for-anything.slvr-col-img-wrapper { background-image: url("{{'ReadyforAnything-800x800.png' | asset_url}}"); }
+  .winter-deluxe.slvr-col-img-wrapper { background-image: url("{{'WinterDeluxe-800x800.png' | asset_url}}"); }
+  .on-the-go.slvr-col-img-wrapper { background-image: url("{{'OntheGo-800x800.png' | asset_url}}"); }
+  .on-the-go-deluxe.slvr-col-img-wrapper { background-image: url("{{'OntheGoDeluxe-800x800.png' | asset_url}}"); }
+  .womens-starter-sock-box.slvr-col-img-wrapper { background-image: url("{{'StarterSockBox-W-800x800.png' | asset_url}}"); }
+  .cozy-at-home.slvr-col-img-wrapper { background-image: url("{{'StarterSockBox-W-800x800.png' | asset_url}}"); }
+  .mens-starter-sock-box.slvr-col-img-wrapper { background-image: url("{{'StarterSockBox-M-800x800.png' | asset_url}}"); }
+  
+  .bundle.slvr-col-img-wrapper { 
+    background-size: contain;
+    height: 33.4vw;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #cfccc8;
+    border-radius: 40px;
+    margin-bottom: 2.5vw;
+  }
+  .hat-img { padding: 6vw 0;}
+  .extend-img { padding: 5.5vw 0 }
+  .toy-img { margin: 5.5vw 0 }
+  @media only screen and (min-width: 1700px) { 
+    .bundle.slvr-col-img-wrapper { height: 35vw; margin-bottom: 1.7vw }
+    .hat-img { padding: 6.8vw 0; } 
+    .extend-img { padding: 5.8vw 0 }
+  }
+  @media only screen and (min-width: 1001px) and (max-width: 1300px) { 
+    .bundle.slvr-col-img-wrapper { height: 32.5vw; margin-bottom: 3vw }
+  }
+  @media only screen and (min-width: 801px) and (max-width: 1000px) { 
+    .bundle.slvr-col-img-wrapper { height: 30vw; margin-bottom: 4vw }
+  }
+  @media only screen and (min-width: 589px) and (max-width: 800px) { 
+    .bundle.slvr-col-img-wrapper { height: 44vw; margin-bottom: 4.5vw; }
+    .hat-img { padding: 8vw 0; }
+    .extend-img { padding: 7vw 0 }
+    .toy-img { margin: 7.3vw 0 }
+  }
+  @media only screen and (max-width: 588px) { 
+    .bundle.slvr-col-img-wrapper { height: 65vw; margin-bottom: 7.1vw; }
+    .hat-img { padding: 12vw 0; }
+    .extend-img { padding: 11vw 0 }
+    .toy-img { margin: 10.7vw 0 }
+  }
+</style>
+
+       <script>         
+         // hide non featured variant preview bubbles on page load
+         $( document ).ready(function() {
+          $('.col-preview-bubble-wrapper.notFeatured').hide();
+
+           {% if collection.title contains 'Gifts' %}
+           // add article card to PLP
+            let articleCardContainer = document.createElement('div')
+            let productAfterCard = $('.col')[3]
+            productAfterCard.before(articleCardContainer)
+            articleCardContainer.innerHTML += "<br/><a href='/products/sock-gift-box'  onClick=\"ga('send', 'event', 'Product Page', 'Viewed Gift Box PDP', 'Gift Box Article Card');\" ><img src='https://cdn.shopify.com/s/files/1/0117/0597/4884/t/270/assets/Article-Card-SockBox-800x1400.jpg?v=116779542343460211831669912322'/></a>"
+            articleCardContainer.className = 'article-card-container'
+            $('.article-card-container').addClass('accent-padding') 
+            let articleCardLink = $('.article-card-container').children('a')
+           {% endif %}
+
+           {% if collection.title contains 'Gifts for Her' %}
+           // add bundles to PLP
+             // ready for anything
+           let bundleCol1 = document.createElement('div')
+           bundleCol1.className = 'col bundle'
+           let productAfterBundle1 = $('#40653505888356lifestyle-wrapper').parent().parent().parent().parent().parent()
+           productAfterBundle1.before(bundleCol1)
+           let bundleCard1 = document.createElement('div')
+           bundleCard1.className = 'card'
+           bundleCard1.innerHTML += "<a href='/pages/bundled-products?box=ready-for-anything'><div class='product-collection-wrapper'><div class='accent-padding'><div class='slvr-col-img-wrapper bundle ready-for-anything'></div><h3 class='nm'>Ready For Anything</h3><p class='subscript nm'>1 Women's Cardigan<br>1 Hat<br>1 Scarf<br>3 Women's Crew Socks</p><p class='nm subscript text-dark-purple'>$220.00 <span class='strikethrough text-dark-purple'>$274.00</span></p></div></div></a>"
+           bundleCol1.appendChild(bundleCard1)
+
+             // winter deluxe
+           let bundleCol2 = document.createElement('div')
+           bundleCol2.className = 'col bundle'
+           let productAfterBundle2 = $('#40365561938020lifestyle-wrapper').parent().parent().parent().parent().parent()
+           productAfterBundle2.before(bundleCol2)
+           let bundleCard2 = document.createElement('div')
+           bundleCard2.className = 'card'
+           bundleCard2.innerHTML += "<a href='/pages/bundled-products?box=winter-deluxe'><div class='product-collection-wrapper'><div class='accent-padding'><div class='slvr-col-img-wrapper bundle winter-deluxe'></div><h3 class='nm'>Winter Deluxe</h3><p class='subscript nm'>1 Scarf<br>1 Hat<br>3 Women's Crew Socks<br>1 Throw Blanket</p><p class='nm subscript text-dark-purple'>$260.00 <span class='strikethrough text-dark-purple'>$324.00</span></p></div></div></a>"
+           bundleCol2.appendChild(bundleCard2)
+
+             // on the go
+           let bundleCol3 = document.createElement('div')
+           bundleCol3.className = 'col bundle'
+           let productAfterBundle3 = $('#40904547631204lifestyle-wrapper').parent().parent().parent().parent().parent()
+           productAfterBundle3.before(bundleCol3)
+           let bundleCard3 = document.createElement('div')
+           bundleCard3.className = 'card'
+           bundleCard3.innerHTML += "<a href='pages/bundled-products?box=on-the-go'><div class='product-collection-wrapper'><div class='accent-padding'><div class='slvr-col-img-wrapper bundle on-the-go'></div><h3 class='nm'>On the Go</h3><p class='subscript nm'>1 Boucle Scarf<br>1 Hat</p><p class='nm subscript text-dark-purple'>$105.00 <span class='strikethrough text-dark-purple'>$115.00</span></p></div></div></a>"
+           bundleCol3.appendChild(bundleCard3)
+
+           // on the go deluxe
+           let bundleCol4 = document.createElement('div')
+           bundleCol4.className = 'col bundle'
+           let productAfterBundle4 = $('#40365550043236lifestyle-wrapper').parent().parent().parent().parent().parent()
+           productAfterBundle4.before(bundleCol4)
+           let bundleCard4 = document.createElement('div')
+           bundleCard4.className = 'card'
+           bundleCard4.innerHTML += "<a href='/pages/bundled-products?box=on-the-go-deluxe'><div class='product-collection-wrapper'><div class='accent-padding'><div class='slvr-col-img-wrapper bundle on-the-go-deluxe'></div><h3 class='nm'>On the Go Deluxe</h3><p class='subscript nm'>1 Scarf<br>1 Hat<br>3 Women's Crew Socks</p><p class='nm subscript text-dark-purple'>$120.00 <span class='strikethrough text-dark-purple'>$139.00</span></p></div></div></a>"
+           bundleCol4.appendChild(bundleCard4)
+
+             // women's starter sock box
+           let bundleCol5 = document.createElement('div')
+           bundleCol5.className = 'col bundle'
+           let productAfterBundle5 = $('#40904528953444lifestyle-wrapper').parent().parent().parent().parent().parent()
+           productAfterBundle5.before(bundleCol5)
+           let bundleCard5 = document.createElement('div')
+           bundleCard5.className = 'card'
+           bundleCard5.innerHTML += "<a href='/pages/bundled-products?box=the-womens-starter-sock-box'><div class='product-collection-wrapper'><div class='accent-padding'><div class='slvr-col-img-wrapper bundle womens-starter-sock-box'></div><h3 class='nm'>The Women's Starter Sock Box</h3><p class='subscript nm'>3 Women's Crew Socks<br>2 Women's Light-Weight Crew Socks<br>3 Women's Low Cut Socks<br>3 Women's No Show Socks</p><p class='nm subscript text-dark-purple'>$145.00 <span class='strikethrough text-dark-purple'>$172.00</span></p></div></div></a>"
+           bundleCol5.appendChild(bundleCard5)
+
+           // cozy at home
+           let bundleCol6 = document.createElement('div')
+           bundleCol6.className = 'col bundle'
+           let productAfterBundle6 = $('#40732707749988lifestyle-wrapper').parent().parent().parent().parent().parent()
+           productAfterBundle6.before(bundleCol6)
+           let bundleCard6 = document.createElement('div')
+           bundleCard6.className = 'card'
+           bundleCard6.innerHTML += "<a href='/pages/bundled-products?box=the-womens-starter-sock-box'><div class='product-collection-wrapper'><div class='accent-padding'><div class='slvr-col-img-wrapper bundle cozy-at-home'></div><h3 class='nm'>Cozy at Home</h3><p class='subscript nm'>1 Throw Blanket<br>6 Women's Crew Socks</p><p class='nm subscript text-dark-purple'>$215.00 <span class='strikethrough text-dark-purple'>$238.00</span></p></div></div></a>"
+           bundleCol6.appendChild(bundleCard6)
+
+           {% elsif collection.title contains 'Gifts for Him' %}
+             // men's starter sock box
+           let bundleCol5 = document.createElement('div')
+           bundleCol5.className = 'col bundle'
+           let productAfterBundle5 = $('#40657391878244lifestyle-wrapper').parent().parent().parent().parent().parent()
+           productAfterBundle5.before(bundleCol5)
+           let bundleCard5 = document.createElement('div')
+           bundleCard5.className = 'card'
+           bundleCard5.innerHTML += "<a href='/pages/bundled-products?box=the-mens-starter-sock-box'><div class='product-collection-wrapper'><div class='accent-padding'><div class='slvr-col-img-wrapper bundle mens-starter-sock-box'></div><h3 class='nm'>The Men's Starter Sock Box</h3><p class='subscript nm'>3 Men's Crew Socks<br>2 Men's Light-Weight Crew Socks<br>3 Men's Low Cut Socks</p><p class='nm subscript text-dark-purple'>$115.00 <span class='strikethrough text-dark-purple'>$134.00</span></p></div></div></a>"
+           bundleCol5.appendChild(bundleCard5)
+           {% endif %}
+        });
+
+      $('.color-preview-circle.clickable').click(function() {
+        event.preventDefault(); 
+        $(this).addClass('selected-prev').siblings().removeClass('selected-prev')
+        var imageDisplay = $(this).parent().siblings().children('.slvr-col-img-wrapper').children('img')
+        var newImage = $(this).data("image-src")
+        var newId =  $(this).data("id")
+        var newLifestyleDisplay = $("#" + newId + "lifestyle-wrapper");
+
+        // change product url based on selected variant
+        let urlWithoutId = $(this).parent().siblings('a').attr('href')
+        if (urlWithoutId.includes('variant')) {
+          // remove old variant id and replace with selected variant id from url
+          let oldId = $(this).parent().siblings('a').attr('href').slice(-14)
+          urlWithoutId = urlWithoutId.replace(`?variant=${oldId}`, '')
+          let selectedVariantUrl = `${urlWithoutId}?variant=${newId}`
+          $(this).parent().siblings('a').attr('href', selectedVariantUrl)
+        } else {
+          let selectedVariantUrl = `${urlWithoutId}?variant=${newId}`
+          $(this).parent().siblings('a').attr('href', selectedVariantUrl)
+        }
+        
+
+        $(imageDisplay).attr("src", newImage); 
+        $(this).parent().siblings().children('.col-preview-bubble-wrapper:visible').hide();
+        $(newLifestyleDisplay).show();
+        $(this).parent().siblings().children('.col-preview-bubble-wrapper:visible').find('.col-preview-bubble.active').removeClass('active')
+        $(this).parent().siblings().children('.col-preview-bubble-wrapper:visible').find('.col-preview-bubble:first-of-type').addClass('active')
+
+        // hide and show image arrows depending on if the variant has additional images
+        if ($(newLifestyleDisplay).css('visibility') !== 'hidden') {
+          $(this).parent().siblings('a').children('.slvr-col-img-wrapper').children('.card-left').show()
+          $(this).parent().siblings('a').children('.slvr-col-img-wrapper').children('.card-right').show()
+        } else {
+          $(this).parent().siblings('a').children('.slvr-col-img-wrapper').children('.card-left').hide()
+          $(this).parent().siblings('a').children('.slvr-col-img-wrapper').children('.card-right').hide()
+        }
+      }); 
+         
+
+      $('.col-preview-bubble').click(function() {
+        event.preventDefault(); 
+        $(this).addClass('active').siblings().removeClass('active')
+        var imageDisplay = $(this).parent().siblings('.slvr-col-img-wrapper').children('img')
+        var newImage = $(this).data("image-src")
+        $(imageDisplay).attr("src", newImage); 
+      }); 
+         if ($('#collection-layout-a').is(':visible')) {
+         $(document).ready(function() {
+      		$(".slvr-col-img-wrapper img").on("swipeleft",function() {
+              $('.col-preview-bubble-wrapper').each(function() {
+             $(this).removeClass('visible')
+         })
+         $('.col-preview-bubble-wrapper').each(function() {
+           if ($(this).css('display') == 'block' ) {
+             $(this).addClass('visible')
+           }
+         })
+            var currentSelection = $(this).parent(".slvr-col-img-wrapper").siblings('.visible').children('.active')
+            var nextSelection = $(currentSelection).next()
+            var newImage = $(nextSelection).data("image-src")
+            if (nextSelection.length) {
+              $(this).attr("src", newImage); 
+              $(currentSelection).removeClass('active')
+              $(nextSelection).addClass('active')
+            } else {
+             nextSelection = $(this).parent(".slvr-col-img-wrapper").siblings('.visible').children('div').first()
+             let firstImg = $(this).parent(".slvr-col-img-wrapper").siblings('.visible').children('div').first().data("image-src")
+             $(this).attr("src", firstImg)
+            }
+            $(currentSelection).removeClass('active')
+            $(nextSelection).addClass('active')
+      		}); 
+
+           $(".slvr-col-img-wrapper img").on("swiperight",function() {
+             $('.col-preview-bubble-wrapper').each(function() {
+             $(this).removeClass('visible')
+         })
+         $('.col-preview-bubble-wrapper').each(function() {
+           if ($(this).css('display') == 'block' ) {
+             $(this).addClass('visible')
+           }
+         })
+            var currentSelection = $(this).parent(".slvr-col-img-wrapper").siblings('.visible').first().children('.active')
+            var nextSelection = $(currentSelection).prev()
+            var newImage = $(nextSelection).data("image-src")
+            if (nextSelection.length) {
+              $(this).attr("src", newImage); 
+              $(currentSelection).removeClass('active')
+              $(nextSelection).addClass('active')
+            } else {
+             nextSelection = $(this).parent(".slvr-col-img-wrapper").siblings('.visible').children('div').last()
+             let firstImg = $(this).parent(".slvr-col-img-wrapper").siblings('.visible').children('div').last().data("image-src")
+             $(this).attr("src", firstImg)
+            }
+            $(currentSelection).removeClass('active')
+            $(nextSelection).addClass('active')
+      		}); 
+      	 }); 
+         }
+          
+  </script> 
+</section>
+</section>
+              
+ <section class="flex-container" id="photo-highlight-cta">
+    <div class="half flex-container-no" id="winter-socks">
+      <div class="double-accent-padding">
+        <h3 class="text-natural ttu nm tac">New<br class="do"> Crew</br> Socks</h3>
+        <a href="/collections/womens-crew">
+          <div class="animated-button-red ma animated-button">
+            <h2 class="text-natural ttu tac">Shop Now</h2>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="side-border"></div>
+    <div class="half flex-container-no" id="find-your-match">
+     <div class="double-accent-padding">
+        <h3 class="text-natural ttu nm tac">New</br> Low Cuts</h3>
+        <a href="/collections/womens-low-cut">
+        <div class="animated-button-red animated-button ma">
+          <h2 class="text-natural ttu tac">Shop Now</h2>
+        </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="background-teal ofxh">
+    <div class="fw flex-container index-product-preview-wrapper double-accent-padding" id="socks-quick">
+      <div class="one-third index-product-preview"></div>
+      <div class="one-third index-product-preview"></div>
+      <div class="one-third index-product-preview"></div>
+      <div class="one-third index-product-preview"></div>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" class="footer-topper"viewBox="0 100 1440 220"><path fill="white" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>  
+      <div class="background-white">
+        <svg width="100%" height="15vw" viewBox="0 100 1098.72 89.55" style="margin-top: -7%;margin-left: 34vw;">
+          <path id="curve" fill="transparent" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440"></path>
+          <text width="100%" fill="black" style="transform: translate3d(0px, 0px, 0px); font-size: 71px; font-weight: 600; display: flex; align-items: center;text-transform: uppercase;font-family: 'Avenir-Next-Condensed';">
+            <textPath id="text-path" alignment-baseline="top" xlink:href="#curve" startOffset="10%" style="transform: translate3d(0px, 0px, 0px);" width="169.53066741237882%" fill="#2d2b26">"Alpac-Ahhhhh"</textPath>
+          </text>
+        </svg>
+      </div>
+    </section>
+  </section>
+</main>
+
+<style>
+  .slvr-col-img-wrapper > img {
+    {% if collection.title contains "Kids" %}
+    background-color: #e7eaf2;
+    {% else %}
+    background-color: #cfccc8;
+    {% endif %}
+    border-radius: 40px;
+  }
+  .slvr-col-img-wrapper {
+    margin-bottom: 1vh;
+  }
+    .slvr-col-img-wrapper  { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+  }
+    .card-right {
+    position: absolute !important;
+    cursor: pointer;
+    align-self: end
+  }
+    .card-left {
+    position: absolute !important;
+    cursor: pointer;
+    align-self: start;
+  }
+  .arrow {
+    height: 6vh;
+  }
+  .view-more-products div { margin: 5px;  }
+  .slvr-col-img-wrapper img { 
+    width: 100%;
+    border-radius:  40px;
+  } 
+  .row {
+    display: flex; 
+    flex-flow: row wrap; 
+  }
+
+  .col { 
+    display: flex; 
+    flex-flow: column; 
+  }
+
+  .card {
+    display: flex;
+    margin: 5px;
+    align-items: stretch;
+    flex-direction: column;
+    height: 100%;
+  }
+  .color-preview-circle { height: 15px; width: 15px; display: inline-block; border-radius: 100%; margin:  10px 5px 10px 0; } 
+  .col h3 {line-height: 1; } 
+  @media only screen and (max-width: 588px) {
+    .col { flex: 0 0 50% !important; }
+  }
+  @media only screen and (min-width: 1100px) {
+    .col h3 {
+      font-size: 1.5vw;
+      text-transform: uppercase;
+      width: 17vw;
+    }
+  }
+  @media only screen and (min-width: 589px) and (max-width: 1099px) {
+    .col h3 {
+      font-size: 1.5vw;
+      text-transform: uppercase;
+      width: 17vw;
+    }
+  }
+  @media only screen and (min-width: 450px) and (max-width: 588px) {
+    .col h3 {
+      font-size: 4.5vw;
+      text-transform: uppercase;
+    } 
+  }
+  @media only screen and (max-width: 449px) {
+    .col h3 {
+      font-size: 4.5vw;
+      text-transform: uppercase;
+    }    
+    .atf-float h1 { font-size: 17pt; }
+
+  }
+
+  @media only screen and (min-width: 589px) and (max-width: 799px) {
+    .col { flex: 0 0 33% !important; }
+  }
+  @media only screen and (min-width: 800px) {
+    .col { flex: 0 0 33% !important; }
+  }
+
+    @media only screen and (max-width: 588px) {
+    .view-more-products { 
+      width: 100%; 
+      overflow: scroll; 
+      white-space: nowrap;
+      display: inline-block;
+    }
+    .view-more-products div {
+      display: inline-block;
+      margin-right: ;
+      width: 200px;
+      vertical-align: middle;
+    }
+  }
+
+  @media only screen and (max-width: 449px) { 
+    .arrow {
+      height: 5vh ;
+      width: 8vw !important;
+    }
+}
+  .border-bottom-purple {
+    border-bottom:  1px solid #9093c8;
+  }
+    .card-left img:focus, .card-right img { 
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    }
+</style>
+
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+// Insert Your Facebook Pixel ID below. 
+fbq('init', '320927769125076');
+fbq('track', 'PageView');
+
+fbq('trackCustom', 'ViewCategory', {
+  content_name: "{{collection.title}}",
+  content_type: 'product'
+});
+</script>

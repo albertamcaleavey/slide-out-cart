@@ -1,0 +1,108 @@
+{%- comment %}<locksmith:9f88>{% endcomment -%}
+  {%- include 'locksmith' -%}
+{%- comment %}</locksmith:9f88>{% endcomment -%}
+
+<!doctype html>
+<html lang="en">
+  <head> 
+    {{ locksmith_initializations }}
+    <meta charset="utf-8">
+    <meta name="robots" content="index, follow, archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+   
+    <meta name="keywords" content="">
+    <title>{% if template == 'index' %}Pacas™ {% elsif template == '404' %}Pacas™ | Page Not Found {% else %}Pacas™ | {{ page_title }}{% endif %}</title>
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="icon" type="image/png" href="{{ 'favicon.png' | asset_url }}">
+
+
+    {{ 'style.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'jquery.min.js' | asset_url }}" ></script>
+    <script src="{{ 'custom.jquery.js' | asset_url }}" defer></script>
+    <script src="{{  'main.js' | asset_url }}" defer></script>
+    <script src="{{  'option_selection.js' | shopify_asset_url }}" defer></script>
+    <script src="{{ 'ajax-cart.js'  | asset_url }}" defer></script>
+    <script src="{{ 'modernizr.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'handlebars.min.js' | asset_url }}"></script>
+    <script src="{{ 'jquery.easing.1.3.min.js' | asset_url }}" defer></script>
+    <script src="{{'iframeResizer.min.js' | asset_url}}" ></script> 
+
+    {% if template contains 'product' %}
+        <script src="{{'jquery.mobile.custom.min.js' | asset_url}}" defer></script> 
+    {% endif %}
+   
+    <script src="{{'lazysizes.min.js' | asset_url}}" async=""></script>
+    {% include 'ajax-cart-template' %}
+    <script src="https://www.googleoptimize.com/optimize.js?id=OPT-58WD5XX"></script> 
+
+    <script async>
+      jQuery(function($) {
+        ajaxCart.init({
+          formSelector: 'form[action="/cart/add"]',
+          cartContainer: '#CartContainer',
+          addToCartSelector: '[type="submit"]',
+          cartCountSelector: '.cart span',
+          cartCostSelector: '#CartCost',
+          moneyFormat: {{ shop.money_format | json }}
+        });
+        });
+
+        jQuery(document.body).on('afterCartLoad.ajaxCart', function(evt, cart) {
+          timber.RightDrawer.open();
+        });
+    </script>
+    
+    <div id="CartContainer" >
+    </div>
+
+
+    
+    
+
+
+    {% if template contains 'customers' %}
+    	{{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+    	{{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+    {% endif %}
+    <script type="text/javascript">
+      var global_money_format = '{{ shop.money_format }}';
+    </script>
+    
+<script type="text/javascript">
+!function(){var geq=window.geq=window.geq||[];if(geq.initialize) return;if (geq.invoked){if (window.console && console.error) {console.error("GE snippet included twice.");}return;}geq.invoked = true;geq.methods = ["page", "suppress", "trackOrder", "identify", "addToCart"];geq.factory = function(method){return function(){var args = Array.prototype.slice.call(arguments);args.unshift(method);geq.push(args);return geq;};};for (var i = 0; i < geq.methods.length; i++) {var key = geq.methods[i];geq[key] = geq.factory(key);}geq.load = function(key){var script = document.createElement("script");script.type = "text/javascript";script.async = true;if (location.href.includes("vge=true")) {script.src = "https://s3-us-west-2.amazonaws.com/jsstore/a/" + key + "/ge.js?v=" + Math.random();} else {script.src = "https://s3-us-west-2.amazonaws.com/jsstore/a/" + key + "/ge.js";}var first = document.getElementsByTagName("script")[0];first.parentNode.insertBefore(script, first);};geq.SNIPPET_VERSION = "1.5.1";
+geq.load("Y2QH91Z");}();
+</script>
+<script>geq.page()</script>
+
+
+  </head>
+  <body>
+    {{ content_for_header }}
+
+    {% section 'wholesale-header' %}
+
+    <section class="upper-pad"> 
+     
+      {{ content_for_layout }}{{ locksmith_content_for_layout_addenda }}
+    </section>
+            {% section 'wholesale-footer' %}
+
+    <script>jQuery(function(){jQuery(".swatch :radio").change(function(){var t=jQuery(this).closest(".swatch").attr("data-option-index"),e=jQuery(this).val();jQuery(this).closest("form").find(".single-option-selector").eq(t).val(e).trigger("change")})});</script>
+    
+
+ {% include 'remove-sold-out' %}
+    {% include 'linked-options' %}
+    <!-- CRITEO START -->
+{% include 'criteo-tracking' %}
+<!-- CRITEO END -->
+</body>
+</html>
+<style>
+  @media only screen and (min-width:  800px) {
+
+  .upper-pad {padding-top: 75px !important;}
+  }); 
+  @media only screen and (max-width: 799px) {
+	 .upper-pad {padding-top: 50px !important;} 
+  }); 
+</style>

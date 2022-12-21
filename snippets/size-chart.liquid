@@ -1,0 +1,106 @@
+{% if product.title contains "Sweater"%}
+  <p class="clickable subscript size-chart-link" style="text-decoration: underline">Size Chart</p>
+  <div class="size-chart-container" style="display: none">
+    {% if product.title contains "Women's"%}
+      <div class="size-chart"  style="grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(6, 1fr);">
+        <div style="border-top: 2px solid #9093c8; border-left: 2px solid #9093c8; border-top-left-radius: 10px"><p class="subscript size-box"><b>Size (US)</p></b></div>
+        <div style="border-top: 2px solid #9093c8;"><p class="subscript size-box"><b>Bust</b></p></div>
+        <div style="border-top: 2px solid #9093c8; border-top-right-radius: 10px"><p class="subscript size-box"><b>Waist</b></p></div>
+        <div style="border-left: 2px solid #9093c8"><p class="subscript size-box">XS</p></div>
+        <div ><p class="subscript size-box">32-33</p></div>
+        <div><p class="subscript size-box">24-25</p></div>
+        <div style="border-left: 2px solid #9093c8"><p class="subscript size-box">S</p></div>
+        <div><p class="subscript size-box">34-35</p></div>
+        <div><p class="subscript size-box">26-27</p></div>
+        <div style="border-left: 2px solid #9093c8"><p class="subscript size-box">M</p></div>
+        <div><p class="subscript size-box">36-37</p></div>
+        <div><p class="subscript size-box">28-30</p></div>
+        <div style="border-left: 2px solid #9093c8"><p class="subscript size-box">L</p></div>
+        <div><p class="subscript size-box">38-39</p></div>
+        <div><p class="subscript size-box">31-32</p></div>
+        <div style="border-left: 2px solid #9093c8; border-bottom-left-radius: 10px; border-bottom: 2px solid #9093c8"><p class="subscript size-box">XL</p></div>
+        <div style=" border-bottom: 2px solid #9093c8"><p class="subscript size-box">40-42</p></div>
+        <div style="border-bottom-right-radius: 10px; border-bottom: 2px solid #9093c8;"><p class="subscript size-box">33-35</p></div>
+      </div>
+    {% elsif  product.title contains "Men's"%}
+      <div class="size-chart" style="grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(6, 1fr);">
+        <div style="border-top: 2px solid #9093c8; border-left: 2px solid #9093c8; border-top-left-radius: 10px"><p class="subscript size-box"><b>Size (US)</p></b></div>
+        <div style="border-top: 2px solid #9093c8;"><p class="subscript size-box"><b>Chest</b></p></div>
+        <div style="border-top: 2px solid #9093c8"><p class="subscript size-box"><b>Waist</b></p></div>
+        <div style="border-top: 2px solid #9093c8; border-top-right-radius: 10px"><p class="subscript size-box"><b>Arm Length</b></p></div>
+        <div style="border-left: 2px solid #9093c8"><p class="subscript size-box">S</p></div>
+        <div ><p class="subscript size-box">32-34</p></div>
+        <div><p class="subscript size-box">26-28</p></div>
+        <div><p class="subscript size-box">31-32</p></div>
+        <div style="border-left: 2px solid #9093c8"><p class="subscript size-box">M</p></div>
+        <div><p class="subscript size-box">35-37</p></div>
+        <div><p class="subscript size-box">29-31</p></div>
+        <div><p class="subscript size-box">32-33</p></div>
+        <div style="border-left: 2px solid #9093c8"><p class="subscript size-box">L</p></div>
+        <div><p class="subscript size-box">38-40</p></div>
+        <div><p class="subscript size-box">32-34</p></div>
+        <div><p class="subscript size-box">33-34</p></div>
+        <div style="border-left: 2px solid #9093c8"><p class="subscript size-box">XL</p></div>
+        <div><p class="subscript size-box">41-43</p></div>
+        <div><p class="subscript size-box">35-37</p></div>
+        <div><p class="subscript size-box">34-35</p></div>
+        <div style="border-left: 2px solid #9093c8; border-bottom-left-radius: 10px; border-bottom: 2px solid #9093c8"><p class="subscript size-box">XXL</p></div>
+        <div style=" border-bottom: 2px solid #9093c8"><p class="subscript size-box">44-46</p></div>
+        <div style="border-bottom: 2px solid #9093c8;"><p class="subscript size-box">38-40</p></div>
+        <div style="border-bottom-right-radius: 10px; border-bottom: 2px solid #9093c8;"><p class="subscript size-box">35-36</p></div>
+      </div>
+    {% endif %}
+      <p class="subscript">Measurements are in inches. Please use this chart as a general guide as measurements are approximate.</p>
+      </div>
+  {% endif %}
+  {% if product.title contains 'Compression' %}
+    <p class="clickable subscript size-chart-link" style="text-decoration: underline">Size Chart</p>
+  <div class="size-chart-container" style="display: none">
+     <div class="size-chart" style="grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(4, 1fr);">
+        <div style="border-top: 2px solid #9093c8; border-left: 2px solid #9093c8; border-top-left-radius: 10px"><p class="subscript size-box"><b>Size (US)</p></b></div>
+        <div style="border-top: 2px solid #9093c8; border-top-right-radius: 10px"><p class="subscript size-box"><b>Calf Circumference (Inches)</b></p></div>
+
+        <div style="border-left: 2px solid #9093c8"><p class="subscript size-box">S-M</p></div>
+        <div><p class="subscript size-box">12-13.75</p></div>
+
+        <div style="border-left: 2px solid #9093c8;"><p class="subscript size-box">M-L</p></div>
+        <div><p class="subscript size-box">14-15</p></div>
+
+        <div style="border-left: 2px solid #9093c8; border-bottom: 2px solid #9093c8; border-bottom-left-radius: 10px"><p class="subscript size-box">L-XL</p></div>
+        <div style="border-bottom-right-radius: 10px; border-bottom: 2px solid #9093c8;"><p class="subscript size-box">15.25- 16.5</p></div>
+
+      </div>
+    </div>
+  {% endif %}
+
+<style>
+  @media only screen and (max-width: 800px) {
+      .size-chart {
+        margin: auto;
+      }
+    }
+    @media only screen and (min-width: 801px) {
+      .size-chart {
+        margin-right: 50px;
+      }
+    }
+    .size-chart {
+      display: grid;
+    }
+    .size-chart > div {
+      border-bottom: 1px solid #2e2b26;
+      border-right: 2px solid #9093c8;
+      display: flex;
+      justify-content: center;
+    }
+    .size-box {
+      width: 100%;
+      text-align: center;
+      margin: 15px 5px 1px 5px;
+    }
+</style>
+<script>
+   $('.size-chart-link').click(function() {
+      $('.size-chart-container').toggle()
+    })
+</script>

@@ -1,0 +1,101 @@
+
+
+ 
+<main id="account" class="customer">
+  <div class="background-teal">
+  <section class="account-header background-teal double-accent-padding flex-container-no">
+    <div>
+    	<h2 class="text-dark-teal ttu nm">Welcome,<br class="mo"> {{customer.first_name}}!</h2>
+    	<h3 class="text-natural ttu">Your Account</h3>
+
+    </div>
+  </section>
+  <svg xmlns="http://www.w3.org/2000/svg" class="updated-topper"viewBox="0 100 1440 220"><path fill="white" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>  
+  </div>
+  <style>
+    .account-header { 
+      background-image: url("{{'rebrand-paca.png' | asset_url }}");
+      background-size: contain;
+ 	  background-position: 75vw 20px;
+   	  background-repeat: no-repeat;
+	}
+    .customer ul { list-style: none; }
+    .account-wrapper { margin: 0 auto;  }
+    .customer ul li p { font-weight: bold; }
+    .account-active { border-bottom: 2px solid red; width: fit-content;}
+    @media only screen and (max-width: 799px) {
+      .customer .third { width: 100% !important; }
+      .customer .third ul {
+          padding-left: 0;
+          display: flex;
+          justify-content: space-around;
+      }
+      .account-header { margin-bottom: -16px; }
+      .border-natural { border-radius: 10px !important; }
+    }
+    @media only screen and (min-width: 800px) {
+      .customer h2 { font-size: 6vw; }
+      .account-header { height: 20vw; }
+    }
+    .account-item-preview { 
+      max-width: 150px; 
+      background-color: #F3F8FB;
+      border-radius: 10px;
+      margin: 5px;
+    }
+    .account-order-name {
+    position: absolute;
+    margin-top: -50px;
+    margin-left: 33px;
+    padding: 20px;
+}
+    .line-item-preview-wrapper {
+    width: 100%;
+    overflow: scroll;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px;
+    -ms-overflow-style: none;
+}
+  </style>
+	<section class="double-accent-padding background-white">
+      <div class="account-wrapper flex-container aifs">
+        <div class="third accent-padding">
+            <ul>
+
+              <li><p class="large account-active"><a href="/account" class="current">Orders</a></p></li>
+              <li><p class="large"><a href="/account/addresses">Addresses</a></p></li>
+              <li class="do"><p class="large"><a href="/pages/contact-us">Contact Pacas</a></p></li>
+              <li><p class="large"><a href="/pages/rewards">Rewards</a></p></li>
+                                  <!-- Begin Recharge code -->
+<li><p><a href="/tools/recurring/login/">Manage Subscriptions</a></p></li>
+<!-- End Recharge code -->
+              <li class="do"><p class="large"><a href="/account/logout" id="customer_logout_link">Logout</a></p></li>
+            </ul>
+          </div>
+      <div class="two-thirds accent-padding border-lightgray" id="order-history">
+        {% if customer.orders.size !=0 %}
+        	{% for order in customer.orders %}
+        	<div class="border-natural accent-padding" style="margin: 40px 0;">
+              <div class="account-order-name ib animated-button-natural animated-button ib">{{ "order " | append: order.name | link_to: order.customer_url }}</div>
+              <p><span>{{ order.created_at | date: "%b %d, %Y" }}</span><span class="fr" style="font-weight: normal">{{ order.total_price | money }}</span></p>
+              <div class="line-item-preview-wrapper" style="">
+              {% for line_item in order.line_items %}
+                <div class="account-item-preview ib">
+                 <img src="{{ line_item.variant.image | product_img_url: 'large' }}"  alt="{{ item.product.title }}" class="fw" />
+                </div>
+              {% endfor %}
+              </div>
+              <h4 class="ttu text-red nmb tar">{{"View Order Details" | link_to: order.customer_url }}</h4>
+        	</div>
+        	{% endfor %}
+        
+      
+        {% else %}
+        <p class="nmb tac">You haven't placed any orders yet. When you have, you'll see the details here. Questions or issues with this page? <a href="/pages/contact-us" style="text-decoration: underline">Contact us.</a></p>
+        {% endif%}
+      </div>
+   </section>
+</main>

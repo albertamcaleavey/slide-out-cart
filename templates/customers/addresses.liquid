@@ -1,0 +1,193 @@
+
+<main id="account" class="customer">
+  <div class="background-teal">
+  <section class="account-header background-teal double-accent-padding flex-container-no">
+    <div>
+    	<h2 class="text-dark-teal ttu nm">Manage <br class="mo"/>Addresses</h2>
+    	<h3 class="text-natural ttu">Your Account</h3>
+    </div>
+  </section>
+  <svg xmlns="http://www.w3.org/2000/svg" class="updated-topper"viewBox="0 100 1440 220"><path fill="white" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>  
+  </div>
+  <style>
+    .account-header { 
+      background-image: url("{{'rebrand-paca.png' | asset_url }}");
+      background-size: contain;
+ 	  background-position: 75vw 20px;
+   	  background-repeat: no-repeat;
+	}
+    .customer ul { list-style: none; }
+    .account-wrapper { margin: 0 auto;  }
+    .customer ul li p { font-weight: bold; }
+    .account-active { border-bottom: 2px solid red; width: fit-content;}
+    @media only screen and (max-width: 799px) {
+      .customer .third { width: 100% !important; }
+      .customer .third ul {
+          padding-left: 0;
+          display: flex;
+          justify-content: space-around;
+      }
+                .action-edit, .action-delete, .action-add {
+            width: 100px; }
+      .account-header { margin-bottom: -16px; }
+      .border-natural { border-radius: 10px !important; }
+    }
+    @media only screen and (min-width: 800px) {
+      .customer h2 { font-size: 6vw; }
+      .account-header { height: 20vw; }
+          .action-edit, .action-delete, .action-add {
+            width: 150px; }
+    }
+    .account-item-preview { 
+      max-width: 150px; 
+      background-color: #F3F8FB;
+      border-radius: 10px;
+      margin: 5px;
+    }
+    .account-order-name {
+    position: absolute;
+    margin-top: -50px;
+    margin-left: 33px;
+    padding: 20px;
+}
+    .line-item-preview-wrapper {
+    width: 100%;
+    overflow: scroll;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 5px;
+    -ms-overflow-style: none;
+}
+    .action-edit, .action-delete, .action-add {
+    text-align: center;
+    border: 1px solid;
+    border-radius: 4px;
+    margin-right: 10px;
+      min-width: fit-content;
+}
+    .action-add {
+    padding: 10px;
+    margin: 20px auto;
+}
+    .address-list { margin: 40px auto;}
+  </style>
+  	<section class="double-accent-padding background-white">
+      <div class="account-wrapper flex-container aifs">
+        <div class="third accent-padding">
+            <ul>
+              <li><p class="large"><a href="/account" class="current">Orders</a></p></li>
+              <li><p class="large account-active"><a href="/account/addresses">Addresses</a></p></li>
+              <li class="do"><p class="large"><a href="/pages/contact-us">Contact Pacas</a></p></li>
+              <li><p class="large"><a href="/pages/rewards">Rewards</a></p></li>
+                                  <!-- Begin Recharge code -->
+<li><p><a href="/tools/recurring/login/">Manage Subscriptions</a></p></li>
+<!-- End Recharge code -->
+              <li class="do"><p class="large"><a href="/account/logout" id="customer_logout_link">Logout</a></p></li>
+            </ul>
+          </div>
+  <div class="two-thirds accent-padding border-lightgray " id="order-history">
+    	<h4 class="action-add tac text-red ttu"><a href="#add" onclick="showAddAddress();">Add New Address</a></h4>
+      <div id="add-address">
+        <h3 class="ttu text-dark-teal tac">Add New Address</h3>
+      {% form 'customer_address', customer.new_address %}
+        <input type="text" id="address_first_name_new" name="address[first_name]" value="{{form.first_name}}" size="40" placeholder="First Name" class="fw">
+        <input type="text" id="address_last_name_new" name="address[last_name]" value="{{form.last_name}}" size="40" placeholder="Last Name" class="fw">
+        <input type="text" for="address_company_new" name="address[company]" value="{{form.company}}" size="40" placeholder="Company" class="fw">
+        <input type="text" id="address_address1_new" name="address[address1]" value="{{form.address1}}" size="40" placeholder="Address" class="fw">
+        <input type="text" id="address_address2_new" name="address[address2]" value="{{form.address2}}" size="40" placeholder="Address Line 2" class="fw">
+        <input type="text" id="address_city_new" name="address[city]" value="{{form.city}}" size="40" placeholder="City" class="fw"><br>
+        <select class="fw" id="address_country_new" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select><br>
+        <div id="address_province_container_new">
+          <select class="fw" id="address_province_new" name="address[province]" data-default="{{form.province}}" placeholder="State / Province"></select>
+        </div>
+        <input type="text" id="address_zip_new" class="short fw" name="address[zip]" value="{{form.zip}}" placeholder="Zip Code" class="fw">
+        <input type="text" id="address_phone_new" class="short fw" name="address[phone]" value="{{form.phone}}" placeholder="Phone Number" class="fw">
+          <p class="subscript"><label class="checkbox">{{ form.set_as_default_checkbox }} <span>Set as Default Address?</span></label></p>  
+        <div class="accent-padding tac">
+            <input type="submit" value="Add Address" class="ttu text-white background-dark-teal">
+            <p><a href="#" onclick="hideAddAddress();" class="back">← Back</a></p>
+        </div>
+      {% endform %}
+    </div>
+    <div class="address-tables">
+      {% paginate customer.addresses by 6 %}
+      {% for address in customer.addresses %}
+        <div id="view_address_{{address.id}}" class="border-natural accent-padding address-list">
+          <div class="view_address">
+              {% if address == customer.default_address %}
+                          <div class="account-order-name ib animated-button-natural animated-button ib">Default Address</div><br>
+{% endif %}
+            {{ address.first_name }} {{address.last_name }}<br/>
+            {% if address.company != ''%}{{ address.company }}<br/>{% endif %}
+            {{ address.street }}<br/>
+            {{ address.city }}{% if address.province_code %}, {{ address.province_code }}{% endif %}<br/>
+            {{ address.country }} {{ address.zip }}<br/>
+            {{ address.phone }}</p>
+          </div>
+          <p class="address-actions">
+      <h4 class="text-teal ttu action-edit ib nm" onclick="addAddressHide()">{{ "Edit" | edit_customer_address_link: address.id }} </h4> <h4 class="text-red ib nm ttu action-delete">{{ "Delete" | delete_customer_address_link: address.id }}</h4>
+          </p>
+      </div>
+      <div id="edit_address_{{address.id}}" class="customer-address edit-address" style="display: none">
+        {% form 'customer_address', address %}
+          <input type="text" id="address_first_name_{{form.id}}" class="address_form fw" name="address[first_name]" value="{{form.first_name}}" size="40" placeholder="First Name">
+          <input type="text" id="address_last_name_{{form.id}}" class="address_form fw" name="address[last_name]" value="{{form.last_name}}" size="40" placeholder="Last Name">
+          <input type="text" id="address_company_{{form.id}}" class="address_form fw" name="address[company]" value="{{form.company}}" size="40" placeholder="Company Name">
+          <input type="text" id="address_address1_{{form.id}}" class="address_form fw" name="address[address1]" value="{{form.address1}}" size="40" placeholder="Address">
+          <input type="text" id="address_address2_{{form.id}}" class="address_form fw" name="address[address2]" value="{{form.address2}}" size="40" placeholder="Address Line 2">
+          <input type="text" id="address_city_{{form.id}}" class="address_form fw" name="address[city]" value="{{form.city}}" size="40" placeholder="City">
+          <select id="address_country_{{form.id}}" class="fw" name="address[country]" data-default="{{form.country}}">{{ country_option_tags }}</select>
+          <div id="address_province_container_{{address.id}}">
+            <select id="address_province_{{form.id}}" class="fw"name="address[province]" data-default="{{form.province}}" placeholder="State / Province"></select>
+          </div>
+          <input type="text" id="address_zip_{{form.id}}" class="address_form fw" name="address[zip]" value="{{form.zip}}" size="40" placeholder="Zip Code">
+          <input type="text" id="address_phone_{{form.id}}" class="address_form fw" name="address[phone]" value="{{form.phone}}" size="40" placeholder="Phone Number">
+          <p class="subscript"><label class="checkbox">{{ form.set_as_default_checkbox }} <span>Set as Default Address?</span></label></p>  
+          <div class="accent-padding tac">
+            <input type="submit" value="Update Address" class="ttu text-white background-dark-teal">
+            <p><a href="javascript:void(0)" onclick="Shopify.CustomerAddress.toggleForm({{form.id}}); return false;" class="back">← Back</a></p>
+          </div>       
+        {% endform %}
+      </div>
+    {% endfor %}
+    {% include 'pagination' %}
+  {% endpaginate %}
+  </div>
+  </div>
+</section>
+  <script type="text/javascript" charset="utf-8">
+        // initialize observers on address selectors
+        new Shopify.CountryProvinceSelector('address_country_new', 'address_province_new', {hideElement: 'address_province_container_new'});  
+        {% for address in customer.addresses %}
+        new Shopify.CountryProvinceSelector('address_country_{{address.id}}', 'address_province_{{address.id}}', {hideElement: 'address_province_container_{{address.id}}'});
+        {% endfor %}
+    </script>
+    <script type="text/javascript">
+      if (window.location.hash == '#add') { 
+          showAddAddress();
+      } else {
+          hideAddAddress();
+      }
+      function showAddAddress() {
+          $('#add-address').show();
+          $('.action-add').hide();
+          $('.address-tables').hide();
+          window.location.hash = '#add';
+          return false;
+      }
+      function hideAddAddress() {
+          $('#add-address').hide();
+          $('.address-tables').show();
+          $('.action-add').show();
+          return false;
+      }
+      function addAddressHide() {
+        $('.action-add').hide();
+      }
+      $('.edit-address .back').click(function() {
+        $('.action-add').show();
+      })
+    </script>
+</main>

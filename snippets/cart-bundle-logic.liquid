@@ -1,0 +1,215 @@
+
+<div class="bundle-top-wrapper">
+  <a href="" class="remove-from-cart-bundle" id="remove-bundle" onClick="ga('send', 'event', 'Cart', 'Remove', 'Bundles');" style="margin-right: 30px !important;"><h4 class="text-red nm">✕</h4></a>
+
+  <h3 class="tac nmb ttu text-dark-red" id="bundle-title"></h2>
+  <p class="tac nm" id="bundle-note"></p>
+  <p class="tac nm"><span id="update-bundle" class="clickable" onClick="ga('send', 'event', 'Cart', 'Update', 'Bundles');" >Update</span></p>
+</div>
+
+<script>
+
+  function removeItems(items) {
+  var itemsArray = items
+  var qty = 0;
+  var data = { updates: {} };
+ 
+  for (i = 0; i < itemsArray.length; i++) {
+     data.updates[itemsArray[i]] = qty;
+  }
+
+    jQuery.ajax({
+    type: 'POST',
+    url: '/cart/update.js',
+    data: data,
+    dataType: 'json',
+    success: function() { 
+
+        location.reload();
+    }
+  });
+
+}
+
+ function updateItems(items) {
+  var itemsArray = items
+  var qty = 0;
+  var data = { updates: {} };
+ 
+  for (i = 0; i < itemsArray.length; i++) {
+     data.updates[itemsArray[i]] = qty;
+  }
+
+    jQuery.ajax({
+    type: 'POST',
+    url: '/cart/update.js',
+    data: data,
+    dataType: 'json',
+    success: function() { 
+      deleteCookie('Bundled-KB-Test')
+    }
+  });
+
+}
+
+  $(document).ready(function() {
+    var bundle = readCookie('Bundled-KB-Test')
+    if (bundle) {
+      var bundleLineItemsArray = []
+      var price
+      var savings 
+      switch (bundle) {
+        case 'the-womens-starter-sock-box':
+         console.log("the-womens-starter-box");
+         price = "$145.00"
+         savings = 28
+         bundleLineItemsArray = [4837733957732, 6609169776740, 4823040491620, 6585673187428]
+         break;
+        case 'the-mens-starter-sock-box':
+         console.log("the-mens-starter-box");
+         price = "$115.00"
+         savings = 20
+         bundleLineItemsArray = [4837737365604, 4823047405668, 6602921246820]
+         break;
+        case 'kiddies':
+         price = "$70.00"
+         savings = 13
+         bundleLineItemsArray = [6989526859876, 6599584481380]
+         break;  
+        case 'the-sock-box-deluxe':
+         console.log("the-sock-box-deluxe");
+         price = "$245.00"
+         savings = 65
+         bundleLineItemsArray = [6609169776740, 4823040131172, 4837725012068, 6558139154532, 6585674432612, 6930797101156]
+         break;
+        case 'on-the-go':
+         console.log("on-the-go");
+         price = "$105.00"
+         savings = 10
+         bundleLineItemsArray = [6972995305572, 6632489123940]
+         break;
+        case 'on-the-go-deluxe':
+         console.log("on-the-go-deluxe");
+         price = "$120.00"
+         savings = 19
+         bundleLineItemsArray = [4837733957732, 6999594565732, 6632489123940]
+         break;
+        case 'cozy-at-home':
+         console.log("cozy-at-home");
+         price = "$215.00"
+         savings = 25
+         bundleLineItemsArray = [4837725012068, 6888748580964]
+         break;
+        case 'work-from-home':
+         console.log("work-from-home");
+         price = "$230.00"
+         savings = 39
+         bundleLineItemsArray = [4837733957732, 6873182437476, 6964378370148]
+         break;
+        case 'winter-deluxe':
+         console.log("winter-deluxe");
+         price = "$260.00"
+         savings = 64
+         bundleLineItemsArray = [4837733957732, 6972995829860, 6632489123940, 6888748580964]
+         break;
+        case 'ready-for-anything':
+         console.log("ready-for-anything");
+         price = "$220.00"
+         savings = 64
+         bundleLineItemsArray = [4837733957732, 6999594565732, 6632489123940, 6974299177060]
+         break;
+        case 'family-bundle':
+         console.log("family-bundle");
+         price = "$125.00"
+         savings = 18
+         bundleLineItemsArray = [4837733957732, 4837737365604, 6599584481380]
+         break;
+        case 'alpaca-for-2':
+         console.log("alpaca-for-2");
+         price = "$90.00"
+         savings = 8
+         bundleLineItemsArray = [4837737365604, 4837733957732]
+         break;
+        case 'alpaca-for-2-deluxe':
+         console.log("alpaca-for-2-deluxe");
+         price = "$130.00"
+         savings = 24
+         bundleLineItemsArray = [4837737365604, 4837733957732, 4823040098404, 4823046946916]
+         break;
+        case 'jet-set-travel-pack':
+         console.log("jet-set-travel-pack");
+         price = "$125.00"
+         savings = 15
+         bundleLineItemsArray = [6873182437476, 6930797101156]
+         break;
+      }
+      
+      var handleizedBox = readCookie('Bundled-KB-Test')
+      var box = handleizedBox.replace(/-/g, ' ');
+      if (handleizedBox) {
+        $('#bundle-title').text(box)
+        $('#bundle-note').text(price)
+      }
+      
+      var i;
+      for (i = 0; i < bundleLineItemsArray.length; ++i) {
+        var itemId = bundleLineItemsArray[i]
+        $(`[data-product-id='${itemId}']:first`).addClass('in-bundle').insertAfter('.bundle-top-wrapper')
+        if (i == 0)  {
+          $(`[data-product-id='${itemId}']`).addClass('last-in-bundle')
+        }
+      }
+      
+      var chosenVariantsArray = []
+      $('.in-bundle').each(function() {
+          var cartVariantId = parseInt($(this).attr("data-variant-id"))
+          chosenVariantsArray.push(cartVariantId)
+      })
+      
+      $('.in-bundle').removeClass('border-bottom-teal')
+      $('.in-bundle').find('a').removeAttr("href")
+      $('#remove-bundle').click(function() {
+        event.preventDefault();
+        deleteCookie('Bundled-KB-Test')
+        removeItems(chosenVariantsArray)
+
+
+
+
+      })
+      $('#update-bundle').click(function() {
+        var editorPage = "/pages/bundled-products?box=" + handleizedBox + "&update-box=true"
+        updateItems(chosenVariantsArray)
+              window.location.href = editorPage;
+
+      })
+
+      // subscript discount from subtotal
+      var totalBeforeDiscount = {{ cart.items_subtotal_price | divided_by: 100 }}
+      var updatedTotal = totalBeforeDiscount - savings 
+      $('#in-cart-subtotal').text('$' + updatedTotal + ".00")
+      console.log(updatedTotal)
+    }
+    else {
+      $('.bundle-top-wrapper').hide(); 
+    }
+  })
+
+</script>
+<style>
+  .in-bundle .text-red, .in-bundle .price-details h5 { display: none;}
+  .in-bundle, .bundle-top-wrapper  {
+    width: 100%;
+    margin: 0 auto;
+    border-left: 2px solid #66cad8;
+    border-right: 2px solid #66cad8;
+    border-bottom: none;
+}
+  .in-bundle .quantity-wrapper-in-cart { display: none;}
+  .last-in-bundle { border-bottom: 2px solid #66cad8; }
+  .bundle-top-wrapper { border-top: 2px solid #66cad8;  border-top-left-radius: 20px; border-top-right-radius: 20px;}
+  #update-bundle, #remove-bundle { font-weight: lighter; }
+  @media only screen and (max-width: 900px) {
+    .remove-from-cart-bundle > h4 { padding: 15px }
+  }
+</style>

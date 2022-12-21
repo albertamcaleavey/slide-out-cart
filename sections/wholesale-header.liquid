@@ -1,0 +1,80 @@
+
+{% schema %}
+{
+  "name": "Section name",
+  "settings": []
+}
+{% endschema %}
+<section id="header">
+<nav class="fw fixed-nav flex-container-no jcsb background-natural" id="dnav">
+  <a href="/pages/wholesale"><img src="{{'new-logo.png' | asset_url}}" class="logo" /></a>
+  <div class="nav-links flex-container-no do">
+    
+
+    <a href="/pages/wholesale-collections"><h4 class="ib ttu">Order Now</h4></a>
+    <a href="/pages/wholesale-contact-us"><h4 class="ib ttu">Contact</h4></a>
+    <a href="{{ 'line-sheet.pdf' | asset_url}}"><h4 class="ib ttu">Line Sheet</h4></a>
+
+  </div>
+  <div class="user-nav-links">
+    {% comment %}
+    {% if customer %}
+      <a href="/account" class="do">
+    {% else %}
+      <a href="/account/login" class="do">
+    {% endif %}
+        <img data-src="{{'rebrand-account.png' | asset_url}}" id="account-pal" class="cart-icon lazyload do" style="vertical-align: bottom;" alt="account"/>
+      </a>
+    {% endcomment %}
+    
+    <a href="/collections/wholesale" style="z-index: 999;" class="cart"><img src="{{'search.png' | asset_url}}"class="cart-icon" style="vertical-align: text-top;" alt="Cart"/></a>
+
+    <a href="/cart" style="z-index: 999;" class="cart"><img src="{{'rebrand-cart.png' | asset_url}}"class="cart-icon" style="vertical-align: text-top;" alt="Cart"/><span class="" style="vertical-align: top; ">{{ cart.item_count }}</span></a>
+  </div>
+  <div id="mobile-hamburger" class="mo">
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+  </div>
+</nav>
+
+
+<div id="mobile-nav" class="background-white accent-padding" style="display: none;">
+  <div class="double-accent-padding">
+    <div class="mobile-main-link">
+
+         <a href="/pages/wholesale-collections">
+            <div class="">
+              <h3 class="ttu">Order Now     
+              </h3>
+            </div> 
+          </a>
+          <a href="/pages/wholesale-contact-us">
+            <div class="">
+              <h3 class="ttu">Contact    
+             </h3>
+            </div> 
+          </a> 
+    </div>
+  </div>
+  </div>
+  
+</section>
+
+<script>
+  $('#mobile-hamburger').click(function() {
+    if ($('#mobile-nav').is(":visible")) {
+      $('.hamburger-line:nth-of-type(2n)').show();
+      $('#mobile-nav').hide();
+      $('.hamburger-line:first-of-type').removeClass("hamburger-rotate-1")
+      $('.hamburger-line:last-of-type').removeClass("hamburger-rotate-2")
+
+    }
+    else {
+      $('.hamburger-line:nth-of-type(2n)').hide();
+      $('#mobile-nav').show();
+      $('.hamburger-line:first-of-type').addClass("hamburger-rotate-1")
+      $('.hamburger-line:last-of-type').addClass("hamburger-rotate-2")
+    }
+  })
+</script>

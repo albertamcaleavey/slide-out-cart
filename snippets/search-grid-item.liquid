@@ -1,0 +1,66 @@
+
+
+    
+    	{% assign availableVariantString = "" %}
+    	{% for variant in product.variants  %}
+          {% if variant.available %}
+    		{% assign availableVariantString = availableVariantString | append: variant.id | append: "," %}
+    	  {% endif %}
+   		{% endfor %}
+    
+    	{% assign availableVariantIndex = availableVariantString | split: ',' %}
+        {% assign min = 0 %}
+        {% assign max = availableVariantIndex | size %}
+        {% assign diff = max | minus: min %}
+    
+        {% assign randomNumber1 = "now" | date: "%N" | modulo: diff | plus: min %}
+        {% assign randomNumber2 = "now" | date: "%N" | modulo: diff | plus: min %}
+        {% assign randomNumber3 = "now" | date: "%N" | modulo: diff | plus: min %}
+
+    	{% assign variant_id = availableVariantIndex[randomNumber1] | times: 1  %}
+       	{% assign variant_id2 = availableVariantIndex[randomNumber2] | times: 1 %}
+    	{% assign variant_id3 = availableVariantIndex[randomNumber3] | times: 1 %}
+		{% assign variant = product.variants | where: 'id', variant_id | first %}
+
+              <section class=" col {% for tag in product.tags %}{{tag | handleize}} {%endfor%}" id="{{product.title | truncatewords: 1,''}}-{{variantCount}}">
+                <section class="card">
+                  <a href="{{product.url}}" onclick="ga('send', 'event', 'Collections Page', '{{collection.title | handleize}}', '{{product.title | handleize}}-{{variantCount}}');">
+                  <div class="product-collection-wrapper">
+                    <div class="accent-padding">
+                      <div class="slvr-col-img-wrapper">
+                        <img data-src="{{ variant.image | product_img_url: '500x500' }}" alt="{{product.title}}" class="lazyload"/> 
+                      </div> 
+                       {% if collection.title contains "Men's" %}
+                      	{% if product.title contains "Mommy" %}
+                      	<p><span class="text-purple">Great Gift!</span></p>
+                     	{% endif %}
+                      {% endif %}
+                      <h3 class=" nmb">{{product.title}}</h3>
+                      </a>
+                      <div class="acfe">
+   <!--            store variant as data attr on circle  -->
+                    {% capture limit_color %}
+                    {% if product.tags contains "Kids" %}
+                      {{ product.variants.size | divided_by: 1}}
+                    {% else %}
+                      {{ product.variants.size | divided_by: 2}}
+                    {% endif %}
+                    {% endcapture %}
+
+
+           
+                      {% for variant in product.variants | limit: limit_color%}
+                        {% if variant.available %}
+                          {%assign variantId = "{{variant.id}} %}
+                          <div data-image-src="{{ variant.image.src | product_img_url: '500x500'  }}" class="clickable {{option | handleize}} color-preview-circle" style="background-image: url({{ variantId | append: '.png' | asset_url }});background-size: cover;" ></div>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                    <p class="nm text-dark-purple subscript">{{ product.price | money }} <span class="strikethrough text-dark-purple">{{product.compare_at_price | money}}</span></h4>
+             
+                   
+                  </div>
+                </div>
+            </section>
+          </section>
+

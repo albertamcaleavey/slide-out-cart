@@ -1,0 +1,816 @@
+{% schema %}
+{
+  "name": "Section name",
+  "settings": []
+}
+{% endschema %}
+<section id="header">
+
+<!-- DESKTOP NAV -->
+        
+<nav class="fw fixed-nav flex-container-no jcsb background-natural desktop-nav-b" id="dnav">
+  <a href="/"><img src="{{'new-logo.png' | asset_url}}" class="logo" alt="Pacas Logo" /></a>
+  <div class="nav-links flex-container-no do">
+    <h4 class="ib ttu drop-link clickable">Women</h4>
+    <h4 class="ib ttu drop-link clickable">Men</h4>
+    <h4 class="ib ttu drop-link clickable">Kids</h4>
+<!--     <h4 class="ib ttu drop-link clickable">Gifts</h4> -->
+    <a href="/pages/reviews"><h4 class="ib ttu clickable reviews-link">Reviews</h4></a>
+  </div>
+  <div class="user-nav-links">
+           <form class="search" action="/search" style="display: none;">
+      <input type="text" placeholder="Search" name="q" value="{{ search.terms | escape }}"  style="padding: 10px; border: 1px solid transparent" id="search-input" />
+                                                 <input type="hidden" name="type" value="product">
+
+      <input type="submit" value="→" id="search-submit" style="font-size: 11pt; text-transform: uppercase;background-color: transparent; border: none; color: black;"/>
+    </form>
+   <div class="search-button center-position" id="search-trigger-animation" style="" onClick="ga('send', 'event', 'Navigation', 'Header', 'Search');"> 
+  <div class="search-icon">
+  </div> 
+     </div>
+    {% if customer %}
+      <a href="/account" class="do">
+    {% else %}
+      <a href="/account/login" class="do">
+    {% endif %}
+      <img data-src="{{'rebrand-account.png' | asset_url}}" id="account-pal" class="cart-icon lazyload do" style="vertical-align: bottom;" alt="account"/>
+      </a>
+      <a href="/cart" style="z-index: 999;" class="cart"><img src="{{'rebrand-cart.png' | asset_url}}"class="cart-icon" style="vertical-align: text-top;" alt="Cart"/><span class="" style="vertical-align: top; ">{{ cart.item_count }}</span></a>
+  </div>
+  <div id="mobile-hamburger" class="mo" onClick="ga('send', 'event', 'Navigation', 'Header', 'mobile-hamburger');">
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+    <div class="hamburger-line"></div>
+  </div>
+</nav> 
+        
+<!-- womens -->        
+ <div id='women-drop-down' class="fw background-white double-accent-padding flex-container-no aifs do nav-drop " style="display: none" onClick="ga('send', 'event', 'Navigation', 'Header', 'desktop-drop-down');">
+  <div style="padding-right: 30px">
+    <h4 class="ttu mb nl">Featured</h4>
+    <a href="/collections/best-sellers"><p class="nl ul nav-link">Best Sellers</p></a>
+    <a href="/collections/new-arrivals"><p class="nl ul nav-link">New Arrivals</p></a>
+    <a href="/pages/bundles" onClick="ga('send', 'event', 'Navigation', 'Women Dropdown', 'Bundles');"><p class="nl ul nav-link">Bundle and Save</p></a>
+{% comment %}     <a href="/collections/gifts-for-her" onClick="ga('send', 'event', 'Navigation', 'Women Dropdown', 'Gifts for Her');" ><p class="nl ul nav-link">Gifts for Her</p><a/> {% endcomment %}
+
+{% comment %}     <a href="/collections/mommy-and-me"><p class="nlb ul  nav-link">Mommy and Me</p></a> {% endcomment %}
+    <a href="/pages/our-story"><p class="nl ul nav-link" style="margin-top: 20px">Our Story</p></a>
+    <a href="/pages/alpaca-facts"><p class="nl ul nav-link" style="white-space: nowrap">Learn About Alpacas</p></a>
+    <p class="nlb ul nav-link welcome-modal-trigger clickable">Email Sign-Up</p>
+    <div style="margin-top: 30px; padding-left: 5px">
+      <a href="https://www.facebook.com/pacas.apparel/" target="_blank" style="margin-right: 20px"><img class="social-icon" src="{{ 'fb-icon.png' | asset_url }}"></a>
+      <a href="https://www.instagram.com/pacas.apparel/?hl=en" target="_blank"><img class="social-icon" src="{{ 'ig-icon.png' | asset_url }}"></a>
+    </div>
+  </div>
+  <div class="flex-container-no aifs border-left-grey wfa">
+    <div class="category-column">
+      <h4 class="ttu mb nl">Socks</h4>
+      <p class="nm nl"><b>By Height</b></p>
+      <a href="/collections/womens-crew"><p class="nl nav-link mw-style">Crew</p></a>
+      <a href="/collections/womens-light-weight-crew"><p class="nl nav-link mw-style" style="white-space: nowrap">Light-Weight Crew</p></a>
+      <a href="/collections/womens-ankle"><p class="nl nav-link mw-style">Low Cut</p></a>
+<!--       <a href="/collections/womens-performance"><p class="nl nav-link mw-style" style="white-space: nowrap">Light-Weight Low Cut</p></a> -->
+      <a href="/collections/womens-compression"><p class="nlb nav-link mw-style">Compression</p></a>
+      <a href="/collections/womens-no-show"><p class="nl nav-link mw-style">No Show</p></a>
+      
+      <a href="/collections/womens-slouchy"><p class="nl nav-link mw-style">Slouchy</p></a>
+      <p class="nl" style="margin: 10px 0 0 0"><b>By Activity</b></p>
+      <a href="/collections/womens-casual"><p class="nl nav-link mw-style">Casual</p></a>
+<!--       <a href="/collections/womens-performance"><p class="nl nav-link mw-style">Performance</p></a> -->
+<!--       <a href="/collections/womens-golf"><p class="nlb nav-link mw-style">Golf</p></a> -->
+      <a href="/collections/women"><p class="nl nav-link all"><b>All Socks</b></p></a>
+    </div> 
+    <div class="category-column" style="display: grid">
+      <div>
+      <h4 class="ttu mb nl">Apparel</h4>
+      <a href="/collections/womens-sweaters"><p class="nlb clickable ul nav-link mw-style">Sweaters</p></a>
+<!--       <a href="/collections/womens"><p class="nl clickable nav-link all" style="white-space: nowrap"><b>All Apparel</b></p></a> -->
+    </div> 
+      <div>
+      <h4 class="ttu mb nl">Accessories</h4>
+      <a href="/collections/shawls"><p class="clickable nav-link mw-style nl">Shawls</p></a>
+      <a href="/products/pacas-super-soft-hats?variant=39536118595684"><p class="nl clickable nav-link mw-style">Hats</p></a>
+      <a href="/collections/womens-scarves"><p class="nl clickable nav-link mw-style">Scarves</p></a>
+      <a href="/collections/womens-accessories"><p class="nl clickable nav-link all mw-style" style="white-space: nowrap"><b>All Accessories</b></p></a>
+    </div> 
+    </div>
+    <div class="category-column">
+      <h4 class="ttu nl" style="margin-bottom: 10px">House</h4>
+      <a href="/collections/throw-blankets"><p class="nl clickable nav-link mw-style" style="white-space: nowrap">Throw Blankets</p></a>
+      <a href="/pages/bundles"><h4 class="ttu nl" style="margin-bottom: 10px; white-space: nowrap;">Bundle and Save</h4></a>
+    </div> 
+    <div class="wfa" style="margin-top: 15px">
+      <div class="background-light-teal wfa grid jcc prev-container" >
+        <img src="{{'fileName_28841637-b903-4d3c-ab21-cca9f5829fbd.png' | asset_url}}" class="product-preview w-no-show"/>
+        <img src="{{'fileName_edce02b2-033e-4cf3-b91e-835264650b13.png' | asset_url}}" class="product-preview w-low-cut"/>
+        <img src="{{'Womens-Crew.png' | asset_url}}" class="product-preview w-crew"/>
+        <img src="{{'fileName_0140fe9d-f6aa-46cb-a8ab-ef21b9f973bd.png' | asset_url}}" class="product-preview w-light-weight-crew"/>
+        <img src="{{'fileName_171460d0-a145-46a6-abcd-0f3672fb6cdb.png' | asset_url}}" class="product-preview w-compression"/>
+        <img src="{{'fileName_21389873-1066-4c32-a35e-84bb40e80b4a.png' | asset_url}}" class="product-preview w-slouchy"/>
+        <img src="{{'Shawl-800x800.png' | asset_url}}" class="product-preview shawls"/>
+        <img src="{{'fileName_d70d63a7-ff7b-4ba2-8345-9a16a8720bed.png' | asset_url}}" class="product-preview w-casual"/>
+        <img src="{{'W-performance-sock@2x.png' | asset_url}}" class="product-preview w-performance"/>
+        <img src="{{'Golf.png' | asset_url}}" class="product-preview w-golf"/>
+        <img src="{{'Wraps.png' | asset_url}}" class="product-preview wraps"/>
+        <img src="{{'Lav.png' | asset_url}}" class="product-preview hats" style="width: 10vw; height: 10vw; padding: 3vw;"/>
+        <img src="{{'Throws.png' | asset_url}}" class="product-preview throw-blankets"/>
+        <img src="{{'Turtleneck.png' | asset_url}}" class="product-preview w-sweaters"/>
+        <img src="{{'F2210.png' | asset_url}}" class="product-preview w-scarves"/>
+        <img src="{{'W-Accessories.png' | asset_url}}" class="product-preview w-all-accessories"/>
+    <img src="{{'W-performance-sock@2x.png' | asset_url}}" class="product-preview w-light-weight-low-cut"/>
+        <a href="/collections/womens-crew"><h4 class="ttu nm clickable tac product-title-nav"">Crew</h4></a>
+      </div>
+      <div class="wfa" style="display: flex">
+        <div class="background-natural accent-padding prev-container" style="margin: 10px 5px 0 0; width: 50%">
+          <h4 class="ttu tac nm">Sign Up for 20% Off</h4>
+          <p class="tac nmb" style="font-size: 1.1vw">your first purchase when you sign up for emails</p>
+          <div class="klaviyo-form-nav klaviyo-form-S2VXY7" style="position: absolute; z-index: 999"></div>
+          <div class="klaviyo-form-nav klaviyo-form-UWijVd"></div>
+        </div>
+      <div class="background-natural accent-padding clickable prev-container" style="margin: 10px 0 0 5px; width: 50%">
+        <a href="/pages/reviews"><h4 class="ttu tac nm clickable">Reviews</h4></a>
+        <a href="/pages/reviews"><p class="tac clickable" style="font-size: 1vw">"I loved my socks so much I got my husband some - and he loves them too!"</p></a>
+        <a href="/pages/reviews"><p class="tac clickable" style="font-size: .9vw; text-decoration: underline">See More</p></a>
+      </div>
+    </div>
+  </div>
+    <img class="x-close-nav clickable" src="{{ 'x.png' | asset_url }}" style="width: 15px; padding-left: 5px;"/>
+</div>
+</div>
+</div> 
+
+<!-- mens drop down -->
+ <div id='men-drop-down' class="fw background-white double-accent-padding flex-container-no aifs do nav-drop" style="display: none" onClick="ga('send', 'event', 'Navigation', 'Header', 'desktop-drop-down');">
+  <div style="padding-right: 30px">
+    <h4 class="ttu mb nl">Featured</h4>
+    <a href="/collections/best-sellers"><p class="nl ul nav-link">Best Sellers</p></a>
+    <a href="/collections/new-arrivals"><p class="nl ul nav-link">New Arrivals</p></a>
+    <a href="/pages/bundles" onClick="ga('send', 'event', 'Navigation', 'Men's Dropdown', 'Bundles');"><p class="nl ul nav-link">Bundle and Save</p></a>
+{% comment %}     <a href="/collections/gifts-for-him" onClick="ga('send', 'event', 'Navigation', 'Mens Dropdown', 'Gifts for Him');" ><p class="nl ul nav-link">Gifts for Him</p><a/> {% endcomment %}
+
+    <a href="/pages/our-story"><p class="nl ul nav-link" style="margin-top: 20px">Our Story</p></a>
+    <a href="/pages/alpaca-facts"><p class="nl ul nav-link" style="white-space: nowrap">Learn About Alpacas</p></a>
+   <p class="nlb ul nav-link welcome-modal-trigger clickable">Email Sign-Up</p>
+    <div style="margin-top: 30px; padding-left: 5px">
+      <a href="https://www.facebook.com/pacas.apparel/" target="_blank" style="margin-right: 20px"><img class="social-icon" src="{{ 'fb-icon.png' | asset_url }}"></a>
+      <a href="https://www.instagram.com/pacas.apparel/?hl=en" target="_blank"><img class="social-icon" src="{{ 'ig-icon.png' | asset_url }}"></a>
+    </div>
+  </div>
+  <div class="flex-container-no aifs border-left-grey wfa">
+     <div class="category-column">
+      <h4 class="ttu mb nl">Socks</h4>
+      <p class="nm nl"><b>By Height</b></p>
+      <a href="/collections/mens-crew"><p class="nl nav-link mw-style" id="m-crew">Crew</p></a>
+      <a href="/collections/mens-lightweight-crew"><p class="nl nav-link mw-style" style="white-space: nowrap">Light-Weight Crew</p></a>
+      <a href="/collections/mens-ankle"><p class="nl nav-link mw-style">Low Cut</p></a>
+<!--       <a href="/collections/mens-performance"><p class="nl nav-link mw-style" style="white-space: nowrap">Light-Weight Low Cut</p></a> -->
+      <a href="/collections/mens-compression"><p class="nlb nav-link mw-style">Compression</p></a>
+      <p class="nl" style="margin: 10px 0 0 0"><b>By Activity</b></p>
+      <a href="/collections/mens-crew"><p class="nl nav-link mw-style">Casual</p></a>
+<!--       <a href="/collections/mens-performance"><p class="nl nav-link mw-style">Performance</p></a> -->
+<!--       <a href="/collections/mens-golf"><p class="nlb nav-link mw-style">Golf</p></a> -->
+      <a href="/collections/men"><p class="nl nav-link all"><b>All Socks</b></p></a>
+    </div> 
+     <div class="category-column" style="display: grid">
+      <div>
+        <h4 class="ttu mb nl">Apparel</h4>
+        <a href="/collections/mens-sweaters"><p class="nlb clickable ul nav-link mw-style">Sweaters</p></a>
+<!--       <a href="/collections/mens"><p class="nl clickable nav-link all" style="white-space: nowrap"><b>All Apparel</b></p></a> -->
+    </div> 
+    <div>
+      <h4 class="ttu mb nl">Accessories</h4>
+      <a href="/products/pacas-super-soft-hats?variant=39536118595684"><p class="nl clickable nav-link mw-style">Hats</p></a>
+      <a href="/collections/mens-scarves"><p class="nl clickable nav-link mw-style">Scarves</p></a>
+      <a href="/collections/mens-accessories"><p class="nl clickable nav-link all mw-style" style="white-space: nowrap"><b>All Accessories</b></p></a>
+    </div> 
+    </div>
+     <div class="category-column">
+      <h4 class="ttu nl" style="margin-bottom: 10px">House</h4>
+      <a href="/collections/throw-blankets"><p class="nl clickable nav-link mw-style" style="white-space: nowrap">Throw Blankets</p></a>
+       <a href="/pages/bundles"><h4 class="ttu nl" style="margin-bottom: 10px; white-space: nowrap;">Bundle and Save</h4></a>
+    </div> 
+    <div class="wfa" style="margin-top: 15px;;">
+      <div class="background-light-teal wfa grid jcc prev-container" style="border-radius: 10px">
+        <img src="{{'fileName_a16bde3d-755d-4c99-97cb-3b8f7acae9e7.png' | asset_url}}" class="product-preview m-low-cut"/>
+        <img src="{{'fileName_5bf1422e-871f-4e9f-9a13-617ad8313b84.png' | asset_url}}" class="product-preview m-crew"/>
+        <img src="{{'Shawl-800x800.png' | asset_url}}" class="product-preview shawls"/>
+        <img src="{{'fileName_4b3f541f-f20c-408c-9162-eccffb357547.png' | asset_url}}" class="product-preview m-light-weight-crew"/>
+        <img src="{{'fileName_9a237444-6998-4782-9b04-0f48395b542f.png' | asset_url}}" class="product-preview m-compression"/>
+        <img src="{{'fileName_4ba0872d-c056-4055-b538-94b391688114.png' | asset_url}}" class="product-preview m-casual"/>
+        <img src="{{'M-Performance.png' | asset_url}}" class="product-preview m-performance"/>
+        <img src="{{'Golf.png' | asset_url}}" class="product-preview m-golf"/>
+        <img src="{{'H-1001.png' | asset_url}}" class="product-preview hats" style="width: 10vw; height: 10vw; padding: 3vw;"/>
+        <img src="{{'Wraps.png' | asset_url}}" class="product-preview wraps"/>
+        <img src="{{'Throws.png' | asset_url}}" class="product-preview throw-blankets"/>
+        <img src="{{'Mens-Sweaters-hires.png' | asset_url}}" class="product-preview m-sweaters"/>
+        <img src="{{'F2209.png' | asset_url}}" class="product-preview m-scarves"/>
+        <img src="{{'M-Accessories.png' | asset_url}}" class="product-preview m-all-accessories"/>
+        <a href="/collections/mens-crew"><h4 class="ttu nm clickable tac product-title-nav">Crew</h4></a>
+      </div>
+      <div class="wfa" style="display: flex">
+        <div class="background-natural accent-padding prev-container" style="margin: 10px 5px 0 0; border-radius: 10px; width: 50%">
+          <h4 class="ttu tac nm">Sign up for 20% Off</h4>
+          <p class="tac nmb" style="font-size: 1.1vw">your first purchase when you sign up for emails</p>
+          <div class="klaviyo-form-nav klaviyo-form-S2VXY7" style="position: absolute; z-index: 999"></div>
+          <div class="klaviyo-form-nav klaviyo-form-UWijVd"></div>
+        </div>
+        <div class="background-natural accent-padding clickable prev-container" style="margin: 10px 0 0 5px; border-radius: 10px; width: 50%">
+          <a href="/pages/reviews"><h4 class="ttu tac nm clickable">Reviews</h4></a>
+          <a href="/pages/reviews"><p class="tac clickable" style="font-size: 1vw">"I loved my socks so much I got my husband some - and he loves them too!"</p></a>
+          <a href="/pages/reviews"><p class="tac clickable" style="font-size: .9vw; text-decoration: underline">See More</p></a>
+        </div>
+      </div>
+    </div>
+    <img class="x-close-nav clickable" src="{{ 'x.png' | asset_url }}" style="width: 15px; padding-left: 5px;"/>
+  </div>
+</div>
+</div> 
+
+<!-- kids drop down -->
+ <div id='kids-drop-down' class="fw background-white double-accent-padding flex-container-no aifs do nav-drop" style="display: none" onClick="ga('send', 'event', 'Navigation', 'Header', 'desktop-drop-down');">
+  <div style="padding-right: 30px">
+    <h4 class="ttu mb nl">Featured</h4>
+    <a href="/collections/best-sellers"><p class="nl ul nav-link">Best Sellers</p></a>
+    <a href="/collections/new-arrivals"><p class="nl ul nav-link">New Arrivals</p></a>
+    <a href="/pages/bundles" onClick="ga('send', 'event', 'Navigation', 'Kids Dropdown', 'Bundles');"><p class="nl ul nav-link">Bundle and Save</p></a>
+{% comment %}     <a href="/collections/gifts-for-kids"><p class="nl ul nav-link">Gifts for Kids</p></a> {% endcomment %}
+
+    <a href="/pages/our-story"><p class="nl ul nav-link" style="margin-top: 20px">Our Story</p></a>
+    <a href="/pages/alpaca-facts"><p class="nl ul nav-link" style="white-space: nowrap">Learn About Alpacas</p></a>
+    <p class="nlb ul nav-link welcome-modal-trigger clickable">Email Sign-Up</p>
+    <div style="margin-top: 30px; padding-left: 5px">
+      <a href="https://www.facebook.com/pacas.apparel/" target="_blank" style="margin-right: 20px"><img class="social-icon" src="{{ 'fb-icon.png' | asset_url }}"></a>
+      <a href="https://www.instagram.com/pacas.apparel/?hl=en" target="_blank"><img class="social-icon" src="{{ 'ig-icon.png' | asset_url }}"></a>
+    </div>
+  </div>
+  <div class="flex-container-no border-left-grey wfa jcc" style="margin-top: 10px">
+    <a href="/collections/toddler"><div class="background-light-teal accent-padding " style="margin: 5px; border-radius: 10px; min-height: 22vw;">
+      <img src="{{'K3511-small.png' | asset_url}}" class="featured-collection-preview" /> 
+      <h4 class="ttu nm tac" style="margin-bottom: 5px">Toddler</h4>
+      <p class="ttu nm tac subscript">Ages 1-3</p>
+    </div></a> 
+    <a href="/collections/kids-crew"><div class="background-light-teal accent-padding" style="margin: 5px; border-radius: 10px; min-height: 22vw;">
+      <img src="{{'KK7.png' | asset_url}}" class="featured-collection-preview" /> 
+      <h4 class="ttu nm tac" style="margin-bottom: 5px">Kids</h4>
+      <p class="ttu nm tac subscript">Ages 4-7</p>
+    </div></a>
+   <a href="/collections/toys"><div class="background-light-teal accent-padding " style="margin: 5px; border-radius: 10px; min-height: 22vw; ">
+      <img src="{{'Alpaca-toy-small.png' | asset_url}}" class="featured-collection-preview" /> 
+      <h4 class="ttu nm tac" style="margin-bottom: 5px">Alpaca Toys</h4>
+      <p class="ttu nm tac subscript" style="visibility: hidden">Ages 4-7</p>
+    </div></a>
+  </div>
+   <img class="x-close-nav clickable" src="{{ 'x.png' | asset_url }}" style="width: 15px; padding-left: 5px;"/>
+</div>
+</div>
+  
+<!-- gifts drop down -->
+ <div id='gifts-drop-down' class="fw background-white double-accent-padding flex-container-no aifs do nav-drop" style="display: none" onClick="ga('send', 'event', 'Navigation', 'Header', 'desktop-drop-down');">
+  <div style="padding-right: 30px">
+    <h4 class="ttu mb nl">Featured</h4>
+    <a href="/collections/best-sellers"><p class="nl ul nav-link">Best Sellers</p></a>
+    <a href="/collections/new-arrivals"><p class="nl ul nav-link">New Arrivals</p></a>
+    <a href="/pages/bundles" onClick="ga('send', 'event', 'Navigation', 'Kids Dropdown', 'Bundles');"><p class="nl ul nav-link">Bundle and Save</p></a>
+
+    <a href="/pages/our-story"><p class="nl ul nav-link" style="margin-top: 20px">Our Story</p></a>
+    <a href="/pages/alpaca-facts"><p class="nl ul nav-link" style="white-space: nowrap">Learn About Alpacas</p></a>
+    <p class="nlb ul nav-link welcome-modal-trigger clickable">Email Sign-Up</p>
+    <div style="margin-top: 30px; padding-left: 5px">
+      <a href="https://www.facebook.com/pacas.apparel/" target="_blank" style="margin-right: 20px"><img class="social-icon" src="{{ 'fb-icon.png' | asset_url }}"></a>
+      <a href="https://www.instagram.com/pacas.apparel/?hl=en" target="_blank"><img class="social-icon" src="{{ 'ig-icon.png' | asset_url }}"></a>
+    </div>
+  </div>
+  <div class="flex-container-no border-left-grey wfa jcc" style="margin-top: 10px">
+    <a href="/collections/gifts-for-her"><div class="background-holiday-green accent-padding prev-container" style="margin: 5px; border-radius: 10px">
+      <img src="{{'fileName_3af3ad5e-5051-45d1-9619-7ec33d43616f.png' | asset_url}}" class="featured-collection-preview" /> 
+      <h4 class="ttu nm tac text-white" style="margin-top: 15px">Gifts for Her</h4>
+<!--       <p class="ttu nm tac subscript">Ages 1-3</p> -->
+    </div></a> 
+    <a href="/collections/gifts-for-him"><div class="background-holiday-green accent-padding prev-container" style="margin: 5px; border-radius: 10px;">
+      <img src="{{'fileName_d919466e-070c-4bc6-a5ae-19d6c7d7e638.png' | asset_url}}" class="featured-collection-preview" /> 
+      <h4 class="ttu nm tac text-white" style="margin-top: 15px">Gifts for Him</h4>
+<!--       <p class="ttu nm tac subscript">Ages 4-7</p> -->
+    </div></a>
+   <a href="/collections/gifts-for-kids"><div class="background-holiday-green accent-padding prev-container" style="margin: 5px; border-radius: 10px; ">
+      <img src="{{'Alpaca-toy-small.png' | asset_url}}" class="featured-collection-preview" /> 
+      <h4 class="ttu nm tac text-white" style="margin-top: 15px">Gifts for Kids</h4>
+<!--       <p class="ttu nm tac subscript" style="visibility: hidden">Ages 4-7</p> -->
+    </div></a>
+    <a href="/collections/stocking-stuffers"><div class="background-holiday-green accent-padding prev-container" style="margin: 5px; border-radius: 10px; ">
+      <img src="{{'Stocking-Stuffer.png' | asset_url}}" class="featured-collection-preview" /> 
+      <h4 class="ttu nm tac text-white" style="margin-top: 15px">Stocking Stuffers</h4>
+<!--       <p class="ttu nm tac subscript" style="visibility: hidden">Ages 4-7</p> -->
+    </div></a>
+    <a href="/pages/bundles"><div class="background-holiday-green accent-padding prev-container" style="margin: 5px; border-radius: 10px; ">
+      <img src="{{'ReadyforAnything-800x800-Nav.png' | asset_url}}" class="featured-collection-preview" /> 
+      <h4 class="ttu nm tac text-white" style="margin-top: 15px">Bundles</h4>
+<!--       <p class="ttu nm tac subscript" style="visibility: hidden">Ages 4-7</p> -->
+    </div></a>
+  </div>
+   <img class="x-close-nav clickable" src="{{ 'x.png' | asset_url }}" style="width: 15px; padding-left: 5px;"/>
+</div>
+</div>
+
+
+          
+<div class="mobile-nav-c-container">
+<!-- MOBILE NAV -->
+<div id="mobile-nav" class="background-white"> 
+<!-- womens mobile -->
+    <div class="mobile-main-link women-mobile-drop double-accent-padding-so" style="padding-top: 20px">
+      <h3 class="ttu clickable has-sub-link">Women<span class="fr vam nav-arrow mwk-category-link">></span></h3>
+        <div class="women-sublinks category-sublinks" style="display:none;">
+          <h4 class="ttu has-sub-sublinks women-sublink">Socks<span class="fr vam nav-arrow">></span></h4>
+            <div class="sub-sublinks accent-padding" style="display:none;">
+              <div class="border-bottom-natural fw"></div>
+                <p style="font-size: 12pt"><b>By Height</b></p>
+              <a href="/collections/womens-crew">
+                  <div class="height-sub">
+                    <p>Crew</p>
+                    <img class="mobile-product-preview" src="{{'1014A.png' | asset_url}}"/>
+                  </div>
+                </a>
+                <a href="/collections/womens-light-weight-crew">
+                  <div class="height-sub">
+                    <p>Light-Weight Crew</p>
+                    <img class="mobile-product-preview" src="{{'5234.png' | asset_url}}"/>
+                  </div>
+                </a>
+                <a href="/collections/womens-ankle">
+                  <div class="height-sub">
+                    <p>Low Cut</p>
+                    <img class="mobile-product-preview" src="{{'new-white-lc.png' | asset_url}}"/>
+                  </div>
+                </a>
+<!--                 <a href="/collections/womens-performance">
+                  <div class="height-sub">
+                    <p>Light-Weight Low Cut</p>
+                    <img class="mobile-product-preview" src="{{'5018.png' | asset_url}}"/>
+                  </div>
+                </a> -->
+                 <a href="/collections/womens-compression">
+                  <div class="height-sub">
+                    <p >Compression</p>
+                    <div class="mobile-product-preview"><img src="{{'8200.png' | asset_url}}"/></div>
+                  </div>
+                </a> 
+                <a href="/collections/womens-no-show">
+                  <div class="height-sub">
+                    <p>No Show</p>
+                    <img class="mobile-product-preview" src="{{'1266.png' | asset_url}}"/>
+                  </div>
+                </a>
+              <a href="/collections/womens-slouchy">
+                  <div class="height-sub">
+                    <p>Slouchy</p>
+                    <img class="mobile-product-preview" src="{{'8500-Down.png' | asset_url}}"/>
+                  </div>
+                </a>
+                <p style="font-size: 12pt"><b>By Activity</b></p>
+                <a href="/collections/womens-crew">
+                  <div class="activity-sub">
+                    <p>Casual</p>
+                    <img class="mobile-product-preview" src="{{'1010A.png' | asset_url}}"/>
+                  </div>
+                </a>
+<!--                 <a href="/collections/womens-performance">
+                  <div class="activity-sub">
+                    <p>Performance</p>
+                    <img class="mobile-product-preview" src="{{'5018.png' | asset_url}}"/>
+                  </div>
+                </a> -->
+<!--                 <a href="/collections/womens-golf">
+                  <div class="activity-sub">
+                    <p>Golf</p>
+                    <img class="mobile-product-preview" src="{{'9004.png' | asset_url}}"/>
+                  </div>
+                </a> -->
+                <a href="/collections/all-socks">
+                  <div class="activity-sub" style="margin-top: 30px;">
+                    <p><b>All Socks</b></p>
+                    <img class="mobile-product-preview" style="visibility: hidden" src="{{'9206.png' | asset_url}}"/>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="women-sublinks category-sublinks" style="display:none;">
+              <h4 class="ttu has-sub-sublinks women-sublink">Apparel<span class="fr vam nav-arrow">></span></h4>
+              <div class="sub-sublinks accent-padding" style="display:none;">
+                <div class="border-bottom-natural fw"></div>
+                  <a href="/collections/womens-sweaters"><p class="height-sub">Sweaters</p></a>
+                </div>
+              </div>
+            <div class="women-sublinks category-sublinks" style="display:none;">
+              <h4 class="ttu has-sub-sublinks women-sublink">Accessories<span class="fr vam nav-arrow">></span></h4>
+              <div class="sub-sublinks accent-padding" style="display:none;">
+                <div class="border-bottom-natural fw"></div>
+                <a href="/collections/shawls"><p class="height-sub">Shawls</p></a>
+                <a href="/products/pacas-super-soft-hats?variant=39536118595684"><p class="height-sub">Hats</p></a>
+                <a href="/collections/womens-scarves"><p class="height-sub">Scarves</p></a>
+                <a href="/collections/womens-accessories"><p style="margin-top 20px" class="height-sub"><b>All Accessories</b></p></a>
+                </div>
+              </div> 
+              <div class="women-sublinks category-sublinks" style="display:none;">
+                <h4 class="ttu has-sub-sublinks women-sublink">House<span class="fr vam nav-arrow">></span></h4>
+                <div class="sub-sublinks accent-padding" style="display:none;">
+                  <a href="/collections/throw-blankets"><p class="height-sub">Throw Blankets</p></a>
+                </div>
+              </div> 
+          </div>      
+
+<!-- mens mobile -->
+    <div class="mobile-main-link men-mobile-drop double-accent-padding-so">
+      <h3 class="ttu clickable has-sub-link">Men<span class="fr vam nav-arrow mwk-category-link">></span></h3>
+        <div class="men-sublinks category-sublinks" style="display:none;">
+            <h4 class="ttu  has-sub-sublinks men-sublink">Socks<span class="fr vam nav-arrow">></span></h4>
+            <div class="sub-sublinks accent-padding" style="display:none;">
+              <p class="nmt" style="font-size: 12pt"><b>By Height</b></p>
+              <div class="border-bottom-natural fw"></div>
+              <a href="/collections/mens-crew">
+                <div class="height-sub">
+                  <p>Crew</p>
+                  <img class="mobile-product-preview" src="{{'1010A.png' | asset_url}}"/>
+                </div>
+              </a>
+              <a href="/collections/mens-lightweight-crew">
+                <div class="height-sub">
+                  <p>Light-Weight Crew</p>
+                  <img class="mobile-product-preview" src="{{'5106_c88b0bad-59b8-4317-8863-d2096663fa66.png' | asset_url}}"/>
+                </div>
+              </a>
+              <a href="/collections/mens-ankle">
+                <div class="height-sub">
+                  <p>Low Cut</p>
+                  <img class="mobile-product-preview" src="{{'1200N.png' | asset_url}}"/>
+                </div>
+              </a>
+<!--                <a href="/collections/mens-performance">
+                <div class="activity-sub">
+                  <p>Light-Weight Low Cut</p>
+                  <img class="mobile-product-preview" src="{{'5302.png' | asset_url}}"/>
+                </div>
+              </a> -->
+              <a href="/collections/mens-compression">
+                <div class="height-sub">
+                  <p>Compression</p>
+                  <img class="mobile-product-preview" src="{{'8402.png' | asset_url}}"/>
+                </div>
+              </a>
+              <p style="font-size: 12pt"><b>By Activity</b></p>
+              <a href="/collections/mens-casual">
+                <div class="activity-sub">
+                  <p>Casual</p>
+                  <img class="mobile-product-preview" src="{{'5114_ce10b2b4-eaa0-4770-b5bf-ee2dcc227dc5.png' | asset_url}}"/>
+                </div>
+              </a>
+<!--               <a href="/collections/mens-performance">
+                <div class="activity-sub">
+                  <p>Performance</p>
+                  <img class="mobile-product-preview" src="{{'5302.png' | asset_url}}"/>
+                </div>
+              </a> -->
+<!--               <a href="/collections/mens-golf">
+                <div class="activity-sub">
+                  <p>Golf</p>
+                  <img class="mobile-product-preview" src="{{'9206.png' | asset_url}}"/>
+                </div>
+              </a> -->
+              <a href="/collections/all-socks">
+                <div class="activity-sub" style="margin-top: 30px;">
+                  <p><b>All Socks</b></p>
+                  <img class="mobile-product-preview" style="visibility: hidden" src="{{'9206.png' | asset_url}}"/>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="men-sublinks category-sublinks" style="display:none;">
+              <h4 class="ttu has-sub-sublinks men-sublink">Apparel<span class="fr vam nav-arrow">></span></h4>
+              <div class="sub-sublinks accent-padding" style="display:none;">
+<!--                 <a href="/collections/men"><p class="nmt">All Apparel</p></a> -->
+                <div class="border-bottom-natural fw"></div>
+                  <a href="/collections/mens-sweaters"><p class="height-sub">Sweaters</p></a>
+                </div>
+              </div>
+            <div class="men-sublinks category-sublinks" style="display:none;">
+              <h4 class="ttu has-sub-sublinks men-sublink">Accessories<span class="fr vam nav-arrow">></span></h4>
+              <div class="sub-sublinks accent-padding" style="display:none;">
+                <div class="border-bottom-natural fw"></div>
+                  <a href="/products/pacas-super-soft-hats?variant=39536118595684"><p class="height-sub">Hats</p></a>
+                  <a href="/collections/mens-scarves"><p class="height-sub">Scarves</p></a>
+                <a href="/collections/mens-accessories"><p style="margin-top 20px" class="height-sub"><b>All Accessories</b></p></a>
+                </div>
+              </div>
+              <div class="women-sublinks category-sublinks" style="display:none;">
+                <h4 class="ttu has-sub-sublinks women-sublink">House<span class="fr vam nav-arrow">></span></h4>
+                <div class="sub-sublinks accent-padding" style="display:none;">
+                  <a href="/collections/throw-blankets"><p class="height-sub">Throw Blankets</p></a>
+                </div>
+              </div> 
+        </div>
+
+<!-- kids mobile -->
+    <div class="mobile-main-link kids-mobile-drop double-accent-padding-so">
+      <h3 class="ttu clickable has-sub-link">Kids<span class="fr vam nav-arrow mwk-category-link">></span></h3>
+        <div class="kids-sublinks category-sublinks" style="display:none;">
+          <h4 class="ttu has-sub-sublinks kids-sublink">Socks<span class="fr vam nav-arrow">></span></h4>
+          <div class="sub-sublinks accent-padding" style="display:none;">
+<!--             <a href="/collections/kids"><p class="nmt">All Kids</p></a> -->
+            <div class="border-bottom-natural fw"></div>
+<!--               <p style="font-size: 12pt"><b>By Age</b></p> -->
+              <a href="/collections/toddler">
+                <div class="height-sub">
+                  <p>Toddler (Age 1-3)</p>
+                  <div class="mobile-product-preview" style="width: 6vw; margin-right: 8px;"><img src="{{ '3208.png' | asset_url }}" /></div>
+                </div>
+              </a>
+              <a href="/collections/kids-crew">
+                <div class="height-sub">
+                  <p>Kids (Age 4-7)</p>
+                  <img class="mobile-product-preview" src="{{ '3117.png' | asset_url }}" />
+                </div>
+              </a>
+             <a href="/collections/kids">
+                <div class="height-sub" style="margin-top: 30px">
+                  <p><b>All Kids</b></p>
+                  <img class="mobile-product-preview" style="visibility: hidden" src="{{ '3121.png' | asset_url }}" />
+                </div>
+              </a>
+            </div>
+          <a href="/collections/toys"><h4 class="ttu kids-sublink">Toys<span class="fr vam"></span></h4></a>
+          </div>
+        </div>
+<!--   gifts mobile -->
+<!--     <div class="mobile-main-link kids-mobile-drop double-accent-padding-so">
+      <h3 class="ttu clickable has-sub-link">Gifts<span class="fr vam nav-arrow mwk-category-link">></span></h3>
+        <div class="kids-sublinks category-sublinks" style="display:none;">
+          <a href="/collections/gifts-for-her"><div><h3 class="ttu">Gifts for Her</h3></div></a>
+          <a href="/collections/gifts-for-him"><div><h3 class="ttu">Gifts for Him</h3></div></a>
+          <a href="/collections/gifts-for-kids"><div><h3 class="ttu">Gifts for Kids</h3></div></a>
+          <a href="/collections/stocking-stuffers"><div><h3 class="ttu">Stocking Stuffers</h3></div></a>
+          <a href="/pages/bundles"><div><h3 class="ttu">Bundles</h3></div></a>
+        </div>
+      </div> -->
+<!--   reviews & featured -->
+        <a href="/pages/reviews"><div class="double-accent-padding-so"><h3 class="ttu">Reviews</h3></div></a>
+        <div class="background-natural double-accent-padding mobile-featured" >
+          <h4 style="font-size: inherit">Featured</h4>
+          <a href="/collections/best-sellers"><p class="ul">Best Sellers</p></a>
+          <a href="/collections/new-arrivals"><p class="ul">New Arrivals</p></a>
+          <a href="/pages/bundles" onClick="ga('send', 'event', 'Navigation', 'Mobile Nav', 'Bundles');"><p class="ul">Bundle and Save</p></a>
+<!--           <a href="/collections/gifts-for-her" onClick="ga('send', 'event', 'Navigation', 'Mobile Nav', 'Gifts for Her');" ><p class="nl ul nav-link">Gifts for Her</p><a/>
+            <a href="/collections/gifts-for-him" onClick="ga('send', 'event', 'Navigation', 'Mobile Nav', 'Gifts for Him');" ><p class="nl ul nav-link">Gifts for Him</p><a/> -->
+          <a href="/pages/our-story"><p class="ul">Our Story</p></a>
+          <a href="/pages/alpaca-facts"><p class="ul" style="white-space: nowrap">Learn About Alpacas</p></a>
+          <p class="nmt ul welcome-modal-trigger clickable">Email Sign-Up</p>
+          <div style="margin-top: 25px">
+            <a href="https://www.facebook.com/pacas.apparel/" target="_blank" style="margin-right: 20px"><img class="icon" src="{{ 'fb-icon.png' | asset_url }}"></a>
+            <a href="https://www.instagram.com/pacas.apparel/?hl=en" target="_blank"><img class="icon" src="{{ 'ig-icon.png' | asset_url }}"></a>
+          </div>
+        </div>
+<script>
+  $('.has-sub-link').click(function (){
+    $(this).siblings('.category-sublinks').toggle()
+    $(this).children(".nav-arrow").toggleClass('open-arrow')
+  })
+
+    $('.has-sub-sublinks').click(function (){
+      if ($(this).parent('.category-sublinks').siblings('.category-sublinks').children('.sub-sublinks').is(':visible')){
+        $(this).parent('.category-sublinks').siblings('.category-sublinks').children('.sub-sublinks').hide()
+        $(this).parent('.category-sublinks').siblings('.category-sublinks').children('h4').removeClass('text-red')
+        $(this).parent('.category-sublinks').siblings('.category-sublinks').children('h4').children('span').removeClass('open-arrow')
+      }
+      $(this).siblings('div').toggle()
+      $(this).children(".nav-arrow").toggleClass('open-arrow')
+      })
+  $('.has-sub-link, .has-sub-sublinks').click(function() {
+    if($(this).children('span').hasClass('open-arrow')) {
+      $(this).addClass('text-red')
+    } else {
+      $(this).removeClass('text-red')
+    }
+  })
+</script>
+  </div>
+
+
+
+<!-- scripts -->
+<script>
+  $('#sock-drop-a').on('click mouseover', function() {
+    $('#desktop-drop-a').show(); 
+  });
+  // $('.nav-drop').mouseleave(function(){
+//     $('.nav-drop').hide();
+  // });
+  $('.drop-link-a').on('click mouseover', function() {
+    $('.nav-drop').hide(); 
+  });
+  //Collapse nav on scroll
+  $(window).scroll(function() {
+    $('.nav-drop').hide();
+  })
+</script>
+<script>
+  // show product title and image when hovering over product name
+  $('.mw-style').mouseover(function(){
+    $('.product-preview').hide()
+    let productImgClass = $(this).text().toLowerCase().replaceAll(' ', '-')
+    if($(this).text() == 'Wraps') {
+      $('.wraps').show()
+    } else if($(this).text() == 'Shawls') {
+      $('.shawls').show()
+    } else if($(this).text() == 'Hats') {
+      $('.hats').show()
+    } else if ($(this).text() == 'Throw Blankets') {
+      $('.throw-blankets').show()
+    }  else if($('#women-drop-down').is(':visible')) {
+      productImgClass = '.w-' + productImgClass
+    } else if ($('#men-drop-down').is(':visible')) {
+      productImgClass = '.m-' + productImgClass
+    } 
+    $(productImgClass).show()
+    $('.product-title-nav').text($(this).text())
+  })
+
+  $('.mw-style').mouseleave(function() {
+    $(this).addClass('nl')
+    $('.product-preview').hide()
+    if($('#women-drop-down').is(':visible')) {
+      $('.w-crew').show()
+    } else if ($('#men-drop-down').is(':visible')) {
+     $('.m-crew').show()
+    } 
+    $('.product-title-nav').text('Crew')
+  })
+  
+  $('.drop-link').on('click mouseover', function() {
+    $('#women-drop-down, #men-drop-down, #kids-drop-down, #gifts-drop-down').hide();
+    let currentLink = $(this).text()
+     $('.product-title').text('Crew')
+    if(currentLink == "Women") {
+      $('#women-drop-down').show();
+      $('.w-crew').show();
+    } else if(currentLink == "Men") {
+      $('#men-drop-down').show();
+      $('.m-crew').show();
+    } else if(currentLink == "Kids") {
+      $('#kids-drop-down').show(); 
+    } else {
+      $('#gifts-drop-down').show(); 
+    }
+  });
+  
+  $('.reviews-link').mouseover(function() {
+    $('#women-drop-down, #men-drop-down, #kids-drop-down, #gifts-drop-down').hide();
+  })
+  //Collapse nav on scroll
+  $(window).scroll(function() {
+    $('#women-drop-down, #men-drop-down, #kids-drop-down, #gifts-drop-down').hide();
+  })
+  $('.x-close-nav').click(function() {
+    $('#women-drop-down, #men-drop-down, #kids-drop-down, #gifts-drop-down').hide();
+  })
+  // close nav when there's a click outside the container
+  $(document).click(function() {
+    if ($(event.target).closest(".nav-drop").hasClass('nav-drop') == false) {
+    $('#women-drop-down, #men-drop-down, #kids-drop-down, #gifts-drop-down').hide();
+  }  
+  })
+
+  $('.welcome-modal-trigger').click(function() {
+    window._klOnsite = window._klOnsite || [];
+    window._klOnsite.push(['openForm', 'RjKQMA']);
+  })
+
+</script> 
+  <script class='mobile-navs'>
+  $('#mobile-hamburger').click(function() {
+    if ($('.mobile-nav-a-container').css('display') !== 'none') {
+      console.log('A')
+      $('#mobile-nav-a').removeClass("slide-in")
+      $('#mobile-nav-a').removeClass("slide-out")
+      $('#mobile-nav-a').find("*").addClass("fade-in") 
+      // clicking the x
+      if ($('#mobile-nav-a').is(":visible")) {
+        $('#mobile-nav-a').addClass("slide-out");
+        $('.hamburger-line-a:nth-of-type(2n)').show();
+        setTimeout(function() {$('#mobile-nav-a').hide()}, 500);
+        $('.hamburger-line-a:first-of-type').removeClass("hamburger-rotate-1")
+        $('.hamburger-line-a:last-of-type').removeClass("hamburger-rotate-2")
+      } else {
+        // clicking the hamburger 
+        $('.hamburger-line-a:nth-of-type(2n)').hide();
+        $('#mobile-nav-a').css("display", "block");
+        $('#mobile-nav-a').addClass("slide-in");
+        $('#mobile-nav-a').show();
+        $('.hamburger-line-a:first-of-type').addClass("hamburger-rotate-1")
+        $('.hamburger-line-a:last-of-type').addClass("hamburger-rotate-2")
+    }
+    } 
+    if ($('.mobile-nav-b-container').css('display') !== 'none') {
+       console.log('B')
+      $('#mobile-nav-b').removeClass("slide-in")
+      $('#mobile-nav-b').removeClass("slide-out")
+      $('#mobile-nav-b').find("*").addClass("fade-in") 
+      // clicking the x
+      if ($('#mobile-nav-b').is(":visible")) {
+        $('#mobile-nav-b').addClass("slide-out");
+        $('.hamburger-line:nth-of-type(2n)').show();
+        setTimeout(function() {$('#mobile-nav-b').hide()}, 500);
+        $('.hamburger-line:first-of-type').removeClass("hamburger-rotate-1")
+        $('.hamburger-line:last-of-type').removeClass("hamburger-rotate-2")
+      } else {
+        // clicking the hamburger 
+        $('.hamburger-line:nth-of-type(2n)').hide();
+        $('#mobile-nav-b').css("display", "block");
+        $('#mobile-nav-b').addClass("slide-in");
+        $('#mobile-nav-b').show();
+        $('.hamburger-line:first-of-type').addClass("hamburger-rotate-1")
+        $('.hamburger-line:last-of-type').addClass("hamburger-rotate-2")
+    }
+    }
+    if ($('.mobile-nav-c-container').css('display') !== 'none') {
+      console.log('C')
+      $('#mobile-nav').removeClass("slide-in")
+      $('#mobile-nav').removeClass("slide-out")
+      $('#mobile-nav').find("*").addClass("fade-in") 
+      // clicking the x
+      if ($('#mobile-nav').is(":visible")) {
+        $('#mobile-nav').addClass("slide-out");
+        $('.hamburger-line:nth-of-type(2n)').show();
+        setTimeout(function() {$('#mobile-nav').hide()}, 500);
+        $('.hamburger-line:first-of-type').removeClass("hamburger-rotate-1")
+        $('.hamburger-line:last-of-type').removeClass("hamburger-rotate-2")
+      } else {
+        // clicking the hamburger 
+        $('.hamburger-line:nth-of-type(2n)').hide();
+        $('#mobile-nav').css("display", "block");
+        $('#mobile-nav').addClass("slide-in");
+        $('#mobile-nav').show();
+        $('.hamburger-line:first-of-type').addClass("hamburger-rotate-1")
+        $('.hamburger-line:last-of-type').addClass("hamburger-rotate-2")
+    }
+    }
+  })
+    $('#mobile-nav').hide()
+    
+</script>     
+<style>
+  .open-arrow { transform: rotate(90deg) }
+  .women-sublinks, .men-sublinks, .kids-sublinks { margin-left: 10px }
+  .category-column { 
+    padding-right: 20px;
+    width: 33%;
+  }
+  .mb {
+    margin-bottom: 10px;
+  }
+  .product-preview {
+    display: none;
+    height: 16vw;
+  }
+  .mw-style, .ul, .all { 
+    font-size: 1.1vw;
+    margin: 0;
+  }
+  .mobile-featured p, .mobile-featured div { padding: 5px 10px; }
+  .mobile-featured { 
+    margin-top: 5vh;
+    padding-bottom: 52%;
+  }
+  .nl { padding: 5px }
+  .nlb { 
+    padding: 5px;
+    margin-top: 0;
+  }
+  .border-left-grey { 
+    border-left: 1px solid #2e2b268f; 
+    padding-left: 50px; 
+  }
+  .prev-container {
+    border-radius: 10px;
+    max-height: 22vw;
+  }
+  .social-icon { height: 2vw }
+  .mobile-product-preview {
+    width: 10vw;
+  } 
+  .klaviyo-form-nav { width: 16vw } 
+  @media only screen and (min-width: 1147px) and (max-width: 1565px) {
+    .klaviyo-form-nav { width: 14vw } 
+  }
+  @media only screen and (min-width: 1001px) and (max-width: 1146px) {
+    .klaviyo-form-nav { width: 12vw } 
+  }
+  @media only screen and (min-width: 801px) and (max-width: 1000px) {
+    .klaviyo-form-nav { display: none } 
+  }
+
+</style>
+<script>
+  $('#search-trigger-animation').click(function() {
+    $(this).toggleClass("active");
+    $('.search').toggle();
+  })
+</script>
+</section>

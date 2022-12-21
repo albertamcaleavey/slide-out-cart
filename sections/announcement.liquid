@@ -1,0 +1,51 @@
+<div class="fw announcement-bar background-light-purple "><h4 class="tac ttu text-dark-purple clickable announcement-text" id="announcement-text-1"><a href="/collections/womens-accessories">Shop Winter Accessories</a></h4><h4 class="tac ttu announcement-text" style="display: none;" id="announcement-text-2">Free Shipping on Orders $80+</h4></div>
+
+<style>
+  .announcement-bar { 
+    position: fixed; 
+    display: flex; 
+    top: 0 !important;
+    align-items: center; 
+    height: 30px; 
+    justify-content: center; 
+    z-index: 999;
+    background-size: cover;
+/*     background-image: url("{{'Static_Top_Bar_Pacas.png' | asset_url }}");  */
+  }
+  .announcement-bar h4 { margin: 0 10px; }
+  #dnav { top: 30px !important; }
+  @media only screen and (min-width: 800px) {
+.upper-pad {
+    padding-top: 105px !important;
+}
+  }
+  @media only screen and (max-width: 799px) {
+.upper-pad {
+    padding-top: 80px !important;
+}
+  }
+  #desktop-drop {
+    position: fixed;
+    top: 125px !important;
+    z-index: 9999;
+}
+  @media only screen and (min-width: 800px) {
+    .announcement-text { font-size: 1.2vw }
+  }
+    @media only screen and (max-width: 600px) {
+    .announcement-text { font-size: 4vw }
+  }
+  @media only screen and (min-width: 601px) and (max-width: 799) {
+    .announcement-text { font-size: 3vw }
+  }
+</style>
+<script>
+  $(document).ready(function() {
+    setInterval(function() {
+                      $('.announcement-bar h4').toggle(); 
+
+
+    }    , 2000)
+  }); 
+</script>
+

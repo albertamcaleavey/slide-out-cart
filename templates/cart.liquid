@@ -1,0 +1,222 @@
+{%  assign gift-box = false %}
+{% if cart.item_count > 0 %}
+  {% for item in cart.items %}
+    {% if item.product.tags contains "wholesale" %}
+        {% assign wholesale = true %}
+    {% endif %}
+    {%  if item.product.title == "Sock Gift Box" %}
+        {%  assign gift-box = true %}
+    {%  endif %}    
+    {%  if item.product.tags contains "Socks" %}
+        {%  assign socks = true %}
+    {%  endif %}   
+  {% endfor %}
+{% endif %}
+
+{% if wholesale == true %}
+  {% layout 'theme.wholesale' %} 
+{% endif %}
+
+<main id="page" class="cart-page background-white">          
+  <div class="accent-padding background-teal cart-header"> 
+    <h1 class="accent ttu text-dark-teal nm">Shopping Bag</h1>
+    {% if wholesale == true %}
+      <h3 class="text-light-teal nm ttu"><a href="/pages/wholesale-collections">← Continue Shopping</a></h3>
+    {% else %}
+      <h3 class="text-light-teal nm ttu"><a href="/">← Continue Shopping</a></h3>
+    {% endif %}
+  </div>  
+  <svg xmlns="http://www.w3.org/2000/svg" class="bottom-curves" style="margin-top: -10px; margin-bottom: -11vw;" viewBox="0 0 1440 320"><path fill="#66cad8" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>
+  <section class="">
+    
+    {% if cart.item_count == 0 %}
+      <section class="accent-padding">
+        <h3 class="tac ttu">Your cart is empty.</h3>
+      </section>
+    {% endif %}
+    
+    {% if cart.item_count > 0 %}
+      <form action="/cart" method="post">
+        <div class="flex-container aifs">
+          <div class="two-thirds accent-padding" id="cart-sub-items">
+
+            {%  include 'cart-bundle-logic' %}
+
+            {% for item in cart.items %}
+              <div class="border-bottom-teal" data-product-id="{{ item.product_id }}" data-variant-id="{{ item.id }}">
+                <a href="/cart/change?id={{ item.id }}&quantity=0" class="cart-update remove-from-cart"><h4 class="text-red nm">✕</h4></a>
+                <div class="flex-container">
+                  <div class="quarter accent-padding">
+                    <a href="{{ item.url}}">
+                      <img src="{{ item.variant.featured_image | product_img_url: 'large' }}"  alt="{{ item.product.title }}" class="fw">
+                    </a>
+                  </div>
+                  <div class="line-item-details  half asfs accent-padding">
+                    <h4 class="nmb ttu">{{item.product.title}}</h4>
+                    {% if item.product.tags contains "wholesale" %}
+                      <p class="nm subscript text-red">Wholesale Item</p>
+                    {% endif %}
+                    {%  if  item.selling_plan_allocation.selling_plan.selected == false %}
+                      <p class="nm subscript text-red">Subscription - {{ item.selling_plan_allocation.selling_plan.name }}</p>
+                    {%  endif %}
+                    <p class="nm">
+                      {{ item.variant.title }} <br>
+                      <span class="quantity-wrapper-in-cart"><span>Qty:</span> <input type="text" size="4" id="updates_{{ item.id }}" name="updates[{{ item.id }}]" value="{{ item.quantity }}" class="tac"> @ {{ item.line_price | divided_by: item.quantity | money }}
+                                      <input type="submit" name="update" value="update" class="cart-update update-cart-quantity"></span>
+                    </p>
+                  </div>
+                  <div class="price-details quarter asfs">
+                    <h5 class="tar do">{{ item.line_price | money}} </h5>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            
+            {%  if socks == true and gift-box == false %}
+              {%  include 'gift-box-cart' %}
+            {%  endif %}
+          </div>
+          <div class="third double-accent-padding background-natural" id="cart-order-summary">
+            <h3 class="tac accent ttu">order summary</h3>
+            <div class="accent-padding background-yellow">
+              <b><p class="flex-container-no jsb"><span>Items</span><span>{{cart.item_count}}</span></p>
+              <p class="flex-container-no jsb"><span>Subtotal</span><span id="in-cart-subtotal">{{ cart.total_price | money }}</span></p></b>
+      
+      {% if wholesale == true %}
+             
+              <div class="note tac">
+              <div class="note-for-seller hidden">
+                <textarea id="note" name="note" placeholder="Enter Rep Code or PO# if Provided" >{{ cart.note }}</textarea>
+              </div>
+          </div>
+              {% else %}
+                    <p class="tac subscript text-dark-teal" id="free-2-day">Free Shipping on Orders over $80</p>
+                    <p class="tac subscript text-holiday-red" id="free-2-day"><b>Orders not guaranteed to arrive by Christmas</b></p>
+
+<!--                  <div class="note tac">
+              <div class="note-for-seller hidden">
+                <textarea id="note" name="note" placeholder="Enter Optional Gift Message" >{{ cart.note }}</textarea>
+              </div>
+          </div> -->
+   			{% endif %}
+ {% if wholesale == true and cart.total_price < 10000 %}
+            <p>Your order doesn't met the $100 minimum for wholesale orders, please remove any wholesale items from your cart and shop our <a href="/" class="text-purple">main site</a> or <a href="https://www.pacas.us/pages/wholesale-collections?ls=GB9ORkigS_yKGfxUMGul5g" class="text-teal">continue shopping wholesale</a> and add items to meet the minimum.</p>
+            {% else %}
+              <input type="submit" id="checkout" name="checkout" value="Checkout" class="clickable">
+              {% if additional_checkout_buttons %}
+                <p class="subscript tac">other payment options</p>
+<div class="additional-checkout-buttons additional-checkout-buttons--vertical">
+                {{ content_for_additional_checkout_buttons }}
+  <style>
+    [data-shopify-buttoncontainer] {
+  justify-content: flex-end;
+    }</style>
+              </div>
+              {% endif %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </form> 
+    {% endif %}
+  </section>
+</main>
+
+<style>
+  @media only screen and (max-width: 799px) { 
+    .cart-header { padding-bottom: 5vh; } 
+  }
+  @media only screen and (min-width: 799px) { 
+    .cart-header { padding-bottom: 15vh; } 
+  }
+  
+  @media only screen and (min-width: 800px) {
+  .two-thirds.accent-padding { 
+    padding-right: 60px; 
+    margin-top: 14vh;
+  }
+    .third.background-natural { 
+      padding-top: 10vw;
+      margin-top: -10vh;
+    }
+  }
+  .border-bottom-teal { border-bottom: 1px solid #66cad8 } 
+  .third input[type=submit] {
+    width: 100%;
+    text-transform: uppercase;
+    background-color: #f04e4c;
+    border-radius: 10px;
+    color: white;
+    height: 54px; 
+}
+  .shopify-cleanslate ._1n3zwJXRK30xbubjNiZsKV, .shopify-cleanslate ._9ATKCDN1-_J5vniMChq1n {
+    max-height: 54px !important;
+    border-radius: 10px !important;
+}
+    #note {
+    width: 100%;
+    margin: 10px 0;
+    box-sizing: BORDER-BOX;
+    PADDING: 10PX;
+}
+  @media only screen and (min-width: 901px) {
+  .remove-from-cart, .remove-from-cart-bundle  {
+    display: block;
+    text-align: right;
+    color: red;
+    font-size: 20pt;
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-bottom: -20pt;
+}
+  }
+    @media only screen and (min-width: 800px) and (max-width: 900px) {
+  .remove-from-cart {
+    position: absolute;
+    width: 61%;
+    text-align: right;
+    color: red;
+    font-size: 20pt;
+    box-sizing: border-box;
+    padding: 4vw;
+}
+  }
+      @media only screen and (max-width: 799px) {
+  .remove-from-cart {
+    position: absolute;
+    right: 15px; 
+    font-size: 12pt;
+    margin-top: 12pt;
+}
+  }
+  @media only screen and (min-width: 800px) {
+input[type=submit] {
+    padding: 10px;
+    font-size: 16pt;
+}
+  }
+  @media only screen and (max-width: 799px) {
+    .flex-container .third { width: 100%; }
+    .quarter { width: 50%; margin: 0 auto; }
+    .line-item-details { text-align: center; }
+    .line-item-details h4 { margin: 0; }
+  }
+  .shopify-cleanslate ._2zarRkvJ2j83NID3Q3t0Ix, .shopify-cleanslate ._1M9S34W-UyhhDRRQQiV3RH {
+    border-radius: 10px !important;
+    width: 100% !important;
+    height: 54px !important;
+}
+  .update-cart-quantity { background-color: transparent; color: teal; } 
+</style>
+      <style>
+                afterpay-placement { display: none !important; }
+              </style>  
+<script>
+    $(document).ready(function() {
+    setInterval(function() {
+                      $('#free-2-day').toggleClass("text-dark-teal"); 
+
+
+    }    , 5000)
+  }); 
+</script>

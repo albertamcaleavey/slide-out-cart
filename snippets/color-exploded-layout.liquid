@@ -1,0 +1,347 @@
+
+    <section class="background-white row double-padding-tbo" id="collection-layout-b" style="">
+      
+      {% assign products = collection.products  %}
+      {% for product in products %}
+      	{% for variant in product.variants %}
+ 		{% if variant.available %}
+              <section class=" col {% for tag in product.tags %}{{tag | handleize}} {%endfor%} {{variant.metafields.arena.color}} {{variant.metafields.arena.color_2}} {{variant.metafields.arena.color_3}}" id="{{product.title | truncatewords: 1,''}}-1">
+                <section class="card">
+                  <div class="product-collection-wrapper">
+                    <div class="accent-padding">
+                      <div class="slvr-col-img-wrapper">
+                         {% unless product.title contains 'Hats' %}
+                        <div class="card-left"><img class="arrow" src="{{ 'left-arrow.png' | asset_img_url: }}" /></div>
+                          {% endunless %}
+                          <a href="{{variant.url}}" onclick="ga('send', 'event', 'Collections Page', '{{collection.title | handleize}}', '{{product.title | handleize}}-{{variantCount}}');" class="test">
+                          
+                             <img data-src="{{ variant.image | product_img_url: 'master' }}" alt="{{product.title}}" class="lazyload" id="variantImg-{{ variant.id }}"/>
+                            
+                          </a>
+                      {% unless product.title contains 'Hats' %}
+                      <div class="card-right"><img class="arrow" src="{{ 'right-arrow.png' | asset_img_url: }}" /></div> 
+                        {% endunless %}
+                      </div>
+<!--                       featured variant bubbles -->
+                        {% for variant in product.variants | limit: 1 %}
+                        {% if variant.metafields.arena.additional_photo or variant.metafields.arena.additional_photo2 %}
+                      	  <div class="col-preview-bubble-wrapper tac" id="bubble-wrapper-{{ variant.id }}" style="">
+                          	<div class="col-preview-bubble clickable active" data-image-src="{{ variant.image | product_img_url: 'master' }}" ></div>
+                           	{% if variant.metafields.arena.additional_photo %}
+                            <div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo}}" ></div>
+                      		{% endif %}
+                            {% if variant.metafields.arena.additional_photo2 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo2}}" ></div>
+							{% endif %}
+                        	{% if variant.metafields.arena.additional_photo3 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo3}}" ></div>
+							{% endif %}
+                        	{% if variant.metafields.arena.additional_photo4 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo4}}" ></div>
+							{% endif %}
+                            {% if variant.metafields.arena.additional_photo5 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo5}}" ></div>
+							{% endif %}
+                            {% if variant.metafields.arena.additional_photo6 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo6}}" ></div>
+							{% endif %}
+                            {% if variant.metafields.arena.additional_photo7 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo7}}" ></div>
+							{% endif %}
+                      	  </div>
+                      	{% endif %}
+                        {% endfor %}
+
+<!--                         rest of variants bubbles -->
+                        {% for variant in product.variants | offset: 1 %}
+                        {% if variant.metafields.arena.additional_photo or variant.metafields.arena.additional_photo2 %}
+                      	  <div class="col-preview-bubble-wrapper tac non-featured-bubble-wrapper" id="bubble-wrapper-{{ variant.id }}" style="display: none">
+                          	<div class="col-preview-bubble clickable active" data-image-src="{{ variant.image | product_img_url: 'master' }}" ></div>
+                           	{% if variant.metafields.arena.additional_photo %}
+                            <div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo}}" ></div>
+                      		{% endif %}
+                            {% if variant.metafields.arena.additional_photo2 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo2}}" ></div>
+							{% endif %}
+                        	{% if variant.metafields.arena.additional_photo3 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo3}}" ></div>
+							{% endif %}
+                        	{% if variant.metafields.arena.additional_photo4 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo4}}" ></div>
+							{% endif %}
+                            {% if variant.metafields.arena.additional_photo5 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo5}}" ></div>
+							{% endif %}
+                            {% if variant.metafields.arena.additional_photo6 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo6}}" ></div>
+							{% endif %}
+                            {% if variant.metafields.arena.additional_photo7 %}
+                           		<div class="col-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo7}}" ></div>
+							{% endif %}
+                      	  </div>
+                      	{% endif %}
+                        {% endfor %}
+          
+                      <h3 class="nm">{{product.title}}</h3>
+                      <div class="acfe">
+
+                 <!--            store variant as data attr on circle  -->
+                      {%assign currentVariantId = {{variant.id}} %}
+                        
+                      {% for variant in product.variants %}
+                        {%assign variantId = {{variant.id}} %}
+                        {% if currentVariantId == variantId %}
+                          <div data-image-src="{{ variant.image.src | product_img_url: 'master'  }}" class="selected-prev clickable vam {{option | handleize}} color-preview-circle {{ variantId }}" style="background-image: url({{ variantId | append: '.png' | asset_url }});background-size: cover;" data-id="{{variantId}}"></div>
+                        {% else %}
+                          <div data-image-src="{{ variant.image.src | product_img_url: 'master'  }}" class="clickable vam {{option | handleize}} color-preview-circle {{ variantId }}" style="background-image: url({{ variantId | append: '.png' | asset_url }});background-size: cover;" data-id="{{variantId}}"></div>
+                        {% endif %}
+                          {% endfor %}
+                    <p class="nm text-dark-purple subscript">{{ product.price | money }} <span class="strikethrough text-dark-purple">{{product.compare_at_price | money}}</span></p>
+                 
+                  </div>
+                </div>
+            </section>
+          </section>
+
+{% endif %}
+      {% endfor %}
+  {% endfor%}
+
+  <script>
+  // add article card
+  $(document).ready(function() {
+    let collectionTitle = "{{ collection.title }}"
+      let articleCardContainer = document.createElement('div')
+      let productAfterCard = $($('.col')[6])
+      productAfterCard.before(articleCardContainer)
+      articleCardContainer.innerHTML += "<br/><a href='/collections/stocking-stuffers'  onClick=\"ga('send', 'event', 'Collection Page', 'Viewed Stocking Stuffers PLP', 'Stocking Stuffers Article Card');\" ><img src='https://cdn.shopify.com/s/files/1/0117/0597/4884/t/270/assets/Article-Card-HolidaySocks-Stocking-800x1400.jpg?v=153082256173818634321669845270'/></a>"
+      articleCardContainer.className = 'article-card-container accent-padding'
+  })
+
+</script>
+
+                    
+      <script>
+        
+        $('.color-preview-circle').click(function(){
+          let currentId = $(this).siblings('.selected-prev').data("id").toString()
+          $(this).addClass('selected-prev').siblings().removeClass('selected-prev')
+          // hide all bubble wrappers
+          $(this).parent('.acfe').siblings('.col-preview-bubble-wrapper').hide().removeClass('visible-bubble-wrapper')
+          // store variantId of selected variant
+          let selectedVariantBubbleWrapper = $(this).data('id')
+          // use selected variant ID to display the bubble wrapper with corresponding ID
+          $(this).parent('.acfe').siblings('#bubble-wrapper-' + selectedVariantBubbleWrapper).show().addClass('visible-bubble-wrapper')
+          // store first image of newly selected variant
+          let newImage = $(this).parent('.acfe').siblings('.visible-bubble-wrapper').children('.active').data('image-src')
+          // display first image of newly selected variant
+          $(this).parent('.acfe').siblings('.slvr-col-img-wrapper').children('a').children('img').attr('src', newImage)
+          var newId =  $(this).data("id")
+
+          // adjust product link to selected variant
+        let selectedVariantURL = $(this).parent('.acfe').siblings('.slvr-col-img-wrapper').children('a').attr('href').replace(currentId, newId.toString())
+        $(this).parent('.acfe').siblings('.slvr-col-img-wrapper').children('a').attr('href', selectedVariantURL)
+        $(this).parent('.acfe').siblings('a').attr('href', selectedVariantURL)
+          
+        })
+
+
+        
+         $(document).ready(function() {
+      		$(".slvr-col-img-wrapper img").on("swipeleft",function() {
+              let currentVariantId = $(this).parent('a').parent('.slvr-col-img-wrapper').siblings('.acfe').children('.selected-prev').data("id")
+            $(this).parent('a').parent('.slvr-col-img-wrapper').siblings('.col-preview-bubble-wrapper').removeClass('visible-bubble-wrapper').hide()
+            $(this).parent('a').parent('.slvr-col-img-wrapper').siblings('#bubble-wrapper-' + currentVariantId).addClass('visible-bubble-wrapper').show()
+              
+            var currentSelection = $(this).parent('a').parent(".slvr-col-img-wrapper").siblings('.visible-bubble-wrapper').children('.active')
+            var nextSelection = $(currentSelection).next()
+            var newImage = $(nextSelection).data("image-src")
+            if (nextSelection.length) {
+              $(this).attr("src", newImage); 
+              $(currentSelection).removeClass('active')
+              $(nextSelection).addClass('active')
+            } else {
+             nextSelection = $(this).parent('a').parent(".slvr-col-img-wrapper").siblings('.visible-bubble-wrapper').children('div').first()
+             let firstImg = $(this).parent('a').parent(".slvr-col-img-wrapper").siblings('.visible-bubble-wrapper').children('div').first().data("image-src")
+             $(this).attr("src", firstImg)
+            }
+            $(currentSelection).removeClass('active')
+            $(nextSelection).addClass('active')
+      		}); 
+
+           $(".slvr-col-img-wrapper img").on("swiperight",function() {
+             let currentVariantId = $(this).parent('a').parent('.slvr-col-img-wrapper').siblings('.acfe').children('.selected-prev').data("id")
+            $(this).parent('a').parent('.slvr-col-img-wrapper').siblings('.col-preview-bubble-wrapper').removeClass('visible-bubble-wrapper').hide()
+            $(this).parent('a').parent('.slvr-col-img-wrapper').siblings('#bubble-wrapper-' + currentVariantId).addClass('visible-bubble-wrapper').show()
+             
+            var currentSelection = $(this).parent('a').parent(".slvr-col-img-wrapper").siblings('.visible-bubble-wrapper').children('.active')
+            var nextSelection = $(currentSelection).prev()
+            var newImage = $(nextSelection).data("image-src")
+            if (nextSelection.length) {
+              $(this).attr("src", newImage); 
+              $(currentSelection).removeClass('active')
+              $(nextSelection).addClass('active')
+            } else {
+             nextSelection = $(this).parent('a').parent(".slvr-col-img-wrapper").siblings('.visible-bubble-wrapper').children('div').last()
+             let firstImg = $(this).parent('a').parent(".slvr-col-img-wrapper").siblings('.visible-bubble-wrapper').children('div').last().data("image-src")
+             $(this).attr("src", firstImg)
+            }
+            $(currentSelection).removeClass('active')
+            $(nextSelection).addClass('active')
+      		}); 
+      	 }); 
+          $(".card-left").click(function() {
+            let currentVariantId = $(this).parent('.slvr-col-img-wrapper').siblings('.acfe').children('.selected-prev').data("id")
+            $(this).parent('.slvr-col-img-wrapper').siblings('.col-preview-bubble-wrapper').removeClass('visible-bubble-wrapper').hide()
+            $(this).parent('.slvr-col-img-wrapper').siblings('#bubble-wrapper-' + currentVariantId).addClass('visible-bubble-wrapper').show()
+            
+            var currentSelection = $(this).parent(".slvr-col-img-wrapper").siblings('.visible-bubble-wrapper').children('.active')
+            var nextSelection = $(currentSelection).prev()
+            var newImage = $(nextSelection).data("image-src")
+            if (nextSelection.length) {
+             $(this).parent('.slvr-col-img-wrapper').children('a').children('img').attr("src", newImage);
+            } else {
+             nextSelection = $(this).parent('.slvr-col-img-wrapper').siblings('.visible-bubble-wrapper').children('div').last()
+             let lastImg = $(this).parent('.slvr-col-img-wrapper').siblings('.visible-bubble-wrapper').children('div').last().data("image-src")
+             $(this).parent('.slvr-col-img-wrapper').children('a').children('img').attr("src", lastImg)
+            }
+              $(currentSelection).removeClass('active')
+              $(nextSelection).addClass('active')
+      		}); 
+       $(".card-right").click(function() {
+         let currentVariantId = $(this).parent('.slvr-col-img-wrapper').siblings('.acfe').children('.selected-prev').data("id")
+            $(this).parent('.slvr-col-img-wrapper').siblings('.col-preview-bubble-wrapper').removeClass('visible-bubble-wrapper').hide()
+            $(this).parent('.slvr-col-img-wrapper').siblings('#bubble-wrapper-' + currentVariantId).addClass('visible-bubble-wrapper').show()
+         
+            var currentSelection = $(this).parent('.slvr-col-img-wrapper').siblings('.visible-bubble-wrapper').children('.active')
+            var nextSelection = $(currentSelection).next()
+            var newImage = $(nextSelection).data("image-src")
+           if (nextSelection.length) {
+             $(this).parent('.slvr-col-img-wrapper').children('a').children('img').attr("src", newImage);
+            } else {
+             nextSelection = $(this).parent('.slvr-col-img-wrapper').siblings('.visible-bubble-wrapper').children('div').first()
+             let firstImg = $(this).parent('.slvr-col-img-wrapper').siblings('.visible-bubble-wrapper').children('div').first().data("image-src")
+             $(this).parent('.slvr-col-img-wrapper').children('a').children('img').attr("src", firstImg)
+            }
+            $(currentSelection).removeClass('active')
+            $(nextSelection).addClass('active')
+      	}); 
+      </script>
+  </section>
+
+     
+<style>
+  .selected-prev { border: 1px inset #666562; border-radius: 100%; }
+</style>
+
+</section>
+
+
+  </section>
+ 
+  </section>
+</main>
+<style>
+    .slvr-col-img-wrapper {
+    margin-bottom: 1vh;
+  }
+    .slvr-col-img-wrapper  { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center ;
+  }
+    .card-right {
+    position: absolute !important;
+    cursor: pointer;
+    align-self: end
+  }
+    .card-left {
+    position: absolute !important;
+    cursor: pointer;
+    align-self: start;
+  }
+  .arrow {
+    height: 6vh;
+  }
+  .slvr-col-img-wrapper img { 
+    width: 100%;
+    border-radius:  40px;
+  } 
+  .row {
+    display: flex; 
+    flex-flow: row wrap; 
+  }
+
+  .col { 
+    display: flex; 
+    flex-flow: column; 
+  }
+
+  .card {
+    display: flex;
+    margin: 5px;
+    align-items: stretch;
+    flex-direction: column;
+    height: 100%;
+  }
+  .color-preview-circle { height: 15px; width: 15px; display: inline-block; border-radius: 100%; margin:  10px 5px 10px 0; } 
+  .col h3 {line-height: 1; } 
+  @media only screen and (max-width: 588px) {
+    .col { flex: 0 0 50% !important; }
+  }
+  @media only screen and (min-width: 1100px) {
+    .col h3 {
+      font-size: 1.5vw;
+      text-transform: uppercase;
+      width: 17vw;
+    }
+  }
+  @media only screen and (min-width: 589px) and (max-width: 1099px) {
+    .col h3 {
+      font-size: 1.5vw;
+      text-transform: uppercase;
+      width: 17vw;
+    }
+  }
+  @media only screen and (min-width: 450px) and (max-width: 588px) {
+    .col h3 {
+      font-size: 4.5vw;
+      text-transform: uppercase;
+    } 
+  }
+  @media only screen and (max-width: 449px) {
+    .col h3 {
+      font-size: 4.5vw;
+      text-transform: uppercase;
+    }    
+    .atf-float h1 { font-size: 17pt; }
+
+  }
+
+  @media only screen and (min-width: 589px) and (max-width: 799px) {
+    .col { flex: 0 0 33% !important; }
+  }
+  @media only screen and (min-width: 800px) {
+    .col { flex: 0 0 33% !important; }
+  }
+
+  
+
+  @media only screen and (max-width: 449px) { 
+    .arrow {
+      height: 5vh ;
+      width: 8vw !important;
+    }
+}
+  .border-bottom-purple {
+    border-bottom:  1px solid #9093c8;
+  }
+    .card-left img:focus, .card-right img { 
+    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    }
+
+</style>

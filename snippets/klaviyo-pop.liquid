@@ -1,0 +1,68 @@
+
+ <style>
+  #exit_offer {
+    background-image: url("{{'Popup2021.jpg' | asset_url}}");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: cover;
+    height: 95%;
+  }
+ </style>
+
+{% comment %} Exit Intent {% endcomment %}
+<div class="modal" id="exit_offer" style="display:none;">
+  <div class="exitpop">
+    <div class="tac">
+      <p class="tar nmt klaviyo_header_close clickable" style="font-size: 13pt; padding: 10px;">✕</p>
+      <form action="//manage.kmail-lists.com/subscriptions/subscribe" method="POST" novalidate="novalidate" class="klaviyo_subscription_form">
+        <input type="hidden" name="g" value="Vn3v2A"> 
+        <div class="hide_on_submit klaviyo-padding">
+          <h2>Don't Leave Yet</h2> 
+          <p class="text-green">Take an additional 10% off your first order.<br> You'll also receive <b>exclusive discounts</b> directly to your email!</p>
+          <div class="klaviyo_fieldset hide_on_submit">
+            <div class="klaviyo_field_group">
+           <div class="klaviyo-form-Rh5ZCt"></div>
+
+          </div> 
+       
+        </div>
+        <p class="error_message subscript tac" style="display: none;"></p>
+      </form>
+      <div class="success_message" ></div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  var executed = false 
+ if (!sessionStorage.exitAttempted) {
+   $(document).on('mouseleave', leaveFromTop);
+      function leaveFromTop(e){
+        if ($('.modal:visible').length == 0 && (e.clientY < 0 ) && (!executed) && $('.mobile-nav1:visible').length == 0) {
+          console.log($('.mobile-nav1:visible').length)
+
+            $('.modal').removeClass('darken')
+            KlaviyoSubscribe.attachToModalForm('#exit_offer', {
+              success_message: "<div class='success_feedback accent-padding'><div class='accent-padding'><h2 class='accent'>Thank you!</h2><p class='tac'>Check your inbox for your coupon code!</p></div></div>",
+              ignore_cookie: true, 
+              delay_seconds: 0.1,
+              success: function ($form) {
+                          createCookie("emailSignUp", "exit", 14)
+
+              $form.find('.hide_on_submit').hide();
+              },
+            }); 
+            executed = true 
+            sessionStorage.exitAttempted = 1    
+                $('.index-sections, main, header, footer, #banner-cta, .mobile-nav1, nav').addClass('darken')
+                    $('body').addClass('freeze-frame')
+
+      
+      }; 
+     };
+  };
+});
+</script>
+
+

@@ -1,0 +1,141 @@
+{% layout 'theme.wholesale' %} 
+    
+
+<main id="page" class="background-white">	     
+        <section class="index-padding">
+          <section class="background-teal double-accent-padding" id="ws-all-collections-header">
+            <h1 class="tac text-dark-teal nm ttu">2021 - 2022 line</h1>
+            <p class="tac text-dark-teal">Socks and apparel made from alpaca wool. They’re<br class="do"> so comfy, you’ll never want to wear your other clothes again.<br class="do"> Why do you think our alpacas don’t wear anything else?</p>
+          </section>
+          <svg xmlns="http://www.w3.org/2000/svg" class="topper"viewBox="0 0 1440 320"><path fill="white" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>  
+          <section id="ws-all-collections-wrapper">
+			<section class="flex-container">
+              <a href="/collections/ws-womens-crew" class="half flex-container-no jcc ws-individual-collection-wrapper" id="ws-womens-crew">
+                <h2 class="ttu tac text-natural">Women's<br> Crew</h2>
+              </a>
+                  <a href="/collections/ws-womens-light-weight-crew" class="half flex-container-no jcc ws-individual-collection-wrapper" id="ws-w-light-weight">
+                <h2 class="ttu tac text-natural">Women's<br> Light-Weight</h2>
+              </a> 
+          
+          	</section>
+            <section class="flex-container">
+              <a href="/collections/ws-womens-compression" class="half flex-container-no jcc ws-individual-collection-wrapper background-teal" id="ws-womens-compression">
+                <h2 class="ttu tac text-natural">Women's<br> Compression</h2>
+              </a>
+                  <a href="/collections/ws-mens-compression" class="half flex-container-no jcc ws-individual-collection-wrapper background-dark-purple" id="ws-mens-compression">
+                <h2 class="ttu tac text-natural">Men's<br> Compression</h2>
+              </a>
+          
+          	</section>
+           	<section class="flex-container">
+                  <a href="/collections/ws-womens-low-cut" class="half flex-container-no jcc ws-individual-collection-wrapper" id="ws-womens-low-cut">
+                <h2 class="ttu tac text-natural">Women's<br> Low Cut</h2>
+              </a>
+              <a href="/collections/ws-womens-performance" class="half flex-container-no jcc ws-individual-collection-wrapper" id="ws-womens-athletic">
+                <h2 class="ttu tac text-natural">Women's<br> Performance</h2>
+              </a>
+          	</section>
+            <section class="flex-container">
+              <a href="/collections/ws-womens-no-show" class="half flex-container-no jcc ws-individual-collection-wrapper" id="ws-womens-no-show">
+                <h2 class="ttu tac text-natural">Women's<br> No Show</h2>
+              </a>
+              <a href="https://www.pacas.us/collections/ws-mens-light-weight-crew" class="half flex-container-no jcc ws-individual-collection-wrapper" id="ws-m-light-weight">
+                <h2 class="ttu tac text-natural">Men's<br> Light-Weight</h2>
+              </a>
+          
+          	</section>
+            <section class="flex-container">
+              <a href="https://www.pacas.us/collections/ws-mens" class="half flex-container-no jcc ws-individual-collection-wrapper" id="ws-mens">
+                <h2 class="ttu tac text-natural">Men's Socks</h2>
+              </a>
+              <a href="/collections/ws-kids" class="half flex-container-no jcc ws-individual-collection-wrapper" id="ws-kids">
+                <h2 class="ttu tac text-natural">Kid's Socks</h2>
+              </a>
+          	</section>
+            <section class="flex-container">
+              <a href="/collections/ws-throws" class="half flex-container-no jcc ws-individual-collection-wrapper background-purple" id="ws-throws">
+                <h2 class="ttu tac text-natural">Throws</h2>
+              </a>
+              <a href="/collections/ws-shawls" class="half flex-container-no jcc ws-individual-collection-wrapper" id="ws-shawls">
+                <h2 class="ttu tac text-natural">Wraps & Scarves </h2>
+              </a>
+          	</section>
+          </section>
+      	</section>
+    </main>
+
+<style>
+  
+  @media only screen and (min-width: 1100px) {
+h2 {
+    font-size: 6vw;
+}
+  }
+  #ws-all-collections-header  {
+    padding-bottom: 15vw;
+    margin-bottom: -5vw;
+}
+
+  .ws-individual-collection-wrapper {
+    height: 30vw;
+    min-height: 200px;
+    background-size: cover; 
+    background-repeat: no-repeat;
+  
+}
+  #ws-womens-crew {
+    background-image: url("{{'ws-w-crew.jpg' | asset_url }}");
+      background-position: center; 
+}
+  #ws-womens-low-cut {
+    background-image: url("{{'w1s-low-cut.jpg' | asset_url }}"); 
+            background-position: center; 
+
+}
+  #ws-w-light-weight {
+    background-image: url("{{'col-women-light-weight.png' | asset_url }}"); 
+}
+    #ws-m-light-weight {
+    background-image: url("{{'col-men-light-weight.png' | asset_url }}"); 
+}
+#ws-womens-no-show {
+    background-image: url("{{'ws-no-show.jpg' | asset_url }}"); 
+}
+  #ws-womens-athletic {
+    background-image: url("{{'ws-w-performance.jpg' | asset_url }}"); 
+}
+    #ws-scarves {
+    background-image: url("{{'ws-scarves.jpg' | asset_url }}"); 
+}
+    #ws-shawls {
+    background-image: url("{{'ws-shawls.jpg' | asset_url }}"); 
+}
+
+  #ws-mens {
+    background-image: url("{{'ws-mens.jpg' | asset_url }}"); 
+            background-position: center; 
+
+}
+  #ws-kids {
+    background-image: url("{{'ws-kids.jpg' | asset_url }}"); 
+}
+  @media only screen and (min-width: 800px) {
+      #ws-all-collections-wrapper {
+    margin: 10px;
+    padding-bottom: 10px;
+}
+      .ws-individual-collection-wrapper {
+    margin: 10px;
+  }
+  }
+  @media only screen and (max-width: 799px) {
+      #ws-all-collections-wrapper {
+    margin: 10px;
+    padding-bottom: 1px;
+}
+          .ws-individual-collection-wrapper {
+    margin: 10px 0;
+  }
+  }
+
+</style>

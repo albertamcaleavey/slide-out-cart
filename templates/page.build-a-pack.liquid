@@ -1,0 +1,146 @@
+<main id="build-a-pack">
+  <section class="build-a-pack-slide background-neutral aic" id="build-a-pack-1">
+    <div class="half accent-padding">
+      <h2 class="nm ttu">Customize Your <br> Perfect Pack</h2>
+      <p>Build a 3, 6, or 10-Pack of your favorite<br> socks and save up to 30%.</p>
+      <div style="">
+        <div class="choice-button standard-button" id="gift"><span>Men's Pack</span></div>
+        <div class="choice-button standard-button" id="no-gift"><span>Women's Pack</span></div>
+      </div>
+    </div>
+    <div class="half accent-padding">
+        <img src="{{ 'placeholder.png' | asset_url }}" class="fw" />
+    </div>
+  </section>
+  <section class="build-a-pack-slide background-neutral" id="build-a-pack-2" style="display: none;">
+    <div class="half double-accent-padding asfs">
+      <div class="pack-breadcrumb" style="margin: 10px">
+        <p class="bold completed-breadcrumb">1. Pack </p>
+        <p class="bold active-breadcrumb">2. Cut </p>
+        <p class="bold">3. Size </p>
+        <p class="bold">4. Quantity </p>
+        <p class="bold">5. Style </p>
+      </div>
+      <h3 class="nm ttu" style="margin: 10px;">Select a cut</h2>
+      <p class="subscript" style="margin: 10px;">copy pitching Alpaca fiber, copy pitching Alpaca fiber</p>
+      <div style="">
+        <div class="picture-choice-button">
+          <img src="{{ 'placeholder.png' | asset_url }}" class="icon"/>
+          <p class="bold">Crew Sock</p>
+          <p class="subscript">Copy related to fit & feel</p>
+        </div>
+       <div class="picture-choice-button">
+          <img src="{{ 'placeholder.png' | asset_url }}" class="icon" />
+          <p class="bold">Light-weight Crew Sock</p>
+          <p class="subscript">Copy related to fit & feel</p>
+        </div>
+        <div class="picture-choice-button">
+          <img src="{{ 'placeholder.png' | asset_url }}" class="icon" />
+          <p class="bold">Low Cut Sock</p>
+          <p class="subscript">Copy related to fit & feel</p>
+        </div>
+        <div class="picture-choice-button">
+          <img src="{{ 'placeholder.png' | asset_url }}" class="icon" />
+          <p class="bold">No Show Sock</p>
+          <p class="subscript">Copy related to fit & feel</p>
+        </div>
+        <div class="picture-choice-button">
+          <img src="{{ 'placeholder.png' | asset_url }}" class="icon" />
+          <p class="bold">Compression</p>
+          <p class="subscript">Copy related to fit & feel</p>
+        </div>
+        <div class="picture-choice-button">
+          <img src="{{ 'placeholder.png' | asset_url }}" class="icon" />
+          <p class="bold">Performance</p>
+          <p class="subscript">Copy related to fit & feel</p>
+        </div>
+      </div>
+    </div>
+    <div class="half accent-padding asc">
+        <img src="{{ 'placeholder.png' | asset_url }}" class="fw" />
+    </div>
+  </section>
+
+    <section class="build-a-pack-slide background-neutral" id="build-a-pack-3" style="display: none;">
+    <div class="half double-accent-padding asfs">
+      <div class="pack-breadcrumb" style="margin: 10px">
+        <p class="bold completed-breadcrumb">1. Pack </p>
+        <p class="bold completed-breadcrumb">2. Cut </p>
+        <p class="bold active-breadcrumb">3. Size </p>
+        <p class="bold">4. Quantity </p>
+        <p class="bold">5. Style </p>
+      </div>
+      <h3 class="nm ttu" style="margin: 10px;">Select a size</h2>
+      <div style="">
+        <div class="picture-choice-button">
+            <h2 class="nmb">S / M</h2>
+          <p class="bold">US Shoe Size</p>
+          <p class="subscript">Women's Size - Size</p>
+        </div>
+       <div class="picture-choice-button">
+            <h2 class="nmb">M / L</h2>
+          <p class="bold">US Shoe Size</p>
+          <p class="subscript">Women's Size - Size</p>
+        </div>
+      </div>
+    </div>
+    <div class="half accent-padding asc">
+        <img src="{{ 'placeholder.png' | asset_url }}" class="fw" />
+    </div>
+  </section>
+</main>
+<script>
+  $('.choice-button, .picture-choice-button').click(function() {
+  currentSlide = $(this).closest('.build-a-pack-slide')
+  $(currentSlide).hide().next('.build-a-pack-slide').show();
+  })
+</script>
+<style>
+  .aic { align-items: center}
+  .asfs { align-self: flex-start}
+  .asc { align-self: center; }
+  .pack-breadcrumb { 
+    display: flex; 
+    justify-content: space-between;
+  }
+  .pack-breadcrumb p {     color: gray;
+}
+  .pack-breadcrumb .completed-breadcrumb {
+    color: #007d84;
+  }
+  .pack-breadcrumb .active-breadcrumb {
+    color: #2d2b26;
+  }
+  .picture-choice-button  {
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 5px;
+    width: 46%;
+    margin: 5px;
+}
+  .choice-button {
+    width: 300px;
+    padding: 10px;
+    text-align: center;
+    margin: 10px 0;
+        border: 1px solid gray;
+
+}
+  #build-a-pack h2 { line-height: 1;}
+  .build-a-pack-slide {
+    display: flex;
+  }
+  @media only screen and (min-width: 800px) {
+    .build-a-pack-slide {
+      min-height: calc(100vh - 125px);
+    }
+  }
+  @media only screen and (max-width: 799px) {
+    .build-a-pack-slide {
+      min-height: calc(100vh - 100px)
+    }
+  }
+  .bold { font-weight: 700;}
+</style>

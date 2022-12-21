@@ -1,0 +1,72 @@
+<!--   MOBILE FILTER -->
+  
+      <section class="mo background-white accent-padding tac mobile-filter" id="mobile-filter-wrapper">
+      <h3 class="ttu nm" style="color: #21409A">Filter</h3>
+    </section>
+    <div class="" style="display: none;" id="mobile-cart-filter">
+      <div class="accent-padding background-light-teal filter-go"  id="filter-go">
+        <h3 class="ttu text-natural nm">Filter By <span class="text-natural fr">→</span></h3>
+   </div>
+
+
+<!-- BY COLOR -->
+      
+      <div class="background-white double-accent-padding">
+      <div class="border-bottom-purple fw"></div>
+        <div class="accent-padding-tbo">
+        <h4 class="ttu nm">By Color</h4>
+          <input type="checkbox" name="blue" value="blue">
+          <label for="blue">Blue</label><br>
+          <input type="checkbox" name="ivory" value="ivory">
+          <label for="ivory">Ivory</label><br>
+          <input type="checkbox" name="pink" value="pink">
+          <label for="pink">Pink</label><br>
+          <input type="checkbox" name="green" value="green">
+          <label for="green">Green</label><br>
+          <input type="checkbox" name="yellow" value="yellow">
+          <label for="yellow">Yellow</label><br>
+          <input type="checkbox" name="Gray" value="gray">
+          <label for="gray">Gray</label><br>
+          <input type="checkbox" name="beige" value="beige">
+          <label for="beige">Beige</label><br>
+          <input type="checkbox" name="orange" value="orange">
+          <label for="orange">Orange</label><br>
+          <input type="checkbox" name="purple" value="purple">
+          <label for="purple">Purple</label><br>
+          <input type="checkbox" name="black" value="black">
+          <label for="black">Black</label><br>
+        </div>
+
+<!-- BY STYLE -->
+        
+      <div class="border-bottom-purple fw"></div>
+        <div class="accent-padding-tbo">
+          <h4 class="ttu nm">By Style</h4>
+          <input type="checkbox" name="plaid" value="plaid">
+          <label for="plaid">Plaid</label><br>
+          <input type="checkbox" name="solid" value="solid">
+          <label for="solid">Solid</label><br>
+          <input type="checkbox" name="stripe" value="stripe">
+          <label for="stripe">Stripe</label><br>
+          {%  if collection.title contains "Throw Blankets" %}
+          <input type="checkbox" name="diagonal" value="diagonal">
+          <label for="diagonal">Diagonal</label><br>
+          {% endif %}
+        </div>
+      <div class="border-bottom-purple fw"></div>
+        <div class="animated-button-teal animated-butto filter-go clickable">
+          <h3 class="text-natural ttu tac ib" style="padding: 10px;">View Filter</h3>
+        </div>    
+      </div>
+    </div>
+  </div>
+
+  <!--   HIDES AND SHOWS THE MOBILE FILTER ON CLICK -->
+        <script>
+      $('.filter-go').click(function() {
+        $('#mobile-cart-filter').hide();
+      })
+     $('#mobile-filter-wrapper').click(function() {
+        $('#mobile-cart-filter').show();
+      })
+    </script>

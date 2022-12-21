@@ -1,0 +1,169 @@
+{% comment %}
+This snippet is included on cart.liquid.
+It includes all of the html, css, and js needed for the gift box add-on in cart.
+{% endcomment %}
+{% paginate collections.all.products by 1000 %}
+
+  {% for product in collections.all.products %}
+    {% if product.id == 7082898653284 %}
+      {%  assign gift_box = product %}
+    {%  endif  %}
+  {%  endfor %}
+  {%  endpaginate %}
+  {%  if gift_box.available %}
+<!--   gift box product box -->
+
+ <div class="" id="display-gift-box-cart" style="">
+   <h4 class="tac ttu nmb text-red">You May Also Like</h4>
+  <div class="flex-container">
+    <div class="quarter accent-padding">
+      <a href="/products/sock-gift-box?variant=41214212341860">
+        <img src="{{ 'box2_EDITED.jpg' | asset_url }}" alt="Sock Gift Box" class="fw">
+      </a>
+    </div>
+    <div class="line-item-details  half asfs accent-padding">
+      <h4 class="nmb ttu">Sock Gift Box</h4>
+        <p class="nm">
+          Holiday Gift Box<br>
+          <span id="gift-box-callout" class="clickable" style="font-size: 10pt;">Details</span> <span id="gift-box-info" class="clickable">i</span>
+        </p>
+    </div>
+    <div class="price-details quarter asfs">
+      <h5 class="tac nm">$5.00</h5>
+      <div class="background-red clickable" id="add-gift-box-to-cart"><h4 class="ttu tac text-white nm">Add to Cart</h4></div>
+    </div>
+  </div>
+ </div>
+  
+  
+<!--   gift box modal -->
+  <div class="flex-container background-white double-accent-padding" id="gift-box-modal" style="display: none;">
+    <div class="close-gift-box-modal clickable">✕</div>
+    <div class="half">
+      <img src="{{ 'box2_EDITED.jpg' | asset_url }}" />
+    </div>
+    <div class="half accent-padding">
+      <p><b>Customize your gift with our specialty sock box.</b></p>
+      <p class="nm">Details: </p>
+
+        <ul id="gift-box-details" style="">
+          <li>Accommodates 4 or 5 women’s crew socks, 4 men’s crew socks or 6 kids' crew socks</li>
+          <li>Box base and sleeve are shipped flat and designed to be assembled</li>
+          <li>Final sale item and is not able to be returned</li>
+          <li>Socks sold separately</li>
+
+        </ul>
+        
+    </div>
+  </div>
+
+<!-- css specific to gift boxes -->
+  <style>
+    #add-gift-box-to-cart {
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    #add-gift-box-to-cart h4 {
+      font-weight: normal; 
+      padding: 5px;
+    }
+    
+    @media only screen and (min-width: 800px) {
+      .close-gift-box-modal {
+        position: absolute;
+        right: 20pt;
+        top: 20pt;
+        font-size: 20pt;
+      }
+      #add-gift-box-to-cart h4 { font-size: 16pt;}
+      #gift-box-details {
+        margin: 0; 
+        padding-left: 1.5vw;
+      }
+    }
+    @media only screen and (max-width: 799px) {
+      .close-gift-box-modal {
+        position: absolute;
+        right: 10pt;
+        top: 10pt;
+        font-size: 10pt;
+      }
+     #add-gift-box-to-cart h4 { font-size: 12pt;}
+      #gift-box-details {
+        margin: 0; 
+        padding-left: 15pt;
+      }
+    }
+    #gift-box-modal {
+      z-index: 999;
+      width: 85%;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) !important;
+      border: 1px solid #2d2b26;
+      box-shadow: 2px 5px 5px #2d2b267d;
+      border-radius: 20px;
+    }
+    #gift-box-callout { 
+      border-bottom: 1px solid #2d2b26; 
+      font-weight: inherit
+    }
+    #gift-box-info {
+      margin-left: -3px;
+      baseline-shift: super;
+      vertical-align: super;
+      font-size: 7pt;
+      background-color: #66cad8;
+      border-radius: 100%;
+      width: 13px;
+      height: 13px;
+      display: inline-block;
+      text-align: center;
+      color: white;
+    }
+  </style>
+
+  <script>
+    // show and hide gift box modal
+      $('.close-gift-box-modal').click(function() {
+        $('#gift-box-modal').hide(); 
+      })
+      $('#gift-box-info, #gift-box-callout').on("click", function() {
+        // unless event.preventDefault is included clicked on the underlined "Gift Box" 
+        // will check the input and not open the modal
+        event.preventDefault(); 
+        $('#gift-box-modal').show(); 
+        ga("send", "event", "GiftBox", "Cart", "Show Info");
+
+      })
+
+    // yet another add item function
+    // with cart specific success actions
+    Shopify.addItem = function(variant_id, quantity, callback) {
+      var quantity = quantity || 1;
+      var params = {
+        type: 'POST',
+        url: '/cart/add.js',
+        data: 'quantity=' + quantity + '&id=' + variant_id,
+        dataType: 'json',
+        success: function() { 
+          $('#cart-sub-items').load(document.URL +  ' #cart-sub-items .border-bottom-teal');
+        },
+        error: function(XMLHttpRequest, textStatus) {
+          Shopify.onError(XMLHttpRequest, textStatus);
+        }
+      };
+      jQuery.ajax(params);
+    };                                                                                                                                                                                  
+
+    // add to cart when "add to cart" button is clicked
+    // uses functions defined directly above
+    $('#add-gift-box-to-cart').click(function() {
+        Shopify.addItem(41214212341860, 1)   
+        ga("send", "event", "GiftBox", "Cart", "Add to Cart");
+
+    })
+ </script>
+
+    {%  endif %}

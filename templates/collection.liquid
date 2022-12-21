@@ -1,0 +1,356 @@
+<main id="{{collection.title | handleize}}"> 
+  <section class="collection-header double-accent-padding" id="{{collection.title | handleize}}-wrapper">
+    {% if collection.title contains 'Women' %}
+    <!-- Do Not Remove - Turn Tracking Beacon Code - Do Not Remove --> <!-- Advertiser Name : PACAS --> <!-- Beacon Name : PACAS-GROWTH PLAN-FALL 2021-LP-WOMENS-PERFORMANCE --> <!-- If Beacon is placed on a Transaction or Lead Generation based page, please populate the turn_client_track_id with your order/confirmation ID --> <script type="text/javascript"> turn_client_track_id = ""; </script> <script type="text/javascript" src="https://r.turn.com/server/beacon_call.js?b2=vHtoK0vKtaAv4FXLMSpsGy9i7drmfRivDx34Iu1lyOHEFrIWTIJNGNkEc0znUj0F3uiL6zX34JCoCJbP209vcw"> </script> <noscript> <img border="0" src="https://r.turn.com/r/beacon?b2=vHtoK0vKtaAv4FXLMSpsGy9i7drmfRivDx34Iu1lyOHEFrIWTIJNGNkEc0znUj0F3uiL6zX34JCoCJbP209vcw&cid="> </noscript> <!-- End Turn Tracking Beacon Code Do Not Remove -->
+    {% elsif collection.title contains 'Men' %}
+    {% else %}
+    <!-- Do Not Remove - Turn Tracking Beacon Code - Do Not Remove --> <!-- Advertiser Name : PACAS --> <!-- Beacon Name : PACAS-GROWTH PLAN-FALL 2021-LP-YOUTH-CREW --> <!-- If Beacon is placed on a Transaction or Lead Generation based page, please populate the turn_client_track_id with your order/confirmation ID --> <script type="text/javascript"> turn_client_track_id = ""; </script> <script type="text/javascript" src="https://r.turn.com/server/beacon_call.js?b2=XZ7oa4ydMK3w_CGL3ZpAqZg9qMLE8U4_kiTbbnpPjurEFrIWTIJNGNkEc0znUj0F3ATHRmiK_sFSOHCVcDerAA"> </script> <noscript> <img border="0" src="https://r.turn.com/r/beacon?b2=XZ7oa4ydMK3w_CGL3ZpAqZg9qMLE8U4_kiTbbnpPjurEFrIWTIJNGNkEc0znUj0F3ATHRmiK_sFSOHCVcDerAA&cid="> </noscript> <!-- End Turn Tracking Beacon Code Do Not Remove -->
+    <!-- Do Not Remove - Turn Tracking Beacon Code - Do Not Remove --> <!-- Advertiser Name : PACAS --> <!-- Beacon Name : PACAS-GROWTH PLAN-FALL 2021-LP-MENS-LOW-CUT --> <!-- If Beacon is placed on a Transaction or Lead Generation based page, please populate the turn_client_track_id with your order/confirmation ID --> <script type="text/javascript"> turn_client_track_id = ""; </script> <script type="text/javascript" src="https://r.turn.com/server/beacon_call.js?b2=GAmb1Dpb0M7W_BAiH99c8-i22DCiRxuAZtVNe01Us1zEFrIWTIJNGNkEc0znUj0FQzYG5um_uJ9sIKsz2Pw_og"> </script> <noscript> <img border="0" src="https://r.turn.com/r/beacon?b2=GAmb1Dpb0M7W_BAiH99c8-i22DCiRxuAZtVNe01Us1zEFrIWTIJNGNkEc0znUj0FQzYG5um_uJ9sIKsz2Pw_og&cid="> </noscript> <!-- End Turn Tracking Beacon Code Do Not Remove -->
+    {% endif %}
+    {% if collection.title contains "'s"  %}
+    <div>
+      <h2 class="nm text-natural ttu">{{collection.title | truncatewords: 1, ""}}</h2>        
+      <h1 class="nm text-natural ttu" style="margin-top: -2vw;">{{ collection.title | remove: "Women's"}}</h1>
+    </div>
+    {% else %}
+    <h1 class="ttu text-natural nm">{{collection.title}}!</h1>
+    {% endif %}
+  </section>
+
+  <style>
+
+  .border-bottom-purple {
+    border-bottom:  1px solid #9093c8;
+  }
+  </style>
+    <svg xmlns="http://www.w3.org/2000/svg" class="updated-topper do"viewBox="0 100 1440 220"><path fill="white" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>  
+    <svg xmlns="http://www.w3.org/2000/svg" class="topper mo"viewBox="0 0 1440 320"><path fill="#a0dbe3" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>  
+    <section class="mo background-light-teal accent-padding tac">
+      <h3 class="ttu nm text-white">Filter</h3>
+    </section>
+  <div class="background-white flex-container aifs" >
+    <div class="flex-container-no mo jes" style="padding: 5px;">
+      <div class="background-natural one-third" style="padding: 10px; margin: 5px; border-radius: 10px;">
+        <a href="/collections/all-socks">
+          <p class="nm tac">Socks</p>
+        </a>
+      </div>
+        <div class="background-natural one-third" style="padding: 10px; margin: 5px; border-radius: 10px;">
+          <a href="/products/pacas-super-soft-throw-blanket"/>
+            <p class="nm tac">Throws</p>
+          </a>
+      </div>
+            <div class="background-natural one-third" style="padding: 10px; margin: 5px; border-radius: 10px;">
+    <a href="/collections/scarves">
+        <p class="nm tac">Scarves</p>
+    </a>
+      </div>
+    </div>
+  <div class="do double-accent-padding">
+    <h3 class="ttu detail-accent">Products</h3>
+    <a href="/collections/all-socks"/><p class="nm">Socks</p></a>
+    <a href="/collections/womens-sweaters"/><p class="nm">Sweaters</p></a>
+    <a href="/collections/throw-blankets"><p class="nm">Throw Blankets</p></a>
+    <a href="/collections/womens-scarves"><p class="nm">Scarves</p></a>
+    <a href="/collections/shawls"><p class="nm">Shawls</p></a>
+    <a href="/products/pacas-super-soft-hats?variant=39536118595684"><p class="nmt">Hats</p></a>
+    <div class="product-filter-options">
+      <p class="text-purple subscript"><b>Reset</b></p>
+
+      <div class="border-bottom-purple fw"></div>
+        <div class="accent-padding-tbo">
+        <h4 class="ttu nm">By Height</h4>
+        <input type="checkbox" name="no-show" value="no-show">
+        <label for="no-show">No Show</label><br>
+        <input type="checkbox" name="ankle" value="ankle">
+        <label for="ankle">Ankle</label><br>
+        <input type="checkbox" name="quarter" value="quarter">
+        <label for="quarter">Quarter</label><br>
+        <input type="checkbox" name="calf" value="calf">
+        <label for="calf">Calf</label><br>
+        <input type="checkbox" name="knee-high" value="knee-high">
+        <label for="knee-high">Knee High</label><br>
+        </div>
+      <div class="border-bottom-purple fw"></div>
+        <div class="accent-padding-tbo">
+          <h4 class="ttu nm">By Activity</h4>
+          <input type="checkbox" name="no-show" value="no-show">
+          <label for="no-show">Casual</label><br>
+          <input type="checkbox" name="ankle" value="ankle">
+          <label for="ankle">Performance</label><br>
+          <input type="checkbox" name="quarter" value="quarter">
+          <label for="quarter">Dress</label><br>
+        </div>
+      <div class="border-bottom-purple fw"></div>
+    </div>
+  </div>
+  <section class="row double-padding-tbo">
+
+      {% assign products = collection.products  %}
+      {% for product in products %}
+        {% assign variantCount = 0 %}
+        {% for variant in product.variants  %}
+          {% if variant.available %}
+                    {%  if product.title contains "Mystery" %}
+          {%  else  %}
+            {% if variantCount <= 2 %}
+            {% assign variantCount = variantCount | plus: 1 %}
+              <section class=" col {% for tag in product.tags %}{{tag | handleize}} {%endfor%}" id="{{product.title | truncatewords: 1,''}}-{{variantCount}}">
+                <section class="card">
+                  <a href="{{product.url}}" onclick="ga('send', 'event', 'Collections Page', '{{collection.title | handleize}}', '{{product.title | handleize}}-{{variantCount}}');">
+                  <div class="product-collection-wrapper">
+                    <div class="accent-padding">
+                      <div class="slvr-col-img-wrapper">
+                        <img data-src="{{ variant.image | product_img_url: '500x500' }}" alt="{{product.title}}" class="lazyload"/> 
+                      </div> 
+                      <h3 class=" nmb">{{product.title}}</h3>
+                      <div class="acfe">
+
+                <!--            store variant as data attr on circle  -->
+                    {% capture limit_color %}
+                    {% if product.tags contains "Kids" %}
+                      {{ product.variants.size | divided_by: 1}}
+                    {% else %}
+                      {{ product.variants.size | divided_by: 2}}
+                    {% endif %}
+                    {% endcapture %}
+                    {% if product.tags contains 'Men' or product.tags contains 'Women' %}
+                      {% for variant in product.variants | limit: limit_color%}
+                        {% if variant.available %}
+                          {% if variant.option2 %} 
+                            {% for option in variant.option2 %}
+                              <div data-image-src="{{ variant.image.src | product_img_url: '500x500'  }}" class="clickable {{option | handleize}} color-preview-circle" style="background-image: url({{ option | handle | append: '.png' | asset_url }});background-size: cover;" ></div>
+                            {% endfor %}
+                          {% else %}
+                            {% for option in variant.option1 %}
+                              <div data-image-src="{{ variant.image.src | product_img_url: '500x500'  }}" class="clickable {{option | handleize}} color-preview-circle"style="background-image: url({{ option | handle | append: '.png' | asset_url }});background-size: cover;"></div>
+                            {% endfor %}
+                          {% endif %} 
+                        {% endif %}
+                      {% endfor %}
+                      {% else %}
+                        {% for variant in product.variants | limit: limit_color%}
+                          {% if variant.available %}
+                            {% if variant.option2 %} 
+                              {% for option in variant.option2 %}
+                                <div data-image-src="{{ variant.image.src | product_img_url: '500x500'  }}" class="clickable {{option | handleize}} color-preview-circle" style="background-image: url({{ option | handle | append: '.png' | asset_url }});background-size: cover;" ></div>
+                              {% endfor %}
+                            {% else %}
+                              {% for option in variant.option1 %}
+                                <div data-image-src="{{ variant.image.src | product_img_url: '500x500'  }}" class="clickable {{option | handleize}} color-preview-circle"style="background-image: url({{ option | handle | append: '.png' | asset_url }});background-size: cover;"></div>
+                              {% endfor %}
+                            {% endif %} 
+                          {% endif %}
+                        {% endfor %}
+                      {% endif %}      
+                    </div>
+                    <p class="nm text-dark-purple subscript">{{ product.price | money }} <span class="strikethrough text-dark-purple">{{product.compare_at_price | money}}</span></h4>
+                    {% unless product.tags contains "Performance" %}
+                      {% if product.tags contains 'Kids' or product.tags contains "Men's" %}
+                        {% assign variantCount = variantCount | plus: 3 %}
+                      {% endif %}
+                    {% endunless %}
+                  </div>
+                </div>
+              </a>
+            </section>
+          </section>
+        {% endif %}
+        {% endif %}
+            {%  endif %}
+    {% endfor %}
+  {% endfor%}
+</div>
+
+<style>
+  .selected-prev { border: 1px inset #666562; border-radius: 100%; }
+</style>
+
+
+
+
+   
+    <script>
+      $('.color-preview-circle').click(function() {
+        event.preventDefault(); 
+        $(this).addClass('selected-prev').siblings().removeClass('selected-prev')
+        var imageDisplay = $(this).parent().siblings('.slvr-col-img-wrapper').find('img')
+        var newImage = $(this).data("image-src")
+        $(imageDisplay).attr("src", newImage); 
+
+      }); 
+
+     
+	  	
+      var displayedProducts = ["3-1", "image-insert-1", "8-1", "4-1", "2-1 ", "12-1", "3-2", "6-2", "image-insert-2", "12-2", "2-2", "2-3", "4-2", "3-3", "6-3","image-insert-3", "8-2", "4-3", "12-3", "8-3", "image-insert-4"]
+
+      $(displayedProducts).each(function(index, element){
+        let cardPlacement = "#" + element 
+          $('.row').append($(cardPlacement)); 
+      })
+    </script> 
+
+  </section>
+ <section class="flex-container" id="photo-highlight-cta">
+    <div class="half flex-container-no" id="winter-socks">
+      <div class="double-accent-padding">
+        <h3 class="text-natural ttu nm tac">New<br class="do"> Crew</br> Socks</h3>
+        <a href="/collections/womens-crew">
+          <div class="animated-button-red ma animated-button">
+            <h2 class="text-natural ttu tac">Shop Now</h2>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="side-border"></div>
+    <div class="half flex-container-no" id="find-your-match">
+      <div class="double-accent-padding">
+        <h3 class="text-natural ttu nm tac">Find Your</br> Match</h3>
+        <a href="/pages/find-your-match">
+        <div class="animated-button-red animated-button ma">
+          <h2 class="text-natural ttu tac">Take Our Quiz</h2>
+        </div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="background-teal ofxh">
+          <div class="fw flex-container index-product-preview-wrapper double-accent-padding" id="socks-quick">
+        <div class="one-third index-product-preview">
+        </div>
+        <div class="one-third index-product-preview">
+        </div>
+        <div class="one-third index-product-preview">
+        </div>
+        <div class="one-third index-product-preview background-red text-natural accent-padding" id="product-form">
+          <h4 class="ttu text-natural nm">3 Pack Socks<br>Women's No Show</h5>
+          <h2 class="text-dark-red nm">$38.00</h2>
+          <div class="border-natural" style="padding: 10px;"><a href="/products/3-pack-womens-no-show-socks"><h4 class="tac ttu nm fw text-natural">View Product</h4></a></div>
+        </div>
+      </div>
+    <svg xmlns="http://www.w3.org/2000/svg" class="footer-topper"viewBox="0 100 1440 220"><path fill="white" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>  
+        <div class="background-white">
+         <svg width="100%" height="15vw" viewBox="0 100 1098.72 89.55" style="margin-top: -7%;margin-left: 34vw;">
+              <path id="curve" fill="transparent" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440"></path>
+              <text width="100%" fill="black" style="transform: translate3d(0px, 0px, 0px); font-size: 71px; font-weight: 600; display: flex; align-items: center;text-transform: uppercase;font-family: 'Avenir-Next-Condensed';">
+                <textPath id="text-path" alignment-baseline="top" xlink:href="#curve" startOffset="10%" style="transform: translate3d(0px, 0px, 0px);" width="169.53066741237882%" fill="#2d2b26">"Alpac-Ahhhhh"</textPath>
+              </text>
+  </svg>
+</div>
+    </section>
+</main>
+<style>
+  .view-more-products div { margin: 5px;  }
+  .slvr-col-img-wrapper img { 
+    width: 100%;
+    border-radius:  40px;
+    background-color: #F3F8FB;
+  } 
+ 
+
+  .row {
+    display: flex; 
+    flex-flow: row wrap; 
+  }
+
+  .col { 
+    display: flex; 
+    flex-flow: column; 
+  }
+
+  .card {
+    display: flex;
+    margin: 5px;
+    align-items: stretch;
+    flex-direction: column;
+    height: 100%;
+  }
+  .color-preview-circle { height: 15px; width: 15px; display: inline-block; border-radius: 100%; margin:  10px 5px 10px 0; } 
+  .col h3 {line-height: 1; } 
+  @media only screen and (max-width: 588px) {
+    .col { flex: 0 0 50% !important; }
+  }
+  @media only screen and (min-width: 1100px) {
+    .col h3 {
+      font-size: 1.5vw;
+      text-transform: uppercase;
+      width: 17vw;
+    }
+  }
+  @media only screen and (min-width: 589px) and (max-width: 1099px) {
+    .col h3 {
+      font-size: 1.5vw;
+      text-transform: uppercase;
+      width: 17vw;
+    }
+  }
+  @media only screen and (min-width: 450px) and (max-width: 588px) {
+    .col h3 {
+      font-size: 4.5vw;
+      text-transform: uppercase;
+    } 
+  }
+  @media only screen and (max-width: 449px) {
+    .col h3 {
+      font-size: 4.5vw;
+      text-transform: uppercase;
+    }    
+    .atf-float h1 { font-size: 17pt; }
+
+  }
+    @media only screen and (min-width: 350px) and (max-width: 449px) {
+/*        .slvr-col-img-wrapper { height: 200px; }
+*/
+  }
+/*    @media only screen and (max-width: 349px) {
+        .slvr-col-img-wrapper { height:200px; }
+
+  }*/
+
+  @media only screen and (min-width: 589px) and (max-width: 799px) {
+    .col { flex: 0 0 33% !important; }
+
+  }
+  @media only screen and (min-width: 800px) {
+    .col { flex: 0 0 33% !important; }
+  }
+
+  .card {
+/*    box-shadow: 2px 2px 10px #F5F8F8;
+*/    height: 100%;
+  }
+  .card:hover {
+/*    box-shadow: rgb(0 0 0 / 8%) 0px 0px 4px 2px; 
+*/  }
+    @media only screen and (max-width: 588px) {
+    .view-more-products { 
+      width: 100%; 
+      overflow: scroll; 
+      white-space: nowrap;
+      display: inline-block;
+    }
+    .view-more-products div {
+      display: inline-block;
+      margin-right: ;
+      width: 200px;
+      vertical-align: middle;
+    }
+  }
+ 
+
+</style>
+  <script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+// Insert Your Facebook Pixel ID below. 
+fbq('init', '320927769125076');
+fbq('track', 'PageView');
+
+fbq('trackCustom', 'ViewCategory', {
+  content_name: "{{collection.title}}",
+  content_type: 'product'
+});
+</script>

@@ -1,0 +1,108 @@
+ <div class="product-filter-options">
+      <p class="text-purple subscript clickable reset-filter"><b>Reset Filter</b></p>
+
+      <div class="border-bottom-purple fw"></div>
+        <div class="accent-padding-tbo">
+        <h4 class="ttu nm">By Color</h4>
+          <input type="checkbox" name="blue" value="blue">
+          <label for="blue">Blue</label><br>
+          <input type="checkbox" name="ivory" value="ivory">
+          <label for="ivory">Ivory</label><br>
+          <input type="checkbox" name="pink" value="pink">
+          <label for="pink">Pink</label><br>
+          <input type="checkbox" name="green" value="green">
+          <label for="green">Green</label><br>
+          <input type="checkbox" name="yellow" value="yellow">
+          <label for="yellow">Yellow</label><br>
+          <input type="checkbox" name="Gray" value="gray">
+          <label for="gray">Gray</label><br>
+          <input type="checkbox" name="beige" value="beige">
+          <label for="beige">Beige</label><br>
+          <input type="checkbox" name="orange" value="orange">
+          <label for="orange">Orange</label><br>
+          <input type="checkbox" name="purple" value="purple">
+          <label for="purple">Purple</label><br>
+          <input type="checkbox" name="black" value="black">
+          <label for="black">Black</label><br>
+        </div>
+      <div class="border-bottom-purple fw"></div>
+        <div class="accent-padding-tbo">
+          <h4 class="ttu nm">By Style</h4>
+          <input type="checkbox" name="plaid" value="plaid">
+          <label for="plaid">Plaid</label><br>
+          <input type="checkbox" name="solid" value="solid">
+          <label for="solid">Solid</label><br>
+          <input type="checkbox" name="stripe" value="stripe">
+          <label for="stripe">Stripe</label><br>
+          {%  if collection.title contains "Throw Blankets" %}
+          <input type="checkbox" name="diagonal" value="diagonal">
+          <label for="diagonal">Diagonal</label><br>
+          {% endif %}
+        </div>
+      <div class="border-bottom-purple fw"></div>
+    </div>
+
+
+         <script>
+    // PRODUCT FILTER
+    let checkboxes = document.getElementsByTagName("input")
+    let productImgs = document.getElementsByClassName("col")
+
+    $( window ).on( "load", function() {
+     $(checkboxes).each(function(idx, checkbox) {
+        !$(checkbox).context.checked 
+      })
+    });
+      
+    $('input').click(function() {
+    $(".filter-msg").hide()
+    $(productImgs).hide()      
+     $(checkboxes).each(function(idx, checkbox) {
+       if ($(checkbox).context.checked) {
+         $(checkbox).addClass("active")
+       } else {
+         $(checkbox).removeClass("active")
+       } 
+      })
+
+      // create an array of active input values 
+      let activeInputs = [] 
+       $(".active").each(function(idx, activeEl) {
+         activeInputs.push($(activeEl).val())
+       })
+       // remove any empty strings from activeInputs array
+      let filteredInputs = $(activeInputs).filter(function(idx, el) {
+         return el != ""
+      })
+
+        // if a product contains ALL of the active input values, display it
+        $(productImgs).each(function(idx, productImg) {     
+            if ($(productImg).hasClass($(filteredInputs[0]).selector) && $(productImg).hasClass($(filteredInputs[1]).selector) && $(productImg).hasClass($(filteredInputs[2]).selector) && $(productImg).hasClass($(filteredInputs[1]).selector) ) {
+              $(productImg).show()
+            } else {
+              $(productImg).hide()
+            }    
+        }) 
+
+      if (!$(productImgs).filter(function(idx, productImg) { return $(productImg).is(":visible") }).length){
+        $(".filter-msg").show()
+      }
+      
+      // if there are not any active (checked) classes, show all products
+       if (!$(filteredInputs).length) {
+         $(productImgs).show()
+       }
+
+    $(".reset-filter").click(function() {
+      $(checkboxes).each(function(idx, checkbox) {
+        $(checkbox).context.checked = false
+        $(checkbox).removeClass("active")
+        $(productImgs).show()
+      })
+    })
+      let selectionValue = $(this).val()
+    ga('send', 'event', 'Collection Filter', 'Filter', selectionValue)
+      
+    });
+
+  </script>

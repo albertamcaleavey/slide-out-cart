@@ -1,0 +1,138 @@
+
+  <main id="page" class="contact-us">      
+    <section class="flex-container aifs page-header background-white">
+      <div class="half double-accent-padding background-white" id="contact-form-half">
+        <h2 class="nm ttu">Give the Gift<br> of Pacas</h2>
+        <p>Do you want to give the gift of Pacas™ to your office? Fill out the form below and a team member will be in touch!</p>
+        {% form 'contact' %}
+        {% if form.posted_successfully? %}
+          <p class="tac">Thank you for contacting us! We will get back to you as soon as possible.</p>
+        {% endif %}
+        {% if form.errors %}
+          <p class="subscript errors tac">An error occurred, please try again.</p>
+        {% endif %}
+        <p>
+          <input type="text" id="contact_form_name" class="contact_input fw border-lightgray" name="contact[name]" value="{{ form.name }}" placeholder="Name" />
+        </p>
+        <p>
+          <input type="text" id="contact_form_email" class="contact_input fw border-lightgray" name="contact[email]" value="{{ form.email }}" placeholder="Email"/>
+        </p>
+        <p>
+
+          <input type="text" id="contact_form_company" class="contact_input fw border-lightgray" name="contact[company]" value="{{ form.company }}" placeholder="Company"/>
+        </p>
+        <p>
+          <textarea id="contact_message" placeholder="Message" class='border-lightgray fw contact_input' name="contact[body]" rows="5">{{ form.body }}</textarea>
+        </p>
+            <div class="flex-container-no jsb mo clickable" id="contact-submit-wrapper">
+            <input type="submit" value="Send" class="text-natural animated-button-red animated-button ttu">
+          </div>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="bottom-curves mo"viewBox="0 0 1440 320"><path fill="white" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>  
+      <div class="half" id="corp-gifting-form-half-photo">
+        
+      </div>
+    </section>
+    <svg xmlns="http://www.w3.org/2000/svg" class="updated-topper do"viewBox="0 100 1440 220"><path fill="#a0dbe3" fill-opacity="1" d="M0,224L40,224C80,224,160,224,240,197.3C320,171,400,117,480,128C560,139,640,213,720,229.3C800,245,880,203,960,176C1040,149,1120,139,1200,160C1280,181,1360,235,1400,261.3L1440,288L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z" ></path></svg>  
+    <section class="background-light-teal flex-container jcsa accent-padding contact-more-cta">
+                <div class="flex-container-no jsb do absolute-submit clickable" id="contact-submit-wrapper">
+            <input type="submit" value="Send" class="text-natural animated-button-red animated-button ttu">
+          </div>
+          {% endform %}
+      <div class="accent-padding">
+                <a href="/pages/corporate-gifting">
+
+       <h3 class="text-natural ttu nm">Give The Gift<br> of Pacas</h3>
+       <img src="{{'rebrand-arrow.png' | asset_url}}" class="cta-arrow" alt="arrow" />
+     </a>
+     </div>
+     <div class="accent-padding">
+              <a href="/pages/wholesale-purchasing">
+
+         <h3 class="text-natural ttu nm">Wholesale<br> Purchasing</h3>
+       <img src="{{'rebrand-arrow.png' | asset_url}}" class="cta-arrow" alt="arrow"/>
+</a>
+     </div>
+     <div class="accent-padding">
+                <a href="/pages/contact-us">
+
+         <h3 class="text-natural ttu nm">Need Help?<br> Contact Us</h3>
+       <img src="{{'rebrand-arrow.png' | asset_url}}" class="cta-arrow" alt="arrow" />
+</a>
+     </div>
+    </section>
+  </main>
+
+
+<style>
+.contact-us ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+color:  #a0dbe3;
+opacity: 1; /* Firefox */
+}
+
+.contact-us :-ms-input-placeholder { /* Internet Explorer 10-11 */
+color: #66cad8;
+}
+
+
+.contact-us ::-ms-input-placeholder { /* Microsoft Edge */
+color:  #a0dbe3;
+}
+.contact-us input[type="text"] { 
+color:  #a0dbe3;
+}
+  
+  @media only screen and (max-width: 799px) {
+  .contact-us .double-accent-padding {
+      padding: 10vw;
+  }
+  .contact-more-cta { padding: 6.5vw 5vw 5vw 5vw;}
+    h2 {
+        font-size: 8vw;
+    }
+  .cta-arrow { max-height: 15px; margin-top: 5px; } 
+
+   #corp-gifting-form-half-photo{
+  background-image: url("{{'bulk-new-m.png' | asset_url}}");
+  background-size:  cover;
+  background-repeat:  no-repeat;
+  background-position:  bottom left;
+    margin-top: -20vw; 
+}
+  .contact-us .bottom-curves {margin-top: -13vw; }
+  #contact-form-half { text-align: left; } 
+  }
+  @media only screen and (min-width: 800px) {
+  .contact-us .double-accent-padding {
+      padding: 6vw;
+  }
+     .contact-us   h2 {
+        font-size: 6vw;
+    }
+   .contact-us h3 { 
+      font-size: 3.5vw; 
+      margin-bottom: 30px !important; 
+    } 
+    #corp-gifting-form-half-photo{
+  background-image: url("{{'bulk-new.png' | asset_url}}");
+  background-size:  cover;
+  background-repeat:  no-repeat;
+  background-position:  bottom left;
+}
+  }
+  h2, h3 {line-height: 1; }
+   
+  @media only screen and (min-width: 800px)  {
+.contact-us .page-header {
+    height: 85vw;
+    margin-bottom: -5vw;
+}
+      .absolute-submit {
+     
+    position: absolute;
+    margin-top: -62vw;
+    left: 6vw;
+     }
+  } 
+
+</style>

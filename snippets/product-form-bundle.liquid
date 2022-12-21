@@ -1,0 +1,167 @@
+  <div class="flex-container background-white aifs">
+    <div class="half double-accent-padding-so" id="featured-image-wrapper">
+
+      <img src="{{  product.variants[0].featured_image.src | img_url: 'master' }}" class="fw featured_image preview-image" id="main-featured-image" alt="{{variant.name}}">
+
+
+    </div>
+
+  
+    <div class="half double-accent-padding">
+      <h2 class="nm ttu"> {{ product.title }}</h2>
+      {%  if  product.tags contains "accessories" or product.title contains "Toy"%}
+        <p>{{ product.description }}</p>
+      {%  else %}
+        {%  include 'product-summary' %}
+      {%  endif %}
+
+      {% capture limit_color %}
+        {%  if product.title contains "Sweater" %}
+          {{ product.variants.size | divided_by: 5 }}
+        {%  else %}
+          {{ product.variants.size | divided_by: 2 }}
+        {%  endif %}
+      {% endcapture %}
+      {%  if product.title contains "Toy" %}
+        <div class="size-one toys bundle-color-wrapper" data-selected="true">
+          {% for variant in product.variants | limit: 1%}
+          {% if variant.available %}
+            {%assign variantId = {{variant.id}} %}
+            <div class="clickable {{option | handleize}} color-preview-circle active"   data-variant="{{ variantId }}"></div>
+        {% endif %}
+       {% endfor %} 
+        </div>
+        <div class="toys bundle-size-wrapper" data-selected="true"></div>
+        <style>
+        .toys.bundle-size-wrapper { border: none !important; }
+          .toys.bundle-color-wrapper { height: 0;overflow: hidden; }
+        </style>
+      {%  else %}
+      <div class="bundle-color-wrapper-error" style=""><p class=" subscript">*Please select a color</p></div>
+
+      <div class="size-one bundle-color-wrapper" data-selected="false">
+      {% for variant in product.variants | limit: limit_color%}
+        {% if variant.available %}
+          {%assign variantId = {{variant.id}} %}
+            <div data-image-src="{{ variant.image.src | product_img_url: 'master'  }}" data-option="{{ variant.option2 | handleize }}"data-sku="{% if product.tags contains "Socks" %}{{variant.sku | remove: "2-" | remove: "3-" | remove: "4-" | remove: "5-" | remove: "6-" | remove: "7-" | remove: "8-" | remove: "1-"}} {% else %} {{variant.sku}} {%endif %}" class="clickable {{option | handleize}} color-preview-circle" style="background-image: url({{ variantId | append: '.png' | asset_url }});background-size: cover;" data-variant="{{ variantId }}"></div>
+        {% endif %}
+       {% endfor %}    
+      </div>
+      <div class="size-two  bundle-color-wrapper" data-selected="false" style="display: none;">
+      {% for variant in product.variants | limit: limit_color | offset: limit_color %}
+        {% if variant.available %}
+          {%assign variantId = {{variant.id}} %}
+          <div data-image-src="{{ variant.image.src | product_img_url: 'master'  }}" data-option="{{ variant.option2 | handleize}}" data-sku="{% if product.tags contains "Socks" %}{{variant.sku | remove: "2-" | remove: "3-" | remove: "4-" | remove: "5-" | remove: "6-" | remove: "7-" | remove: "8-" | remove: "1-"}} {% else %} {{variant.sku}} {%endif %}"class="clickable {{option | handleize}} color-preview-circle" style="background-image: url({{ variantId | append: '.png' | asset_url }});background-size: cover;" data-variant="{{ variantId }}"></div>
+        {% endif %}
+       {% endfor %}    
+      </div>
+      {%  if product.title contains "Sweater" %}
+        <div class="size-three  bundle-color-wrapper" data-selected="false" style="display: none;">
+          {%  capture new_limit_color %}
+            {{ limit_color | plus: limit_color }}
+          {%  endcapture %}
+      {% for variant in product.variants | limit: limit_color | offset: new_limit_color %}
+        {% if variant.available %}
+          {%assign variantId = {{variant.id}} %}
+          <div data-image-src="{{ variant.image.src | product_img_url: 'master'  }}" data-option="{{ variant.option2 | handleize}}" data-sku="{% if product.tags contains "Socks" %}{{variant.sku | remove: "2-" | remove: "3-" | remove: "4-" | remove: "5-" | remove: "6-" | remove: "7-" | remove: "8-" | remove: "1-"}} {% else %} {{variant.sku}} {%endif %}"class="clickable {{option | handleize}} color-preview-circle" style="background-image: url({{ variantId | append: '.png' | asset_url }});background-size: cover;" data-variant="{{ variantId }}"></div>
+        {% endif %}
+       {% endfor %}    
+      </div>
+        <div class="size-four  bundle-color-wrapper" data-selected="false" style="display: none;">
+          {%  capture new_new_limit_color %}
+            {{ new_limit_color | plus: limit_color }}
+          {%  endcapture %}
+      {% for variant in product.variants | limit: limit_color | offset: new_new_limit_color %}
+        {% if variant.available %}
+          {%assign variantId = {{variant.id}} %}
+          <div data-image-src="{{ variant.image.src | product_img_url: 'master'  }}" data-option="{{ variant.option2 | handleize}}" data-sku="{% if product.tags contains "Socks" %}{{variant.sku | remove: "2-" | remove: "3-" | remove: "4-" | remove: "5-" | remove: "6-" | remove: "7-" | remove: "8-" | remove: "1-"}} {% else %} {{variant.sku}} {%endif %}"class="clickable {{option | handleize}} color-preview-circle" style="background-image: url({{ variantId | append: '.png' | asset_url }});background-size: cover;" data-variant="{{ variantId }}"></div>
+        {% endif %}
+       {% endfor %}    
+      </div>
+        <div class="size-five  bundle-color-wrapper" data-selected="false" style="display: none;">
+                 {%  capture new_new_new_limit_color %}
+            {{ new_new_limit_color | plus: limit_color }}
+          {%  endcapture %}
+      {% for variant in product.variants | limit: limit_color | offset: new_new_new_limit_color %}
+        {% if variant.available %}
+          {%assign variantId = {{variant.id}} %}
+          <div data-image-src="{{ variant.image.src | product_img_url: 'master'  }}" data-option="{{ variant.option2 | handleize}}" data-sku="{% if product.tags contains "Socks" %}{{variant.sku | remove: "2-" | remove: "3-" | remove: "4-" | remove: "5-" | remove: "6-" | remove: "7-" | remove: "8-" | remove: "1-"}} {% else %} {{variant.sku}} {%endif %}"class="clickable {{option | handleize}} color-preview-circle" style="background-image: url({{ variantId | append: '.png' | asset_url }});background-size: cover;" data-variant="{{ variantId }}"></div>
+        {% endif %}
+       {% endfor %}    
+      </div>
+  {%  endif  %}
+            {%  if  product.tags contains "accessories" %}
+        <style>
+        .accessories.bundle-size-wrapper { border: none !important; }
+      </style>
+      <div class="bundle-size-wrapper accessories flex-container-no border-dark-purple" data-selected="true" style="">
+      </div>
+      {%  else %}
+        {%   if product.title contains "Kid" %}
+         <p class="subscript"><b>Size: </b><span id=""  class="" ">Kids Shoe Size 8C-13C</span></p>
+          <div class="bundle-size-wrapper flex-container-no border-dark-purple" data-selected="true">
+            <div class="ttu bundle-size-selection background-dark-purple text-white" data-full-size="Kids Shoe Size 8C-13C" data-color-buttons="size-one">Kids Shoe Size 8C-13C</div>
+         </div>
+        {%  else %}
+        <p class="subscript"><b>Size: </b><span id="size-selected"  class="size-selected" ></span></p>
+        <div class="bundle-size-wrapper-error" style=""><p class="subscript">*Please select a size</p></div>
+        <div class="bundle-size-wrapper flex-container-no border-dark-purple" data-selected="false">
+          {%  if product.title contains "Women"  %}
+            {%  if product.title contains "Sweater" %}
+              <div class="ttu bundle-size-selection" data-full-size="Extra-Small" data-color-buttons="size-one">XS</div>
+              <div class="ttu  bundle-size-selection" data-full-size="Small" data-color-buttons="size-two">S</div>
+              <div class="ttu bundle-size-selection" data-full-size="Medium" data-color-buttons="size-three">M</div>
+              <div class="ttu  bundle-size-selection" data-full-size="Large" data-color-buttons="size-four">L</div>
+              <div class="ttu  bundle-size-selection" data-full-size="Extra-Large" data-color-buttons="size-five">XL</div>
+            {%  else %}
+              <div class="ttu bundle-size-selection" data-full-size="Small / Medium (US: 5 - 8)" data-color-buttons="size-one">Small / Med</div>
+              <div class="ttu  bundle-size-selection" data-full-size="Medium / Large (US: 8.5 - 11.5+)" data-color-buttons="size-two">Med / Large</div>
+            {%  endif  %}
+            {%  elsif product.title contains "Men" %}
+            <div class="ttu bundle-size-selection" data-full-size="Medium / Large (US: 7 - 10)" data-color-buttons="size-one">Med / Large</div>
+            <div class="ttu  bundle-size-selection" data-full-size="Large / Extra-Large (US: 10.5 - 14+)" data-color-buttons="size-two">Large / Extra-Large</div>
+          {% endif %}
+         </div>
+        {%  endif %}
+      {%  endif %}
+      {%  endif %}
+      <div class="background-white jcc" style="display: flex">
+        <button class="save-to-bundle clickable"><h4 class="text-natural ttu nm">Save to Bundle</h4></button>
+      </div>
+    <p class="subscript scroll-alert">*Scroll below for next bundle selection</p>
+
+    </div>
+  </div>
+ 
+ <style>
+  
+   .active { border:1px solid #2d2b26;}
+  .bundle-size-wrapper  {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border: 2px solid #9093c8;
+    border-radius: 10px;
+    margin-left: 0;
+  }
+  .bundle-size-wrapper div {
+    text-transform: uppercase;
+    font-family: "Avenir-Next-Condensed";
+    padding: 10px;
+    font-size: 12pt;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 5px;
+  }
+  .color-preview-circle { height: 22px; width: 22px; display: inline-block; border-radius: 100%; margin:  5px;     padding: 3px;} 
+  #product-summary { width: 100%; }
+   
+</style>
+
+    
+
+
+
+    

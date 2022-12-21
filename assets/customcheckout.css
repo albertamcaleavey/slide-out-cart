@@ -1,0 +1,76 @@
+@font-face {
+  font-family: "Lexend";
+  src:url("Lexend-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Lexend";
+  src: url("Lexend-SemiBold.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Avenir-Next-Condensed";
+  src: url("Avenir-Next-Condensed.ttc");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Avenir-Next-Condensed";
+  src: url("AvenirNextCondensed-Heavy.ttf");
+  font-weight: 800;
+} 
+
+.background-natural { background-color: #f7f5f2; }
+.background-charcoal { backgrxound-color: #2d2b26; }
+.background-light-red { background-color: #f8b6bd; }
+.background-red { background-color: #f04e4c; }
+.background-dark-red { background-color: #be1f24; }
+.background-light-teal { background-color: #a0dbe3; }
+.background-teal { background-color: #66cad8; }
+.background-flow-teal { background-color: #6CD7DE; }
+
+.background-dark-teal { background-color: #007d84; }
+.background-light-purple { background-color: #afbde1; }
+.background-purple { background-color: #9093c8; }
+.background-dark-purple { background-color: #21409A; }
+.background-white { background-color: white; }
+.text-white { color: white; }
+.text-natural { color: #f7f5f2 ; }
+.text-charcoal { color: #2d2b26; }
+.text-light-red { color: #f8b6bd; }
+.text-red { color: #f04e4c; }
+.text-dark-red { color: #be1f24; }
+.text-light-teal { color: #a0dbe3; }
+.text-teal { color: #66cad8; }
+.text-dark-teal { color: #007d84; }
+.text-light-purple { color: #afbde1; }
+.text-purple { color: #9093c8; }
+.text-dark-purple { color: #21409A; }
+.border-natural { border: 1px solid #f7f5f2; border-radius: 40px; }
+.postpurchase h1, .postpurchase h2 , .postpurchase h3, .postpurchase h4{ 
+  font-family: "Avenir-Next-Condensed"; 
+  color: #2d2b26;
+  font-weight:  800;
+}
+ .postpurchase p {
+  font-family: "Lexend";
+  font-weight:  400;
+  color:  #2d2b26;
+}
+.ttu { text-transform: uppercase; }
+.close { float: right; }
+#post-purchase-stores li  {
+    padding: 10px;
+    border: 1px solid #2d2b26;
+    border-radius: 10px;
+  background-color: #f04e4c;
+  color: white; 
+    margin: 10px 0;
+}
+#post-purchase-stores li p { color: white; font-weight: bolder; }
+@media only screen and (max-width: 749px) {
+  .postpurchase  { padding-top: 2rem; }
+}
+@media only screen and (min-width: 750px) {
+  .postpurchase { padding-top: 3rem; }
+}
+.tac { text-align: center; }

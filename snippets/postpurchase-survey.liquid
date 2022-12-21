@@ -1,0 +1,81 @@
+
+
+<div class="postpurchase" style="display: none;">
+  <div class="close" style="cursor:pointer;" onclick=" ga('send', 'event', 'Referral Source', 'Closed', clickCount)">✕</div>
+  <div class="flex-container-no tac">
+    <div id="main-pp-wrapper">
+      <h2 class="ttu tac">How Did You Hear About Us?</h2>
+ <ul id="post-purchase-stores"class="tac">
+        <li id="facebook" onclick="ga('send', 'event', 'Referral Source', 'Facebook');" ><p class="clickable">Facebook</p></li>
+        <li id="instagram" onclick="ga('send', 'event', 'Referral Source', 'Instagram');"><p class="clickable">Instagram</p></li>
+        <li id="search-engine" onclick="ga('send', 'event', 'Referral Source', 'Search Engine');" ><p class="clickable">Google / Bing</p></li>
+        <li id="friend" onclick="ga('send', 'event', 'Referral Source', 'Friend or Family');" ><p class="clickable">Friend or Family</p></li>
+        <li id="television" onclick="ga('send', 'event', 'Referral Source', 'TV', '{{ order.name }}');"><p class="clickable">TV</p ></li>
+        <li id="mailer" onclick="ga('send', 'event', 'Referral Source', 'In Home Mailer');"><p>In Home Mailer</p></li>
+<!--         <li id="banner" onclick="ga('send', 'event', 'Referral Source', 'Banner Ad');"><p>Banner Ad</p></li>
+        <li id="radio" onclick="ga('send', 'event', 'Referral Source', 'Radio / Digital Radio');"><p>Radio / Digital Radio</p></li>
+        <li id="mailer" onclick="ga('send', 'event', 'Referral Source', 'In Home Mailer');"><p>In Home Mailer</p></li>
+        <li id="tiktok" onclick="ga('send', 'event', 'Referral Source', 'TikTok');"><p>TikTok</p></li>
+           <li id="youtube" onclick="ga('send', 'event', 'Referral Source', 'YouTube');"><p>YouTube</p></li>
+ -->
+        <li id="other" onclick="ga('send', 'event', 'Referral Source', 'Other');"><p class="clickable">Other</p></li>
+      </ul>
+    </div>
+       <div id="sub-pp-wrapper" style="display: none;">
+      <h2 class="ttu tac">Which TV Station?</h2>
+ <ul id="post-purchase-stores"class="tac">
+        <li id="pop" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'POP');" ><p class="clickable">POP</p></li>
+        <li id="smithsonian" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'Smithsonian');"><p class="clickable">Smithsonian</p></li>
+        <li id="gac" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'GAC');" ><p class="clickable">GAC</p></li>
+        <li id="hallmark-channel" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'Hallmark Channel');"><p class="clickable">Hallmark Channel</p></li>
+        <li id="hallmark-movies" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'Hallmark Movies');"><p class="clickable">Hallmark Movies</p></li>
+        <li id="hallmark-mysteries" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'Hallmark Mysteries');"><p class="clickable">Hallmark Mysteries</p></li>
+        <li id="sundance" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'Sundance');"><p class="clickable">Sundance</p></li>
+        <li id="fox-news" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'Fox News');"><p class="clickable">Fox News</p></li>
+        <li id="usa-station" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'USA');"><p class="clickable">USA</p></li>
+        <li id="tv-land-locals" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'TV Land Locals');"><p class="clickable">TV Land Locals</p></li>
+        <li id="hmm" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'HMM');"><p class="clickable">HMM</p></li>
+        <li id="discovery-life" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'Discovery Life');"><p class="clickable">Discovery Life</p></li>
+        <li id="ovation" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'Ovation');"><p class="clickable">Ovation</p></li>
+        <li id="we" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'WE');"><p class="clickable">WE</p></li>
+        <li id="amc" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'AMC');"><p class="clickable">AMC</p></li>
+        <li id="axstv" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'AXS TV');"><p class="clickable">AXS TV</p></li>
+        <li id="reelz-tv" onclick="ga('send', 'event', 'Referral Source', 'TV Station', 'Reelz TV');"><p class="clickable">Reelz TV</p></li>
+
+        <li id="other" onclick="ga('send', 'event', 'TV Station', 'Other');"><p class="clickable">Other</p></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+ <script>
+  $('.postpurchase #post-purchase-stores li').click(function() {
+  
+    var selectedId= $(this).attr("id")
+    if (selectedId == "television") {
+          $('#main-pp-wrapper').hide(); 
+
+        $('#sub-pp-wrapper').show();
+    }
+    else {
+          $('.postpurchase').hide(); 
+
+    }
+
+  }); 
+  $('.close').click(function(){
+    $('.postpurchase').hide(); 
+  }); 
+
+</script>
+<script>
+var ul = document.querySelector('#post-purchase-stores');
+for (var i = ul.children.length - 1; i >= 0; i--) {
+    ul.appendChild(ul.children[Math.random() * i | 0]);
+}
+</script>
+
+<style>
+     .referral-selected {background: #6DCDB8;}
+    .clickable { cursor: pointer;}
+</style>

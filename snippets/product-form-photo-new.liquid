@@ -1,0 +1,426 @@
+<div class="flex-container background-white aifs">
+  <div class="half double-accent-padding image-wrapper-a" id="featured-image-wrapper" style="display: none;">
+
+      {% if product.available %}
+        {% for variant in product.variants %}
+          <div class="product-image-wrapper" style="display: none;" id="{{variant.sku}}-wrapper"> 
+            
+            <div class="product-image-preview clickable do" id="featured-image-preview"> 
+              <img src="{{ variant.featured_image.src | img_url: 'master' }}" class="fw featured_image" alt="{{variant.name}}">
+            </div>
+            {% if variant.metafields.arena.additional_photo %}
+            <div class="product-image-preview clickable do" id="lifestyle-1-preview">      
+              <img src="{{variant.metafields.arena.additional_photo}}" class="fw" alt="{{variant.name}}">
+             </div>
+            {% endif %}
+            
+            {% if variant.metafields.arena.additional_photo2 %}
+            <div class="product-image-preview clickable do" id="lifestyle-1-preview">      
+              <img src="{{variant.metafields.arena.additional_photo2}}" class="fw" alt="{{variant.name}}">
+             </div>
+            {% endif %}
+
+            
+            <img src="{{ variant.featured_image.src | img_url: 'master' }}" class="fw featured_image preview-image image-feature-main" id="main-featured-image" alt="{{variant.name}}">
+                     
+            
+            
+          </div> 
+          {% endfor %}
+
+        {% else %}
+        
+            <img src="{{ product.featured_image.src | img_url: 'master' }}" class="fw featured_image preview-image" id="main-featured-image" alt="{{variant.name}}">
+
+        {% endif %}
+      
+      </div>
+  <div class="half double-accent-padding image-wrapper-b" id="featured-image-wrapper">
+        {% for variant in product.variants %}
+          <div class="product-image-wrapper {{variant.sku}}-wrapper" style="display: none;" id="">  
+            <img src="{{ variant.featured_image.src | img_url: 'master' }}" class="background-natural fw featured_image preview-image image-feature-main" id="main-featured-image" alt="{{variant.name}}">
+            <div class="flex-container-no do">
+              <div class="half-no">
+                <img src="{{variant.metafields.arena.additional_photo}}" class="fw background-natural featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+              </div>
+              <div class="half-no">
+                <img src="{{variant.metafields.arena.additional_photo2}}" class="fw background-natural featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+              </div>
+            </div>
+            <img src="{{variant.metafields.arena.additional_photo3}}" class="do fw background-natural featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+            <div class="flex-container-no do">
+              <div class="half-no">
+                <img src="{{variant.metafields.arena.additional_photo4}}" class="fw background-natural featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+              </div>
+              <div class="half-no">
+                <img src="{{variant.metafields.arena.additional_photo5}}" class="fw background-natural featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+              </div>
+            </div>
+            <img src="{{variant.metafields.arena.additional_photo6}}" class="do fw background-natural featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+            <img src="{{variant.metafields.arena.additional_photo7}}" class="do fw background-natural featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+            <img src="{{variant.metafields.arena.additional_photo8}}" class="do fw background-natural featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+          </div> 
+
+          {% endfor %}
+
+  
+      
+      </div>
+
+
+  
+  {% if product.available %}
+      {% for variant in product.variants %}
+          <div class="image-bubble-wrapper flex-container-no mo jcc double-accent-padding" style="padding: 0;display: none; background-color:white;" id="mobile-{{variant.sku}}-wrapper">
+              <div class="prod-preview-bubble clickable active" data-image-src="{{ variant.image | product_img_url: '500x500' }}" ></div>
+                              {% if variant.metafields.arena.additional_photo %}
+
+            <div class="prod-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo}}" ></div>
+            {% endif %}  
+            {% if variant.metafields.arena.additional_photo2 %}
+              <div class="prod-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo2}}" ></div>
+              {% endif %}
+              {% if variant.metafields.arena.additional_photo3 %}
+              <div class="prod-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo3}}" ></div>
+              {% endif %}
+              {% if variant.metafields.arena.additional_photo4 %}
+              <div class="prod-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo4}}" ></div>
+              {% endif %}
+                   {% if variant.metafields.arena.additional_photo5 %}
+              <div class="prod-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo5}}" ></div>
+              {% endif %}
+                   {% if variant.metafields.arena.additional_photo6 %}
+              <div class="prod-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo6}}" ></div>
+              {% endif %}
+                   {% if variant.metafields.arena.additional_photo7 %}
+              <div class="prod-preview-bubble clickable" data-image-src="{{variant.metafields.arena.additional_photo7}}" ></div>
+              {% endif %}
+            </div> 
+      {% endfor %}
+  {% endif %}
+
+
+  <div class="half double-accent-padding fix-form-wrapper">
+    {% form 'product', product, data-productid: product.id, class: "checkout" %}
+
+    <h2 class="nm ttu"> {{ product.title | remove: 'Light-Weight / Summer Wrap - '}}</h2>
+     {% if product.available  %}
+        {% include 'swatch' with 'Color' %}
+        <p class="subscript"><b>Color: </b><span id="color-selected" style="font-weight: lighter;"></span></p>
+        {% include 'swatch' with 'Size' %}
+      {% endif %}
+    <p class="product-description">{{ product.description }}</p>      
+    <p class="">{{product.price | money }} <span class="strikethrough text-purple">{{product.compare_at_price | money }}</span>
+    
+     
+      
+      <div class="flex-container-no jcc" style="display: none;">
+        <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+        <link itemprop="availability" href="http://schema.org/InStock">
+          <div class="fw" style="">
+            <select name="id" data-productid="{{ product.id }}" id="productSelect-{{ product.id }}" class="product-single__variants" style="display: none;">
+              {% for variant in product.variants %}
+                  <option {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div> 
+         {% for variant in product.variants %}
+          <div class="product-image-wrapper mo {{variant.sku}}-wrapper" style="display: none;" id=""> 
+ <div class="flex-container-no mo">
+    <div class="half-no">
+      <img src="{{variant.metafields.arena.additional_photo}}" class="background-natural fw featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+    </div>
+    <div class="half-no">
+      <img src="{{variant.metafields.arena.additional_photo2}}" class="background-natural fw featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+    </div>
+ </div>
+  <img src="{{variant.metafields.arena.additional_photo3}}" class="background-natural mo fw featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+  <div class="flex-container-no mo">
+    <div class="half-no">
+      <img src="{{variant.metafields.arena.additional_photo4}}" class="background-natural fw featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+    </div>
+    <div class="half-no">
+      <img src="{{variant.metafields.arena.additional_photo5}}" class="background-natural fw featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+    </div>
+  </div>
+  <img src="{{variant.metafields.arena.additional_photo6}}" class="background-natural mo fw featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+  <img src="{{variant.metafields.arena.additional_photo7}}" class="background-natural mo fw featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+  <img src="{{variant.metafields.arena.additional_photo8}}" class="background-natural mo fw featured_image preview-image image-feature-main"  alt="{{variant.name}}">
+          </div>
+   {%  endfor %}
+      {% if product.available %}
+        <div class="button-placeholder"></div>
+        <div class="freeze-button-wrapper button-wrapper">
+        <button type="submit" name="add" id="add-to-cart-{{ product.id }}" class="add-to-cart clickable"><h4 class="text-natural ttu nm">Add to Cart</h4></button>
+        <div class="other-payment-wrapper">{{ form | payment_button }}</div>
+               </div>
+
+          <p class="subscript" id="purchase-help">Your purchase will help donate Pacas socks to a child staying at a local children's hospital. <a href="/pages/our-story" class="tu clickable"><b>Learn more.</b></a></p>
+          {% else %}
+          <p class="">I'll Be Back Soon!</p>
+      {% endif %}
+      
+      <img src="{{'rebrand-guarantee-badge-dark-purple.svg' | asset_url}}" id="product-badge" class="do"/>
+    {% endform %}
+  </div>
+</div>
+
+<script>
+// creates a trim function for removing whitespace
+  if(typeof(String.prototype.trim) === "undefined")
+  {
+    String.prototype.trim = function() 
+    {
+      return String(this).replace(/^\s+|\s+$/g, '');
+    };
+  }
+  // freeze form on desktop
+  $(document).ready(function() {
+    if ($(window).width() > 799) {
+     $(".fix-form-wrapper").addClass("freeze-form");
+    }
+  })
+    $(window).resize(function() {
+    if ($(window).width() > 799) {
+     $(".fix-form-wrapper").addClass("freeze-form");
+    }
+         else {
+     $(".fix-form-wrapper").removeClass("freeze-form");
+    }
+  })
+  $(window).scroll(function() { 
+    if ($(window).width() > 799) {
+      var scroll = $(window).scrollTop();
+      var imageBottom = $('.image-wrapper-b').offset().top + $('.image-wrapper-b').outerHeight() - $('.fix-form-wrapper').outerHeight() - 122
+      if (scroll >= 0 && scroll <= imageBottom ) {
+        $(".fix-form-wrapper").addClass("freeze-form");
+      } else {
+        $(".fix-form-wrapper").removeClass("freeze-form");
+      }
+    }
+    else if ($(window).width() < 799) {
+      var scroll = $(window).scrollTop();
+      var buttonWrapperTop = $('.button-placeholder').offset().top
+      var buttonHome = $('.button-placeholder').offset().top - $( window ).height() + $('.button-wrapper').outerHeight()
+      if (scroll >= 0 && scroll <= buttonHome ) {
+        $(".button-wrapper").addClass("freeze-button-wrapper");
+      } else {
+        $(".button-wrapper").removeClass("freeze-button-wrapper");
+      }
+    }
+  });
+// image display control
+  $('form').change(function() {
+    let selectedSku = $('.swatch .color input:checked').parent().data("sku").trim(); 
+    $('.product-image-wrapper').hide()
+    $('.image-bubble-wrapper .active').removeClass('active')
+    $('.' + selectedSku + '-wrapper').show()
+    if ($(window).width() < 799) {
+    $('.image-bubble-wrapper').hide()
+    // $('#mobile-' + selectedSku + '-wrapper').show()
+          // $('#mobile-' + selectedSku + '-wrapper').find('.prod-preview-bubble').first().addClass('active');
+
+    }
+
+    //  display color text 
+    var color = $('.swatch.clearfix[data-option-index="1"]  input:checked').attr("value");
+    $('#color-selected').text(color); 
+  }); 
+  
+  $('.product-image-preview').click(function() {
+    let newSrc = $(this).find('img').attr("src")
+    console.log(newSrc)
+    $('.image-feature-main:visible').attr("src", newSrc); 
+  }); 
+  
+  $(document).ready(function() {
+    if ($(window).width() < 799) {
+
+    $(".image-feature-main").on("swipeleft",function() {
+      var currentSelection = $(this).parent().parent().siblings('.image-bubble-wrapper').children('.active')
+      var nextSelection = $(currentSelection).next()
+      var newImage = $(nextSelection).data("image-src")
+      if (nextSelection.length) {
+        $(this).attr("src", newImage); 
+        $(currentSelection).removeClass('active')
+        $(nextSelection).addClass('active')
+      }
+    }); 
+
+    $(".image-feature-main").on("swiperight",function() {
+
+      var currentSelection = $(this).parent().parent().siblings('.image-bubble-wrapper').children('.active')
+      var nextSelection = $(currentSelection).prev()
+      var newImage = $(nextSelection).data("image-src")
+      if (nextSelection.length) {
+        $(this).attr("src", newImage); 
+        $(currentSelection).removeClass('active')
+        $(nextSelection).addClass('active')
+      }
+    }); 
+    }
+  }); 
+       
+  
+</script>
+
+
+<script>
+  var selectCallback_{{ product.id }} = function(variant, selector) {
+
+    // BEGIN SWATCHES
+    if (variant) {
+      var form = jQuery('#' + selector.domIdPrefix).closest('form');
+      for (var i=0,length=variant.options.length; i<length; i++) {
+        var radioButton = form.find('.swatch[data-option-index="' + i + '"] :radio[value="' + variant.options[i] +'"]');
+        if (radioButton.size()) {
+          radioButton.get(0).checked = true;
+        }
+      }
+    }
+    // END SWATCHES
+    timber.productPage({
+      money_format: "{{ shop.money_format }}",
+      variant: variant,
+      selector: selector,
+      product_id: '{{ product.id }}',
+      translations: {
+      add_to_cart : "{{ settings.add_to_cart_text }}",
+      sold_out : "Sold Out",
+      unavailable : "Unavailable"
+    }
+                       });
+  };
+  jQuery(function($) {
+    new Shopify.OptionSelectors('productSelect-{{ product.id }}', {
+                                product: {{ product | json }},
+                                onVariantSelected: selectCallback_{{ product.id }},
+                                enableHistoryState: true
+                                });
+  });
+</script>
+
+
+<script text="text/javascript">
+  var _learnq = _learnq || [];
+
+  var item = {
+    Name: {{ product.title|json }},
+    ProductID: {{ product.id|json }},
+    Categories: {{ product.collections|map:'title'|json }},
+    ImageURL: "https:{{ product.featured_image.src|img_url:'master' }}",
+    URL: "{{ shop.secure_url }}{{ product.url }}",
+    Brand: {{ product.vendor|json }},
+    Price: {{ product.price|money|json }},
+    CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+  };
+
+  _learnq.push(['track', 'Viewed Product', item]);
+  _learnq.push(['trackViewedItem', {
+    Title: item.Name,
+    ItemId: item.ProductID,
+    Categories: item.Categories,
+    ImageUrl: item.ImageURL,
+    Url: item.URL,
+    Metadata: {
+      Brand: item.Brand,
+      Price: item.Price,
+      CompareAtPrice: item.CompareAtPrice
+    }
+  }]);
+</script>
+
+<script type="text/javascript">
+    var _learnq = _learnq || [];
+    document.getElementById("add-to-cart-{{ product.id }}").addEventListener('click',function (){
+                            _learnq.push(['track', 'Added to Cart', item]);
+    });
+</script>
+
+<style>
+  .fix-form-wrapper { align-self: flex-end; }
+  @media only screen and (max-width:  799px) {
+   .freeze-button-wrapper {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    left: 0;
+    background: white;
+    padding: 20px;
+}
+    
+    .image-wrapper-b { padding: 0 !important;}
+   .swatch.clearfix[data-option-index="0"]   {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding:5px;
+  border: 2px solid #9093c8;
+  border-radius: 10px;
+  margin-left:  0;
+  }
+/* stay on page */
+  footer { margin-top: -10vw; }
+  }
+
+      @media only screen and (min-width:  800px) {
+   .swatch.clearfix[data-option-index="0"]   {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  border: 2px solid #9093c8;
+  border-radius: 10px;
+  margin-left:  0;
+}
+
+}
+
+.swatch.clearfix[data-option-index="0"] label {
+  text-transform: uppercase;
+  font-family: "Avenir-Next-Condensed";
+  padding: 10px;
+  font-size: 12pt;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.swatch.clearfix[data-option-index="0"]  input:checked + label {
+  color: white;
+  border-radius: 10px;
+  background: #21409A;
+}
+     .swatch.clearfix[data-option-index="0"] .swatch-element {
+  width: 50%;
+}
+ 
+  {% if product.title contains "Summer Wrap"%}
+ .swatch.clearfix[data-option-index="0"]  {
+  display: none !important;
+ }
+  {% endif %}
+  .shopify-cleanslate span { color: white; }
+
+.quick-pay-options img { margin: 2.5px; max-width: 50%; width: 100px; }
+  .image-feature-main   {
+  transition:opacity 5s linear;
+
+  }
+
+          .freeze-form {
+  right: 0;
+  position: fixed; 
+top: 122px;     
+            height: fit-content;
+          }
+  .freeze-form form {
+        background: white;
+
+  }
+       .prod-preview-bubble { display: inline-block; margin: 5px 2.5px; width: 10px; height: 10px; border-radius: 100%; border: 1px solid navy; }
+                      .prod-preview-bubble.active { background-color: navy; }
+
+</style>

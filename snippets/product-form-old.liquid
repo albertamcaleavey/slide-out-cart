@@ -1,0 +1,551 @@
+  <div class="flex-container background-white aifs">
+    <div class="half double-accent-padding" id="featured-image-wrapper">
+
+           {% if product.type == "Gift Card" %}
+      <img src="{{ product.featured_image.src | img_url: 'master' }}" class="fw featured_image preview-image" id="main-featured-image" alt="{{variant.name}}">
+
+    </div>
+     {% else %}
+    	{% if product.available %}
+    {% if product.title contains "Women's Compression" %}
+      <div class="product-image-preview clickable do" id="featured-image-preview"> 
+        <img src="{{ product.featured_image.src | img_url }}" class="fw featured_image" alt="{{variant.name}}">
+      </div>
+      <div class="product-image-preview clickable do" id="lifestyle-1-preview">      
+        <img src="{{ product.images[0] | img_url }}" class="fw" alt="{{variant.name}}">
+      </div>
+    {% elsif product.title contains "Golf" or product.title contains "Men's Compression" %}
+    {% else %}
+         <div class="product-image-preview clickable do" id="featured-image-preview"> 
+        <img src="{{ product.featured_image.src | img_url }}" class="fw featured_image" alt="{{variant.name}}">
+      </div>
+       <div class="product-image-preview clickable do" id="lifestyle-1-preview">      
+        <img src="{{ product.images[3] | img_url }}" class="fw" alt="{{variant.name}}">
+      </div>
+       <div class="product-image-preview clickable do" id="lifestyle-2-preview">      
+        <img src="{{ product.images[4] | img_url }}" class="fw" alt="{{variant.name}}">
+      </div>
+    {% endif %}
+      <img src="{{ product.featured_image.src | asset_url }}" class="fw featured_image preview-image" id="main-featured-image" alt="{{variant.name}}">
+      {% else %}
+          <img src="{{ product.featured_image.src | img_url: 'grande' }}" class="fw featured_image preview-image" id="main-featured-image" alt="{{variant.name}}">
+
+    	{% endif %}
+    	{% assign current_photo = 2 %}
+        {% for image in product.images | offset: 3 | limit: 3 %}
+         <img src="{{ image.src | img_url | remove: '_small'}}" class="fw sub_featured_image{{current_photo}} preview-image" alt="{{variant.name}}" style="display: none;">
+        
+        {% assign current_photo = current_photo | plus: 1 %}
+         {% endfor %}
+    </div>
+  {% if product.available %}
+	{% if product.title contains "Women's Compression" %}
+      <div class="image-bubble-wrapper flex-container-no mo jcc double-accent-padding" style="padding-top: 0;">
+        <div class="photo-bubble active" id="photo-bubble-1"></div>
+        <div class="photo-bubble" id="photo-bubble-2"></div>
+      </div>  
+    {% elsif product.title contains "Golf" or product.title contains "Men's Compression"%}
+	{% else %}
+   <div class="image-bubble-wrapper flex-container-no mo jcc double-accent-padding" style="padding-top: 0;">
+      <div class="photo-bubble active" id="photo-bubble-1"></div>
+      <div class="photo-bubble" id="photo-bubble-2"></div>
+      <div class="photo-bubble" id="photo-bubble-3"></div>
+      <div class="photo-bubble" id="photo-bubble-4"></div>
+    </div> 
+{% endif %}
+  {% endif %}
+                  {% endif %}
+
+    <script>
+  
+      $('#lifestyle-1-preview').click(function() {
+        $('.preview-image').hide(); 
+        $('.sub_featured_image2').show();
+      }); 
+            $('#lifestyle-2-preview').click(function() {
+        $('.preview-image').hide(); 
+        $('.sub_featured_image3').show();
+      }); 
+            $('#featured-image-preview').click(function() {
+        $('.preview-image').hide(); 
+        $('#main-featured-image').show();
+      }); 
+    </script>
+
+    <div class="half double-accent-padding">
+      <p class="subscript nmt">
+		{% if product.title contains "Women's Crew" %}
+                <a href="/collections/all-socks">All Socks</a> | 
+				<a href="/collections/women">Women's Socks</a> |
+        		<a href="/collections/womens-crew">Women's Crew</a>
+        {% elsif product.title contains "Men's Crew" %}
+                <a href="/collections/all-socks">All Socks</a> | 
+				<a href="/collections/men">Men's Socks</a>  |
+               	<a href="/collections/mens-crew">Men's Crew</a>
+        {% elsif product.title contains "Kid" %}
+                <a href="/collections/all-socks">All Socks</a> | 
+				<a href="/collections/kids">Kids' Socks</a> |
+        		<a href="/collections/kids-crew">Kids' Crew</a>
+        {% elsif product.title contains "Youth" %}
+                <a href="/collections/all-socks">All Socks</a> | 
+				<a href="/collections/kids">Kids' Socks</a> |
+        		<a href="/collections/youth-crew">Youth Crew</a> 
+        {% elsif product.title contains "Toddler" %}
+                <a href="/collections/all-socks">All Socks</a> | 
+				<a href="/collections/kids">Kid's Socks</a> |
+        		<a href="/collections/toddler">Toddler</a>
+        {% elsif product.title contains "Women's Low Cut" %}
+                 <a href="/collections/all-socks">All Socks</a> | 
+				<a href="/collections/women">Women's Socks</a> |
+        		<a href="/collections/womens-ankle">Women's Low Cut</a>
+              {% elsif product.title contains "Women's Golf" %}
+                 <a href="/collections/all-socks">All Socks</a> | 
+				<a href="/collections/women">Women's Socks</a> |
+        		<a href="/collections/womens-golf">Women's Golf</a>
+        {% elsif product.title contains "Men's Low Cut" %}
+                <a href="/collections/all-socks">All Socks</a> | 
+				<a href="/collections/men">Men's Socks</a> |
+               	<a href="/collections/mens-ankle">Men's Low Cut</a>
+        {% elsif product.title contains "Men's Golf" %}
+                <a href="/collections/all-socks">All Socks</a> | 
+				<a href="/collections/men">Men's Socks</a> |
+               	<a href="/collections/mens-golf">Men's Golf</a>
+        {% elsif product.title contains "Women's Performance" %}
+                 <a href="/collections/all-socks">All Socks</a> | 
+				<a href="/collections/women">Women's Socks</a> |
+        		<a href="/collections/womens-performance">Women's Performance</a>
+        {% elsif product.title contains "Men's Performance %}
+              	<a href="/collections/all-socks">All Socks</a> | 
+				<a href="/collections/men">Men's Socks</a> |
+               	<a href="/collections/mens-performance">Men's Performance</a>
+        {% elsif product.title contains "No Show" %}
+               <a href="/collections/all-socks">All Socks</a> | 
+				<a href="/collections/women">Women's Socks</a> |
+        		<a href="/collections/womens-no-show">Women's No Show</a>
+		{% endif %}
+      </p>
+      <h2 class="nm ttu"> {{ product.title }}</h2>
+      
+            <p id="product-summary">
+        {% if product.title contains "Women's Crew" %}
+        	Soft as cashmere, warmer than wool. The perfect sock for your sneaks, boots, and lounging around the house!
+        {% elsif product.title contains "Performance" %}
+              All the softness you're used to, with the lightweight athletic feel. Super soft, low profile performance cushioned bottom with a breathable vented top.
+        {% elsif product.title contains "Men's Crew" %}
+        	The ultimate comfort for long days on your feet. Meet the sports car of fibers: Wicking, Thermoregulating, Breathable and Soft.
+        {% elsif product.title contains "Kid" or product.title contains "Youth" or product.title contains "Toddler" %}
+        	Keep the kiddos feet cozy and warm all day - they deserve to experience the Alpaca fiber too!
+        {% elsif product.title contains "Women's Low Cut" %}
+        	Super soft, breathable, wicking and thermoregulating. The perfect socks for a long day on your feet.
+        {% elsif product.title contains "Men's Low Cut" %}
+        	The ultimate comfort for long days on your feet. Meet the sports car of fibers: Wicking, Thermoregulating, Breathable and Soft.
+		{% elsif product.title contains "Compression" %}
+             12-15 mmHg Compression Level
+        {% endif %}
+      </p>
+      
+      {% include 'reviews' %}
+      {% if product.type == "Gift Card" %}
+      <p>{{ product.description }}</p>
+      {% else %}
+      <p class=""><b>{{product.price | money }}</b><span class="strikethrough text-purple">{{product.compare_at_price | money }}</span>
+        {% endif %}
+      {% form 'product', product, data-productid: product.id, class: "checkout" %}
+        {% if product.available and product.type != "Gift Card" %}
+          {% include 'swatch' with 'Color' %}
+        	{% if product.tags contains "accessories" %}
+              <p class="subscript"><b>Color: </b><span id="color-selected" style=""></span></p>
+              {% if product.title contains "Scarf"%}
+                <p class="subscript"><b>Size: </b><span id="scarf-size-selected" style=""></span></p>
+              {% endif %}
+        	{% else %}
+        		<p class="subscript"><b>Size: </b><span id="size-selected" style=""></span></p>
+          {% endif %}
+            <p class="out-of-stock text-purple" style="display: none;"><b>Out Of Stock</b></p>
+          {% if product.title contains "Compression"%}
+            {% render 'size-chart' %}
+          {% endif %}
+        {% include 'swatch' with 'Size' %}
+      {% elsif product.type == "Gift Card" %}
+      	{% include 'swatch' with "Denominations" %}
+        {% endif %}
+        {% if product.tags contains "Socks" or product.type == "Gift Card" or product.title contains "Custom" %}
+<style>
+        @media only screen and (max-width:  799px) {
+     .swatch.clearfix[data-option-index="0"]   {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding:5px;
+    border: 2px solid #9093c8;
+    border-radius: 10px;
+    margin-left:  0;
+}
+/* stay on page */
+#site-nav-footer { margin-top: -10vw; }
+}
+
+        @media only screen and (min-width:  800px) {
+     .swatch.clearfix[data-option-index="0"]   {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    border: 2px solid #9093c8;
+    border-radius: 10px;
+    margin-left:  0;
+}
+
+}
+.swatch.clearfix[data-option-index="0"] .swatch-element {
+  width:  50%;
+}
+ .swatch.clearfix[data-option-index="0"] label {
+    text-transform: uppercase;
+    font-family: "Avenir-Next-Condensed";
+    padding: 10px;
+    font-size: 12pt;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+}
+ .swatch.clearfix[data-option-index="0"]  input:checked + label {
+    color: white;
+    border-radius: 10px;
+    background: #21409A;
+}
+</style>
+        {% endif %}
+        <div class="flex-container-no jcc" style="display: none;">
+          <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+          <link itemprop="availability" href="http://schema.org/InStock">
+          {% if product.tags contains "Socks" or product.type == "Gift Card"%}
+
+          <div class="fw" style="">
+            {% else %}
+            <div class="fw" style="display: none;">
+              {% endif %}
+{% comment %}                
+          {% assign default_index = product.options_by_name['Color'].values.size | plus: -1 %}{% endcomment %}
+              <select name="id" data-productid="{{ product.id }}" id="productSelect-{{ product.id }}" class="product-single__variants" style="display: none;">
+                {% for variant in product.variants %}
+                <option {% if forloop.index == 0 %}selected="selected"{% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
+
+                {% endfor %}
+              </select>
+            </div>
+
+ <!--            <select name="quantity" id="quantity-wrapper" class="tac">
+              {% for i in (1..10) %}
+              <option value="{{ i }}">{{ i }}</option>
+              {% endfor %}         
+            </select>  
+            <style>
+              #quantity-wrapper { padding-left: 20px; background-color: white;} 
+            </style> -->
+          </div> 
+        <div class="rc-widget-injection-parent"></div>
+   
+          {% if product.available %}
+
+          <button type="submit" name="add" id="add-to-cart-{{ product.id }}" class="add-to-cart clickable"><h4 class="text-natural ttu nm">Add to Cart</h4></button>
+          <div class="other-payment-wrapper">{{ form | payment_button }}</div>
+          <style>
+            .quick-pay-options img { margin: 2.5px; max-width: 50%; width: 100px; }
+          </style>
+          <p class="subscript wfa" id="payment-terms-wrapper">{{ form | payment_terms }}</p>
+
+          <p class="subscript wfa" id="purchase-help">Your purchase will help donate Pacas socks to a child staying at a local children's hospital. <a href="/pages/our-story" class="tu clickable" style="text-decoration: underline">Learn more.</a></p>
+          {% else %}
+            <p class="">I'll Be Back Soon!</p>
+
+          {% endif %}
+          <img src="{{'rebrand-guarantee-badge-dark-purple.svg' | asset_url}}" id="product-badge" class="do"/>
+      {% endform %}
+    </div>
+  </div>
+
+{% if product.tags contains "All Kids" %}
+<style>
+.swatch.clearfix[data-option-index="0"] .swatch-element {
+    width: 100% !important;
+}
+  
+</style>
+{% endif %}
+
+  <script>
+
+    var selectCallback_{{ product.id }} = function(variant, selector) {
+
+      // BEGIN SWATCHES
+      if (variant) {
+        var form = jQuery('#' + selector.domIdPrefix).closest('form');
+        for (var i=0,length=variant.options.length; i<length; i++) {
+          var radioButton = form.find('.swatch[data-option-index="' + i + '"] :radio[value="' + variant.options[i] +'"]');
+          if (radioButton.size()) {
+            radioButton.get(0).checked = true;
+          }
+        }
+      }
+      // END SWATCHES
+      timber.productPage({
+        money_format: "{{ shop.money_format }}",
+        variant: variant,
+        selector: selector,
+        product_id: '{{ product.id }}',
+        translations: {
+        add_to_cart : "{{ settings.add_to_cart_text }}",
+        sold_out : "Sold Out",
+        unavailable : "Unavailable"
+      }
+                         });
+    };
+    jQuery(function($) {
+      new Shopify.OptionSelectors('productSelect-{{ product.id }}', {
+                                  product: {{ product | json }},
+                                  onVariantSelected: selectCallback_{{ product.id }},
+                                  enableHistoryState: true
+                                  });
+    });
+  </script>
+
+{% if product.tags contains "accessories" %}
+<script>
+    $('form').change(function() {
+      var color = $('.swatch.clearfix[data-option-index="1"]  input:checked').attr("value");
+      $('#color-selected').text(color); 
+      {% if product.title contains "Scarf" %}
+      if (color.includes("Double Face")) {
+              $('#scarf-size-selected').text('70in x 12.75in'); 
+
+      }
+      else {
+              $('#scarf-size-selected').text('78in x 12in'); 
+
+      }
+      $('.one-size').hide();
+      {% endif %}
+    })
+</script>
+{% endif %}
+
+<script>
+      $('form').change(function() {
+      var size = $('.swatch.clearfix[data-option-index="0"]  input:checked').attr("value");
+      $('#size-selected').text(size); 
+    })
+  {%  unless product.title contains "Golf" %}
+    $(document).ready(function() {
+      $(".preview-image").on("swipeleft",function() {
+        if ($('h2').text().includes("Women's Compression")) {
+          // for compression socks, remove the last two preview images from the DOM so they won't display on swipe
+          $($('.preview-image')[2]).remove()
+          $($('.preview-image')[3]).remove()
+        }
+      if (  $(this).next('img').length ) {
+        $(this).hide().next('img').show()
+        $('.photo-bubble.active').removeClass('active').next('.photo-bubble').addClass('active')
+      }
+    })
+
+    $('.preview-image').on("swiperight", function() {
+      if (  $(this).prev('img').length ) {
+        $(this).hide().prev('img').show()
+        $('.photo-bubble.active').removeClass('active').prev('.photo-bubble').addClass('active')
+
+      }
+    })
+
+    })
+   {%  endunless %}
+
+
+  </script>
+  <script text="text/javascript">
+    var _learnq = _learnq || [];
+
+    var item = {
+      Name: {{ product.title|json }},
+      ProductID: {{ product.id|json }},
+      Categories: {{ product.collections|map:'title'|json }},
+      ImageURL: "https:{{ product.featured_image.src|img_url:'grande' }}",
+      URL: "{{ shop.secure_url }}{{ product.url }}",
+      Brand: {{ product.vendor|json }},
+      Price: {{ product.price|money|json }},
+      CompareAtPrice: {{ product.compare_at_price_max|money|json }}
+    };
+
+    _learnq.push(['track', 'Viewed Product', item]);
+    _learnq.push(['trackViewedItem', {
+      Title: item.Name,
+      ItemId: item.ProductID,
+      Categories: item.Categories,
+      ImageUrl: item.ImageURL,
+      Url: item.URL,
+      Metadata: {
+        Brand: item.Brand,
+        Price: item.Price,
+        CompareAtPrice: item.CompareAtPrice
+      }
+    }]);
+  </script>
+  <script type="text/javascript">
+    var _learnq = _learnq || [];
+    document.getElementById("add-to-cart-{{ product.id }}").addEventListener('click',function (){
+                            _learnq.push(['track', 'Added to Cart', item]);
+    });
+  </script>
+
+
+  {% if product.title contains "Scarf" or product.title contains "Shawl" %}
+  <script>
+     $('form').change(function() {
+        let selectedSKU = $('.swatch .color input:checked').parent().data("sku"); 
+       {% if product.title contains "Shawl" %}
+		selectedSKU = selectedSKU.replace(/ /g,"_")
+        {% elsif product.title contains "Scarf" %}
+        		selectedSKU = selectedSKU.replace("/","_")
+		selectedSKU = selectedSKU.replace(/ /g,"")
+
+       {% endif %}
+        let photo1 = '//cdn.shopify.com/s/files/1/0117/0597/4884/t/222/assets/' + '1-photo-' + selectedSKU + ".png"
+        let photo2 = '//cdn.shopify.com/s/files/1/0117/0597/4884/t/222/assets/' + '2-photo-' + selectedSKU + ".png"
+        let photo3 = '//cdn.shopify.com/s/files/1/0117/0597/4884/t/222/assets/' + '3-photo-' + selectedSKU + ".png"
+      
+        let backupphoto1 = '{{ product.images[3] | img_url | remove: "_small"}}'
+        let backupphoto2 = '{{ product.images[4] | img_url | remove: "_small"}}'
+        let backupphoto3 = '{{ product.images[5] | img_url  | remove: "_small" }}'
+ 
+        $.get(photo1)
+          .done(function() { 
+        $('.sub_featured_image2').attr("src", photo1)
+        $('#lifestyle-1-preview img').attr("src", photo1)
+
+        })
+          .fail(function() { 
+        $('.sub_featured_image2').attr("src", backupphoto1)
+        $('#lifestyle-1-preview img').attr("src", backupphoto1)
+        })
+      
+            $.get(photo2)
+         .done(function() { 
+        $('.sub_featured_image3').attr("src", photo2)
+        $('#lifestyle-2-preview img').attr("src", photo2)
+
+        })
+         .fail(function() { 
+        $('.sub_featured_image3').attr("src", backupphoto2)
+        $('#lifestyle-2-preview img').attr("src", backupphoto2)
+        })
+            $.get(photo3)
+          .done(function() { 
+        $('.sub_featured_image4').attr("src", photo3)
+        })
+        .fail(function() { 
+        $('.sub_featured_image4').attr("src", backupphoto3)
+        })
+
+      }); 
+  </script>
+  {% elsif product.tags contains "Socks" or product.title contains 'Hats'  %}
+  <script>
+
+     $('form').change(function() {
+         $('.product-image-preview').show()
+
+        let selectedSku = $('.swatch .color input:checked').parent().data("sku"); 
+                var photoStart = 2 
+                var singleArray = []; 
+                if (selectedSku.length) {
+        			var individualSkus = selectedSku.split(",")
+                  }
+                  else {
+                    var individualSkus = singleArray.push(selectedSku)
+            
+                }
+
+       let backupphoto1 = '{{ product.images[4] | img_url | remove: '_small'}}'
+        let backupphoto2 = '{{ product.images[5] | img_url | remove: '_small'}}'
+        let backupphoto3 = '{{ product.images[6] | img_url | remove: '_small' }}'
+        
+        
+        let photo1 = '//cdn.shopify.com/s/files/1/0117/0597/4884/t/222/assets/' + $.trim(individualSkus[0]) + '.jpg'
+        let photo2 = '//cdn.shopify.com/s/files/1/0117/0597/4884/t/222/assets/' + $.trim(individualSkus[1]) + '.jpg'
+        let photo3 = '//cdn.shopify.com/s/files/1/0117/0597/4884/t/222/assets/' + $.trim(individualSkus[2]) + '.jpg'
+
+        $.get(photo1)
+          .done(function() { 
+        $('.sub_featured_image2').attr("src", photo1)
+        $('#lifestyle-1-preview img').attr("src", photo1)
+
+        })
+          .fail(function() { 
+        $('.sub_featured_image2').attr("src", backupphoto1)
+        $('#lifestyle-1-preview img').attr("src", backupphoto1)
+        
+//                 $('#lifestyle-1-preview').hide();
+
+        })
+       
+            $.get(photo2)
+         .done(function() { 
+        $('.sub_featured_image3').attr("src", photo2)
+        $('#lifestyle-2-preview img').attr("src", photo2)
+
+        })
+         .fail(function() { 
+        $('.sub_featured_image3').attr("src", backupphoto2)
+        $('#lifestyle-2-preview img').attr("src", backupphoto2)
+//                         $('#lifestyle-2-preview').hide();
+
+        })
+            $.get(photo3)
+          .done(function() { 
+        $('.sub_featured_image4').attr("src", photo3)
+        })
+        .fail(function() { 
+        $('.sub_featured_image4').attr("src", backupphoto3)
+
+        })
+        
+        
+
+      }); 
+  </script>
+  {% endif %}
+
+
+  <script>
+   {% if product.variants.size > 1 %}
+
+    var variantImages = [],
+        variant,
+        variantImage
+
+    {% for variant in product.variants %}
+    variant = {{ variant | json }};
+    if ( typeof variant.featured_image !== 'undefined' && variant.featured_image !== null ) {
+      variantImage =  variant.featured_image.src.split('?')[0].replace(/http(s)?:/,'');
+      variantImages.push(variantImage)
+
+    }
+    {% endfor %}
+
+
+
+
+
+
+     $('form').change(function() {
+      var imageIndex = $('.swatch .color input:checked').parent().data("index"); 
+      $('.featured_image').attr("src", variantImages[imageIndex]);
+            $('.photo-bubble').removeClass("active")
+            $('.photo-bubble:first-of-type').addClass('active')
+      $('.fake-color-padding').css("border", "none"); 
+    })
+    {% endif %}
+
+  </script> 
+
