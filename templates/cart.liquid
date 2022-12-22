@@ -46,7 +46,7 @@
               <div class="border-bottom-teal" data-product-id="{{ item.product_id }}" data-variant-id="{{ item.id }}">
                 <a href="/cart/change?id={{ item.id }}&quantity=0" class="cart-update remove-from-cart"><h4 class="text-red nm">✕</h4></a>
                 <div class="flex-container">
-                  <div class="quarter accent-padding">
+                  <div class="quarter accent-padding"> 
                     <a href="{{ item.url}}">
                       <img src="{{ item.variant.featured_image | product_img_url: 'large' }}"  alt="{{ item.product.title }}" class="fw">
                     </a>

@@ -1,4 +1,4 @@
-<section id="cart-drawer" class="background-white">
+<section id="cart-drawer">
   <div class="background-light-teal flex-container-no jcsb accent-padding">
     <a href="/cart">
       <img src="{{'bag.png' | asset_url}}" class="icon" id="go-to-cart" loading="lazy"/>
@@ -6,15 +6,130 @@
     <h3 class="tac nm accent ttu text-white">Shopping Bag</h3>
     <img src="{{'exit.png' | asset_url}}" class="icon clickable" id="close-cart" onclick="cartClose();" loading="lazy">
   </div>
+  <div class="accent-padding background-white">
+  <p class="tac subscript text-dark-teal fw" id="free-2-day">Free Shipping on Orders over $80</p>
+  <p class="tac subscript text-holiday-red fw" id="free-2-day"><b>Orders not guaranteed to arrive by Christmas</b></p>
 
-  <div id="test-element">test element</div>
+{% for item in cart.items %}
+  <div class="border-bottom-teal" data-product-id="{{ item.product_id }}" data-variant-id="{{ item.id }}">
+      <div class="flex-container">
+        <div class="quarter accent-padding"> 
+          <a href="{{ item.url}}">
+            <img src="{{ item.variant.featured_image | product_img_url: 'large' }}"  alt="{{ item.product.title }}" class="fw">
+          </a>
+        </div>
+        <div class="line-item-details  half asfs accent-padding">
+          <h4 class="nmb ttu">{{item.product.title}}</h4>
+          {% if item.product.tags contains "wholesale" %}
+            <p class="nm subscript text-red">Wholesale Item</p>
+          {% endif %}
+          {%  if  item.selling_plan_allocation.selling_plan.selected == false %}
+            <p class="nm subscript text-red">Subscription - {{ item.selling_plan_allocation.selling_plan.name }}</p>
+          {%  endif %}
+          <p class="nm">
+          {{ item.variant.title }} <br>
+            <span class="quantity-wrapper-in-cart"><span>Qty:</span> <input type="text" size="4" id="updates_{{ item.id }}" name="updates[{{ item.id }}]" value="{{ item.quantity }}" class="tac"> @ {{ item.line_price | divided_by: item.quantity | money }}
+            <input type="submit" name="update" value="update" class="cart-update update-cart-quantity"></span>
+          </p>
+        </div>
+        <div class="price-details quarter asfs">
+          <h5 class="tar do">{{ item.line_price | money}} </h5>
+        </div>
+      </div>
+  </div>
+{% endfor %}
+</div>
+{% comment %} payment etc {% endcomment %}
+<div style="background-color: #f7f5f2;">
+
+</div>
+
 </section>
+
+<script>
+  $(document).ready(function() {
+    setInterval(function() {
+      $('#free-2-day').toggleClass("text-dark-teal"); 
+    }, 1000)
+  }); 
+</script>
 
 <style>
   #cart-drawer {
-    position: absolute;
-    margin-left: 75%;
-    height: 100%;
+    position: fixed;
+    width: 50vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    min-width: 320px;
+    max-width: 800px;
+    z-index: 9999;
+    right: 0;
+    top: 0;
+    box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white, 12px 0 15px -4px grey, -12px 0 15px -4px grey;
+  }
 
+
+  #add-gift-box-to-cart {
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  #add-gift-box-to-cart h4 {
+    font-weight: normal; 
+    padding: 5px;
+  }
+  
+  @media only screen and (min-width: 800px) {
+    .close-gift-box-modal {
+      position: absolute;
+      right: 20pt;
+      top: 20pt;
+      font-size: 20pt;
+    }
+    #add-gift-box-to-cart h4 { font-size: 16pt;}
+    #gift-box-details {
+      margin: 0; 
+      padding-left: 1.5vw;
+    }
+  }
+  @media only screen and (max-width: 799px) {
+    .close-gift-box-modal {
+      position: absolute;
+      right: 10pt;
+      top: 10pt;
+      font-size: 10pt;
+    }
+   #add-gift-box-to-cart h4 { font-size: 12pt;}
+    #gift-box-details {
+      margin: 0; 
+      padding-left: 15pt;
+    }
+  }
+  #gift-box-modal {
+    z-index: 999;
+    width: 85%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    border: 1px solid #2d2b26;
+    box-shadow: 2px 5px 5px #2d2b267d;
+    border-radius: 20px;
+  }
+  #gift-box-callout { 
+    border-bottom: 1px solid #2d2b26; 
+    font-weight: inherit
+  }
+  #gift-box-info {
+    baseline-shift: super;
+    vertical-align: super;
+    font-size: 8pt;
+    background-color: #66cad8;
+    border-radius: 100%;
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    text-align: center;
+    color: white;
   }
 </style>
