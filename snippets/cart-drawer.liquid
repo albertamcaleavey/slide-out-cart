@@ -1,4 +1,4 @@
-<section id="cart-drawer">
+<section id="cart-drawer" style="">
   <div class="background-light-teal flex-container-no jcsb accent-padding">
     <a href="/cart">
       <img src="{{'bag.png' | asset_url}}" class="icon" id="go-to-cart" loading="lazy"/>
@@ -25,15 +25,19 @@
           {% if item.product.tags contains "wholesale" %}
             <p class="nm subscript text-red">Wholesale Item</p>
           {% endif %}
-          {%  if  item.selling_plan_allocation.selling_plan.selected == false %}
+          {% if  item.selling_plan_allocation.selling_plan.selected == false %}
             <p class="nm subscript text-red">Subscription - {{ item.selling_plan_allocation.selling_plan.name }}</p>
-          {%  endif %}
-
+          {% endif %}
+          
           <div id="cart-drawer-qty">
-            <button type="button" class="cart-drawer-qty-adjust"><span class="icon clickable">-</span></button>
-            <input type="text" class="cart-drawer-qty-num">
-            <button type="button" class="cart-drawer-qty-adjust"><span class="icon clickable">+</span></button>
+            <form action="/cart" method="post" id="cart-drawer-qty-adjust-form">
+            <button type="button" class="cart-drawer-qty-adjust qty-adjust-minus"><span class="icon clickable">-</span></button>
+            <input type="text" size="4" id="updates_{{ item.id }}" name="updates[{{ item.id }}]" value="{{ item.quantity }}" class="tac cart-drawer-qty-num">
+            <input type="submit" name="update" value="update" class="cart-update update-cart-quantity">
+            <button type="button" class="cart-drawer-qty-adjust qty-adjust-plus"><span class="icon clickable">+</span></button>
+            </form>
           </div>
+          
 
           <p><b>Style: </b>{{ item.variant.title }}</p>
           <p>{{ item.line_price | divided_by: item.quantity | money }}</p>
@@ -62,6 +66,7 @@
 </section>
 
 <script>
+
   $(document).ready(function() {
     setInterval(function() {
       $('#free-2-day').toggleClass("text-dark-teal"); 
@@ -70,6 +75,15 @@
 
   $('#close-cart').click(function() {
     $('#cart-drawer').addClass('slide-out')
+  })
+
+  $('.qty-adjust-minus').click(function() {
+    let qtyInput = $(this).siblings('.cart-drawer-qty-num')
+    let itemQty = parseInt(qtyInput.val())
+    itemQty -= 1
+    console.log(itemQty)
+    qtyInput.val(itemQty)
+    
   })
 </script>
 

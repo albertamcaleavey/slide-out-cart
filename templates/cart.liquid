@@ -40,7 +40,7 @@
         <div class="flex-container aifs">
           <div class="two-thirds accent-padding" id="cart-sub-items">
 
-            {%  include 'cart-bundle-logic' %}
+            {% include 'cart-bundle-logic' %}
 
             {% for item in cart.items %}
               <div class="border-bottom-teal" data-product-id="{{ item.product_id }}" data-variant-id="{{ item.id }}">
@@ -56,13 +56,18 @@
                     {% if item.product.tags contains "wholesale" %}
                       <p class="nm subscript text-red">Wholesale Item</p>
                     {% endif %}
-                    {%  if  item.selling_plan_allocation.selling_plan.selected == false %}
+                    {% if item.selling_plan_allocation.selling_plan.selected == false %}
                       <p class="nm subscript text-red">Subscription - {{ item.selling_plan_allocation.selling_plan.name }}</p>
-                    {%  endif %}
+                    {% endif %}
                     <p class="nm">
                       {{ item.variant.title }} <br>
-                      <span class="quantity-wrapper-in-cart"><span>Qty:</span> <input type="text" size="4" id="updates_{{ item.id }}" name="updates[{{ item.id }}]" value="{{ item.quantity }}" class="tac"> @ {{ item.line_price | divided_by: item.quantity | money }}
-                                      <input type="submit" name="update" value="update" class="cart-update update-cart-quantity"></span>
+                      <span class="quantity-wrapper-in-cart">
+                        <span>Qty:</span> 
+
+                        <input type="text" size="4" id="updates_{{ item.id }}" name="updates[{{ item.id }}]" value="{{ item.quantity }}" class="tac"> @ {{ item.line_price | divided_by: item.quantity | money }}
+                        <input type="submit" name="update" value="update" class="cart-update update-cart-quantity">
+
+                      </span>
                     </p>
                   </div>
                   <div class="price-details quarter asfs">
@@ -72,9 +77,9 @@
               </div>
             {% endfor %}
             
-            {%  if socks == true and gift-box == false %}
-              {%  include 'gift-box-cart' %}
-            {%  endif %}
+            {% if socks == true and gift-box == false %}
+              {% include 'gift-box-cart' %}
+            {% endif %}
           </div>
           <div class="third double-accent-padding background-natural" id="cart-order-summary">
             <h3 class="tac accent ttu">order summary</h3>
