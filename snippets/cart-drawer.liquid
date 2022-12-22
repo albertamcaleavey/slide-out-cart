@@ -11,37 +11,52 @@
   <p class="tac subscript text-holiday-red fw" id="free-2-day"><b>Orders not guaranteed to arrive by Christmas</b></p>
 
 {% for item in cart.items %}
-  <div class="border-bottom-teal" data-product-id="{{ item.product_id }}" data-variant-id="{{ item.id }}">
+  <div class="border-bottom-natural" data-product-id="{{ item.product_id }}" data-variant-id="{{ item.id }}">
       <div class="flex-container">
-        <div class="quarter accent-padding"> 
+
+        <div class="quarter"> 
           <a href="{{ item.url}}">
-            <img src="{{ item.variant.featured_image | product_img_url: 'large' }}"  alt="{{ item.product.title }}" class="fw">
+            <img src="{{ item.variant.featured_image | product_img_url: 'large' }}"  alt="{{ item.product.title }}">
           </a>
         </div>
-        <div class="line-item-details  half asfs accent-padding">
-          <h4 class="nmb ttu">{{item.product.title}}</h4>
+        <div class="accent-padding fw half">
+          <h4 class="ttu">{{ item.product.title }}</h4>
+
           {% if item.product.tags contains "wholesale" %}
             <p class="nm subscript text-red">Wholesale Item</p>
           {% endif %}
           {%  if  item.selling_plan_allocation.selling_plan.selected == false %}
             <p class="nm subscript text-red">Subscription - {{ item.selling_plan_allocation.selling_plan.name }}</p>
           {%  endif %}
-          <p class="nm">
-          {{ item.variant.title }} <br>
-            <span class="quantity-wrapper-in-cart"><span>Qty:</span> <input type="text" size="4" id="updates_{{ item.id }}" name="updates[{{ item.id }}]" value="{{ item.quantity }}" class="tac"> @ {{ item.line_price | divided_by: item.quantity | money }}
-            <input type="submit" name="update" value="update" class="cart-update update-cart-quantity"></span>
-          </p>
+
+          <div id="cart-drawer-qty">
+            <button type="button" class="cart-drawer-qty-adjust"><span class="icon clickable">-</span></button>
+            <input type="text" class="cart-drawer-qty-num">
+            <button type="button" class="cart-drawer-qty-adjust"><span class="icon clickable">+</span></button>
+          </div>
+
+          <p><b>Style: </b>{{ item.variant.title }}</p>
+          <p>{{ item.line_price | divided_by: item.quantity | money }}</p>
+
         </div>
-        <div class="price-details quarter asfs">
-          <h5 class="tar do">{{ item.line_price | money}} </h5>
-        </div>
+
       </div>
   </div>
 {% endfor %}
 </div>
 {% comment %} payment etc {% endcomment %}
-<div style="background-color: #f7f5f2;">
+<div class="accent-padding" style="background-color: #f7f5f2;">
+  <button type="submit" class="add-to-cart btn btn--secondary btn--full cart__checkout btn clickable fw" name="checkout" style="margin-top: 0.5em; height: 54px">
+    <h4 class="ttu text-white nm">Checkout - {{ cart.total_price | money }}</h4>
+  </button>
 
+  {% if additional_checkout_buttons %}
+    <p class="subscript tac fw">other payment options</p>
+    <div class="additional-checkout-buttons additional-checkout-buttons--vertical">{{ content_for_additional_checkout_buttons }}</div>
+  {% endif %}
+
+  {% render 'cart-drawer-bundle-logic' %}
+  {% render 'gift-box-cart-drawer' %}
 </div>
 
 </section>
@@ -52,6 +67,10 @@
       $('#free-2-day').toggleClass("text-dark-teal"); 
     }, 1000)
   }); 
+
+  $('#close-cart').click(function() {
+    $('#cart-drawer').addClass('slide-out')
+  })
 </script>
 
 <style>
@@ -69,6 +88,25 @@
     box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white, 12px 0 15px -4px grey, -12px 0 15px -4px grey;
   }
 
+  #cart-drawer-qty {
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    width: fit-content;
+    padding: 0 10px;
+  }
+
+  .cart-drawer-qty-num {
+    height: 25px;
+    width: 15px;
+    border: none;
+  }
+
+  .cart-drawer-qty-adjust {
+    border: none;
+    background: transparent;
+  }
+  
+  .border-bottom-natural:last-of-type { border-bottom: none }
 
   #add-gift-box-to-cart {
     border-radius: 10px;
