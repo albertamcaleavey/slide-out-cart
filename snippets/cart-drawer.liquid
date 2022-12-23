@@ -40,7 +40,7 @@
         
 
           <p><b>Style: </b>{{ item.variant.title }}</p>
-          <p>{{ item.line_price | divided_by: item.quantity | money }}</p>
+          <p id="{{ item.variant.id }}-price">{{ item.line_price | divided_by: item.quantity | money }}</p>
 
         </div>
 
@@ -90,11 +90,16 @@
       data: data,
       dataType: 'json',
       success: function() { 
+        {% comment %} show updated qty num in input {% endcomment %}
         let qtyInput = document.getElementById(`updates_${variant_id}`)
         let qtyInputNum = parseInt(qtyInput.value) + 1
         qtyInput.value = qtyInputNum.toString()
-        {% comment %} adjust price {% endcomment %}
 
+        {% comment %} adjust total price {% endcomment %}
+        let addToCartBtnText = document.getElementById('add-to-cart-btn-txt').innerText
+        let variantPrice = parseInt(document.getElementById(`${variant_id}-price`).innerText.replace('$', ''))
+        let updatedTotalPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '')) + variantPrice
+        document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - $${updatedTotalPrice.toString()}.00`
 
       }
     });
@@ -114,9 +119,10 @@
         let qtyInput = document.getElementById(`updates_${variant_id}`)
         let qtyInputNum = parseInt(qtyInput.value) - 1
         qtyInput.value = qtyInputNum.toString()
+        
         {% comment %} adjust total price {% endcomment %}
         let addToCartBtnText = document.getElementById('add-to-cart-btn-txt').innerText
-        let variantPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '')) / (qty + 1)
+        let variantPrice = parseInt(document.getElementById(`${variant_id}-price`).innerText.replace('$', ''))
         let updatedTotalPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '')) - variantPrice
         document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - $${updatedTotalPrice.toString()}.00`
       }
