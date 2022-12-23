@@ -98,8 +98,8 @@
         {% comment %} adjust total price {% endcomment %}
         let addToCartBtnText = document.getElementById('add-to-cart-btn-txt').innerText
         let variantPrice = parseInt(document.getElementById(`${variant_id}-price`).innerText.replace('$', ''))
-        let updatedTotalPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '')) + variantPrice
-        document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - $${updatedTotalPrice.toString()}.00`
+        let updatedTotalPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '').replace(',', '')) + variantPrice
+        document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - $${new Intl.NumberFormat().format(updatedTotalPrice)}`
 
       }
     });
@@ -119,12 +119,14 @@
         let qtyInput = document.getElementById(`updates_${variant_id}`)
         let qtyInputNum = parseInt(qtyInput.value) - 1
         qtyInput.value = qtyInputNum.toString()
-        
+
         {% comment %} adjust total price {% endcomment %}
         let addToCartBtnText = document.getElementById('add-to-cart-btn-txt').innerText
+        {% comment %} BUG- when you increase qty to a certain point- price goes back to individual variant price (1 item) {% endcomment %}
+        console.log(parseInt(addToCartBtnText.replace('CHECKOUT - $', '').replace(',', '')))
         let variantPrice = parseInt(document.getElementById(`${variant_id}-price`).innerText.replace('$', ''))
-        let updatedTotalPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '')) - variantPrice
-        document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - $${updatedTotalPrice.toString()}.00`
+        let updatedTotalPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '').replace(',', '')) - variantPrice
+        document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - $${new Intl.NumberFormat().format(updatedTotalPrice)}`
       }
     });
   }
