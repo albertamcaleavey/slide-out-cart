@@ -30,14 +30,14 @@
           {% endif %}
           
           <div id="cart-drawer-qty">
-            <form action="/cart" method="post" id="cart-drawer-qty-adjust-form">
+            <form action="/cart" method="post" id="{{ item.variant.id }}-form" class="cart-drawer-qty-adjust-form">
             <button type="button" class="cart-drawer-qty-adjust qty-adjust-minus"><span class="icon clickable">-</span></button>
             <input type="text" size="4" id="updates_{{ item.id }}" name="updates[{{ item.id }}]" value="{{ item.quantity }}" class="tac cart-drawer-qty-num">
             <input type="submit" name="update" value="update" class="cart-update update-cart-quantity">
             <button type="button" class="cart-drawer-qty-adjust qty-adjust-plus"><span class="icon clickable">+</span></button>
             </form>
           </div>
-          
+        
 
           <p><b>Style: </b>{{ item.variant.title }}</p>
           <p>{{ item.line_price | divided_by: item.quantity | money }}</p>
@@ -66,7 +66,6 @@
 </section>
 
 <script>
-
   $(document).ready(function() {
     setInterval(function() {
       $('#free-2-day').toggleClass("text-dark-teal"); 
@@ -76,16 +75,42 @@
   $('#close-cart').click(function() {
     $('#cart-drawer').addClass('slide-out')
   })
+</script>
 
-  $('.qty-adjust-minus').click(function() {
-    let qtyInput = $(this).siblings('.cart-drawer-qty-num')
+{% comment %} adjust quantity {% endcomment %}
+<script>
+  function increaseItemQty(variant_id, qty) {
+    data = {
+      "id": variant_id,
+      "quantity": qty,
+    }
+    jQuery.ajax({
+      type: 'POST',
+      url: '/cart/add.js',
+      data: data,
+      dataType: 'json',
+      success: function() { 
+        let qtyInput = document.getElementById(`updates_${variant_id}`)
+        let qtyInputNum = parseInt(qtyInput.value) + 1
+        qtyInput.value = qtyInputNum.toString()
+      }
+    });
+  }
+
+
+  $('.qty-adjust-plus').click(function() {
+    {% comment %} let qtyInput = $(this).siblings('.cart-drawer-qty-num')
     let itemQty = parseInt(qtyInput.val())
     itemQty -= 1
     console.log(itemQty)
-    qtyInput.val(itemQty)
+    qtyInput.val(itemQty) {% endcomment %}
+
+    var variantId = parseInt($(this).parent('form').attr('id').replace('-form', ''))
+    let itemQty = parseInt($(this).siblings('.cart-drawer-qty-num').val()) - 1
+    increaseItemQty(variantId, 1)
     
   })
-</script>
+  </script>
 
 <style>
   #cart-drawer {
