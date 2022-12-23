@@ -33,7 +33,7 @@
             <form action="/cart" method="post" id="{{ item.variant.id }}-form" class="cart-drawer-qty-adjust-form">
             <button type="button" class="cart-drawer-qty-adjust qty-adjust-minus"><span class="icon clickable">-</span></button>
             <input type="text" size="4" id="updates_{{ item.id }}" name="updates[{{ item.id }}]" value="{{ item.quantity }}" class="tac cart-drawer-qty-num">
-            <input type="submit" name="update" value="update" class="cart-update update-cart-quantity">
+            {% comment %} <input type="submit" name="update" value="update" class="cart-update update-cart-quantity"> {% endcomment %}
             <button type="button" class="cart-drawer-qty-adjust qty-adjust-plus"><span class="icon clickable">+</span></button>
             </form>
           </div>
@@ -51,7 +51,7 @@
 {% comment %} payment etc {% endcomment %}
 <div class="accent-padding" style="background-color: #f7f5f2;">
   <button type="submit" class="add-to-cart btn btn--secondary btn--full cart__checkout btn clickable fw" name="checkout" style="margin-top: 0.5em; height: 54px">
-    <h4 class="ttu text-white nm">Checkout - {{ cart.total_price | money }}</h4>
+    <h4 id="add-to-cart-btn-txt" class="ttu text-white nm">Checkout - {{ cart.total_price | money }}</h4>
   </button>
 
   {% if additional_checkout_buttons %}
@@ -93,6 +93,9 @@
         let qtyInput = document.getElementById(`updates_${variant_id}`)
         let qtyInputNum = parseInt(qtyInput.value) + 1
         qtyInput.value = qtyInputNum.toString()
+        {% comment %} adjust price {% endcomment %}
+
+
       }
     });
   }
@@ -111,10 +114,16 @@
         let qtyInput = document.getElementById(`updates_${variant_id}`)
         let qtyInputNum = parseInt(qtyInput.value) - 1
         qtyInput.value = qtyInputNum.toString()
+        {% comment %} adjust total price {% endcomment %}
+        let addToCartBtnText = document.getElementById('add-to-cart-btn-txt').innerText
+        let variantPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '')) / (qty + 1)
+        let updatedTotalPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '')) - variantPrice
+        document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - $${updatedTotalPrice.toString()}.00`
       }
     });
   }
 
+  {% comment %} adjust item quantity on plus and minus button click  {% endcomment %}
   $('.cart-drawer-qty-adjust').click(function() {
     var variantId = parseInt($(this).parent('form').attr('id').replace('-form', ''))
     if ($(this).hasClass('qty-adjust-plus')) {
@@ -123,8 +132,6 @@
       let itemQty = parseInt($(this).siblings('.cart-drawer-qty-num').val()) - 1
     decreaseItemQty(variantId, itemQty)
     }
-    
-    
   })
 
   {% comment %} $('.qty-adjust-plus').click(function() {
