@@ -9,7 +9,6 @@
   </div>
   <div class="accent-padding background-white">
   <p class="tac subscript text-dark-teal fw" id="free-2-day">Free Shipping on Orders over $80</p>
-  <p class="tac subscript text-holiday-red fw" id="free-2-day"><b>Orders not guaranteed to arrive by Christmas</b></p>
 
 {% for item in cart.items %}
   <div id="variant-{{ item.id }}" class="cart-drawer-variant-contianer border-bottom-natural" data-product-id="{{ item.product_id }}" data-variant-id="{{ item.id }}">
@@ -100,7 +99,7 @@
         let addToCartBtnText = document.getElementById('add-to-cart-btn-txt').innerText
         let variantPrice = parseInt(document.getElementById(`${variant_id}-price`).innerText.replace('$', ''))
         let updatedTotalPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '').replace(',', '')) + variantPrice
-        document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - $${new Intl.NumberFormat().format(updatedTotalPrice)}`
+        document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - $${new Intl.NumberFormat().format(updatedTotalPrice)}.00`
 
       }
     });
@@ -128,13 +127,13 @@
 
         let variantPrice = parseInt(document.getElementById(`${variant_id}-price`).innerText.replace('$', ''))
         let updatedTotalPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '').replace(',', '')) - variantPrice
-        document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - $${new Intl.NumberFormat().format(updatedTotalPrice)}`
+        document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - $${new Intl.NumberFormat().format(updatedTotalPrice)}.00`
         {% comment %} hide the variant if its quantity becomes zero {% endcomment %}
         if (qty == 0) {
           document.getElementById(`variant-${variant_id}`).remove()
           console.log(document.querySelectorAll('.cart-drawer-variant-contianer').length)
 
-          {% comment %} if there are now 0 items in cart, hide cart details and show cart is empty message {% endcomment %}
+          {% comment %} if there are now 0 items in cart, hide all cart details, change drawer background color and show cart is empty message {% endcomment %}
           if (document.querySelectorAll('.cart-drawer-variant-contianer').length == 0) {
             let cartDrawerChildElements = document.getElementById('cart-drawer').children
 
