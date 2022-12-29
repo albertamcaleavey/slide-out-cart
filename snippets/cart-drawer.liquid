@@ -1,4 +1,5 @@
-<section id="cart-drawer" style="">
+<section id="cart-drawer">
+  <p id="empty-cart-message" class="tac" style="display: none">Your Cart is Empty</p>
   <div class="background-light-teal flex-container-no jcsb accent-padding">
     <a href="/cart">
       <img src="{{'bag.png' | asset_url}}" class="icon" id="go-to-cart" loading="lazy"/>
@@ -11,14 +12,14 @@
   <p class="tac subscript text-holiday-red fw" id="free-2-day"><b>Orders not guaranteed to arrive by Christmas</b></p>
 
 {% for item in cart.items %}
-  <div class="border-bottom-natural" data-product-id="{{ item.product_id }}" data-variant-id="{{ item.id }}">
+  <div id="variant-{{ item.id }}" class="cart-drawer-variant-contianer border-bottom-natural" data-product-id="{{ item.product_id }}" data-variant-id="{{ item.id }}">
       <div class="flex-container">
 
         <div class="quarter"> 
           <a href="{{ item.url}}">
             <img src="{{ item.variant.featured_image | product_img_url: 'large' }}"  alt="{{ item.product.title }}">
           </a>
-        </div>
+        </div> 
         <div class="accent-padding fw half">
           <h4 class="ttu">{{ item.product.title }}</h4>
 
@@ -122,11 +123,28 @@
 
         {% comment %} adjust total price {% endcomment %}
         let addToCartBtnText = document.getElementById('add-to-cart-btn-txt').innerText
+
         {% comment %} BUG- when you increase qty to a certain point- price goes back to individual variant price (1 item) {% endcomment %}
-        console.log(parseInt(addToCartBtnText.replace('CHECKOUT - $', '').replace(',', '')))
+
         let variantPrice = parseInt(document.getElementById(`${variant_id}-price`).innerText.replace('$', ''))
         let updatedTotalPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '').replace(',', '')) - variantPrice
         document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - $${new Intl.NumberFormat().format(updatedTotalPrice)}`
+        {% comment %} hide the variant if its quantity becomes zero {% endcomment %}
+        if (qty == 0) {
+          document.getElementById(`variant-${variant_id}`).remove()
+          console.log(document.querySelectorAll('.cart-drawer-variant-contianer').length)
+
+          {% comment %} if there are now 0 items in cart, hide cart details and show cart is empty message {% endcomment %}
+          if (document.querySelectorAll('.cart-drawer-variant-contianer').length == 0) {
+            let cartDrawerChildElements = document.getElementById('cart-drawer').children
+
+            document.getElementById('cart-drawer').style.backgroundColor = '#f7f5f1'
+              cartDrawerChildElements.forEach(function(el, idx) {
+              el.style.display = 'none'
+          })
+            document.getElementById('empty-cart-message').style.display = 'block'
+          } 
+        }
       }
     });
   }
@@ -152,6 +170,7 @@
     let itemQty = parseInt($(this).siblings('.cart-drawer-qty-num').val()) - 1
     decreaseItemQty(variantId, itemQty)
   }) {% endcomment %}
+
   </script>
 
 <style>
