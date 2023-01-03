@@ -59,8 +59,26 @@
     <div class="additional-checkout-buttons additional-checkout-buttons--vertical">{{ content_for_additional_checkout_buttons }}</div>
   {% endif %}
 
+  {% comment %} render sock gift box suggestion if there's a sock product in cart {% endcomment %}
+  {%- liquid
+    for item in cart.items 
+      if item.product.title contains 'Socks'
+        assign sockInCart = true 
+        break
+      else 
+        assign sockInCart = false 
+      endif 
+     endfor 
+  -%}
+
+  {% if sockInCart %}
+    {% render 'gift-box-cart-drawer' %}
+  {% endif %}
+
+
+
   {% render 'cart-drawer-bundle-logic' %}
-  {% render 'gift-box-cart-drawer' %}
+  
 </div>
 
 </section>

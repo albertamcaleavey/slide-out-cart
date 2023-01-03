@@ -7,32 +7,33 @@ Additional necessary code exists in ajax-cart.js.liquid and is labeled appropria
 
     {% for product in collections.all.products %}
     {% if product.id == 7082898653284 %}
-      {%  assign gift_box = product %}
-    {%  endif  %}
-  {%  endfor %}
-  {%  endpaginate %}
-  {%  if gift_box.available %}
+      {% assign gift_box = product %}
+    {% endif %}
+  {% endfor %}
+  {% endpaginate %}
+  {% if gift_box.available %}
   <!-- fake gift box in cart   -->
-  <div id="fake-gift-box" style="display: none;">
+  <div id="fake-gift-box" style="display: none">
     <div class="flex-container-no">
       <div class="quarter">
         <a href="/products/sock-gift-box?variant=41214212341860">
           <img src="{{ 'box2_EDITED.jpg' | asset_url }}" alt="Sock Gift Box" class="two-thirds">
         </a>
       </div>
-      <div class="line-item-details three-fourths asfs">
-        <h4 class="nm ttu">Sock Gift Box</h4>
-          <p class="subscript fw" ><b>Style:</b>
+      <div class="line-item-details three-fourths asfs acccent-padding">
+        <h4 class="ttu">Sock Gift Box</h4>
+          <p class="fw" ><b>Style:</b>
             Holiday Gift Box<br>
           </p>
-            <p class="subscript fw">$5.00</p>
+            <p class="fw">$5.00</p>
       </div>
  
   </div>
+</div>
 
   
   <!--   gift box product box -->
-  <div class="cart-drawer-gift-box" style="display: none;">
+  <div class="cart-drawer-gift-box" >
     <h4 class="tac ttu text-red">You May Also Like</h4>
     <div class="flex-container-no">
       <div class="quarter">
@@ -164,7 +165,7 @@ Additional necessary code exists in ajax-cart.js.liquid and is labeled appropria
         dataType: 'json',
         success: function() { 
           $('.cart-drawer-gift-box').hide();
-          $('#fake-gift-box').insertAfter('#CartContainer .border-bottom-natural').last().show(''); 
+          $('#fake-gift-box').insertAfter($('#variant-40685992214628')).show(); 
         },
         error: function(XMLHttpRequest, textStatus) {
           Shopify.onError(XMLHttpRequest, textStatus);
