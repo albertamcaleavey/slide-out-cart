@@ -1,4 +1,4 @@
-<section id="cart-drawer">
+<section id="cart-drawer" style="display: none">
   <p id="empty-cart-message" class="tac" style="display: none">Your Cart is Empty</p>
   <div class="background-light-teal flex-container-no jcsb accent-padding">
     <a href="/cart">
@@ -83,9 +83,8 @@
   {% endif %}
 
 
+  {% comment %} {% render 'cart-drawer-bundle-logic' %} {% endcomment %}
 
-  {% render 'cart-drawer-bundle-logic' %}
-  
 </div>
 
 </section>
@@ -95,11 +94,25 @@
     setInterval(function() {
       $('#free-2-day').toggleClass("text-dark-teal"); 
     }, 1000)
+
+    {% comment %} add a class to all descendants of the cart drawer element {% endcomment %}
+    $('#cart-drawer').find('*').addClass('cart-drawer-el')
+
   }); 
 
   $('#close-cart').click(function() {
-    $('#cart-drawer').addClass('slide-out')
+    $('#cart-drawer').removeClass('slide-in').addClass('slide-out')
+
   })
+
+  // close cart drawer when there's a click outside the container that is not the add to cart button
+  $(document).click(function() {
+    console.log($('#cart-drawer').css('display'))
+    if (!$(event.target).parent('button').hasClass('add-to-cart') && !$(event.target).hasClass('cart-drawer-el') && $('#cart-drawer').css('display') !== 'none' ) {
+      $('#cart-drawer').removeClass('slide-in').addClass('slide-out')
+    }  
+  })
+
 </script>
 
 {% comment %} adjust quantity {% endcomment %}
@@ -121,8 +134,9 @@
         qtyInput.value = qtyInputNum.toString()
 
         {% comment %} adjust total price {% endcomment %}
+        let addToCartBtnText = document.getElementById('add-to-cart-btn-txt').innerText
         let variantPrice = parseInt(document.getElementById(`${variant_id}-price`).innerText.replace('$', ''))
-        let updatedTotalPrice = qtyInputNum * variantPrice
+        let updatedTotalPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '').replace(',', '')) - variantPrice
         document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(updatedTotalPrice)}`
 
       }
@@ -145,8 +159,9 @@
         qtyInput.value = qtyInputNum.toString()
 
         {% comment %} adjust total price {% endcomment %}
+        let addToCartBtnText = document.getElementById('add-to-cart-btn-txt').innerText
         let variantPrice = parseInt(document.getElementById(`${variant_id}-price`).innerText.replace('$', ''))
-        let updatedTotalPrice = qtyInputNum * variantPrice
+        let updatedTotalPrice = parseInt(addToCartBtnText.replace('CHECKOUT - $', '').replace(',', '')) + variantPrice
         document.getElementById('add-to-cart-btn-txt').innerText = `CHECKOUT - ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(updatedTotalPrice)}` 
 
         {% comment %} hide the variant if its quantity becomes zero {% endcomment %}
