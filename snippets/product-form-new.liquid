@@ -111,12 +111,12 @@
       {% form 'product', product, data-productid: product.id, class: "checkout" %}
       <h2 class="nm ttu"> {{ product.title | remove: 'Light-Weight / Summer Wrap - ' | remove: 'Throw Blanket - '}}</h2>
        {% if product.available %}  
-        {% if product.title contains 'Socks'  %}
+        {% if product.title contains 'Socks' %}
          <p id="product-summary" class="subscript">
           {% if product.title contains "Women's Crew" %}
         	Soft as cashmere, warmer than wool. The perfect sock for your sneaks, boots, and lounging around the house!
           {% elsif product.title contains "Performance" %}
-              All the softness you're used to, with the lightweight athletic feel. Super soft, low profile performance cushioned bottom with a breathable vented top.
+            All the softness you're used to, with the lightweight athletic feel. Super soft, low profile performance cushioned bottom with a breathable vented top.
           {% elsif product.title contains "Men's Crew" %}
         	The ultimate comfort for long days on your feet. Meet the sports car of fibers: Wicking, Thermoregulating, Breathable and Soft.
           {% elsif product.title contains "Kid" or product.title contains "Youth" or product.title contains "Toddler" %}
@@ -383,7 +383,7 @@
      .swatch.clearfix[data-option-index="0"]   {
     width: 100%;
     display: flex;
-   {% unless product.title contains 'Boucle' or product.title contains 'Moss' or product.title contains 'Color Block' or product.title contains 'Ombre' or product.title contains 'Shawl' or product.title contains 'Hats' or product.title contains 'Stuffed Animal'%}
+   {% unless product.title contains 'Boucle' or product.title contains 'Moss' or product.title contains 'Color Block' or product.title contains 'Ombre' or product.title contains 'Shawl' or product.title contains 'Hats' or product.title contains 'Stuffed Animal' %}
     justify-content: space-between;
     border: 2px solid #9093c8;
     padding: 5px;
